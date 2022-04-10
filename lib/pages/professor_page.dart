@@ -84,7 +84,7 @@ class _ProfessorPageState extends State<ProfessorPage> {
                               size: 60,
                             ),
                             Text(
-                              'Profile',
+                              'Perfil',
                               style: TextStyle(fontSize: 20),
                             ),
                           ],
