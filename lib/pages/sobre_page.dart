@@ -24,7 +24,7 @@ class _SobrePageState extends State<SobrePage> {
             centerTitle: true,
           ),
           const Padding(
-            padding: EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 5.0),
+            padding: EdgeInsets.only(top: 15.0, bottom: 5.0),
             child: Text(
               'Sobre o aplicativo',
               style: TextStyle(

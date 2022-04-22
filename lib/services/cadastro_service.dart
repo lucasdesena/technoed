@@ -12,21 +12,38 @@ class CadastroService extends ChangeNotifier {
   cadastrarDados(
       String uid, String nome, String email, String tipoConta) async {
     await db
-        .collection('usuarios/$uid/dadoscadastrais')
-        .add({'nome': nome, 'email': email, 'tipo': tipoConta});
+        .collection('usuarios/$uid/dados')
+        .doc('cadastro')
+        .set({'nome': nome, 'email': email, 'tipo': tipoConta});
+  }
+
+  editarNome(String uid, String nome) async {
+    await db
+        .collection('usuarios/$uid/dados')
+        .doc('cadastro')
+        .update({'nome': nome});
   }
 
   obterNome(String uid) async {
-    QuerySnapshot resultado =
-        await db.collection('usuarios/$uid/dadoscadastrais').get();
+    QuerySnapshot resultado = await db.collection('usuarios/$uid/dados').get();
 
-    return resultado.docs.elementAt(0)['nome'];
+    return resultado.docs
+        .firstWhere((documento) => documento.id == 'cadastro')['nome'];
   }
 
   obterTipo(String uid) async {
-    QuerySnapshot resultado =
-        await db.collection('usuarios/$uid/dadoscadastrais').get();
+    QuerySnapshot resultado = await db.collection('usuarios/$uid/dados').get();
 
-    return resultado.docs.elementAt(0)['tipo'];
+    return resultado.docs
+        .firstWhere((documento) => documento.id == 'cadastro')['tipo'];
+  }
+
+  obterTeste(String uid) {
+    DocumentReference documentReference =
+        db.collection('usuarios/$uid/dados').doc('cadastro');
+
+    documentReference.snapshots().listen((documentSnapshot) {
+      documentSnapshot.get('nome');
+    });
   }
 }

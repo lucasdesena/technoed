@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:technoed/pages/perfil_page.dart';
 import 'package:technoed/pages/sobre_page.dart';
 import 'package:technoed/services/auth_service.dart';
 
@@ -15,7 +16,14 @@ class ProfessorPage extends StatefulWidget {
 class _ProfessorPageState extends State<ProfessorPage> {
   bool voltar = false;
 
-  _telaEditar() {}
+  _telaEditar() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => PerfilPage(widget.nome),
+      ),
+    );
+  }
 
   _telaSobre() {
     Navigator.push(
@@ -35,6 +43,7 @@ class _ProfessorPageState extends State<ProfessorPage> {
       child: Column(
         children: <Widget>[
           AppBar(
+            automaticallyImplyLeading: false,
             toolbarHeight: 100,
             title: Text(
               widget.nome,
