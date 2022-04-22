@@ -48,5 +48,3 @@ app.*.map.json
 #Firebase
 **/android/app/google-services.json
 pubspec.lock
-
-#TESTANDO O ENVIO PELO GIT
