@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:technoed/pages/home_page.dart';
-import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/widgets/auth_check.dart';
 
 class MeuAplicativo extends StatelessWidget {
