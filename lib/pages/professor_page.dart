@@ -46,7 +46,7 @@ class _ProfessorPageState extends State<ProfessorPage> {
             automaticallyImplyLeading: false,
             toolbarHeight: 100,
             title: Text(
-              widget.nome,
+              'Olá, ' + widget.nome,
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -94,7 +94,8 @@ class _ProfessorPageState extends State<ProfessorPage> {
                             ),
                             Text(
                               'Perfil',
-                              style: TextStyle(fontSize: 20),
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
                             ),
                           ],
                         ),
@@ -123,7 +124,8 @@ class _ProfessorPageState extends State<ProfessorPage> {
                             ),
                             Text(
                               'Sobre',
-                              style: TextStyle(fontSize: 20),
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
                             ),
                           ],
                         ),

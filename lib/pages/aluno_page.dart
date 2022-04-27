@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:technoed/pages/sobre_page.dart';
 import 'package:technoed/services/auth_service.dart';
 
 class AlunoPage extends StatefulWidget {
@@ -12,6 +13,16 @@ class AlunoPage extends StatefulWidget {
 
 class _AlunoPageState extends State<AlunoPage> {
   bool voltar = false;
+
+  _telaSobre() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const SobrePage(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -26,7 +37,7 @@ class _AlunoPageState extends State<AlunoPage> {
             width: double.infinity,
             alignment: Alignment.bottomCenter,
             child: const Text(
-              'Aluno',
+              'Olá, ' + 'Aluno',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -47,6 +58,113 @@ class _AlunoPageState extends State<AlunoPage> {
                   size: 40,
                 ),
                 onPressed: () => context.read<AuthService>().logout()),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      height: 100,
+                      child: ElevatedButton(
+                        onPressed: null,
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color.fromARGB(255, 144, 224, 239),
+                          elevation: 6,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            Icon(
+                              Icons.account_circle_outlined,
+                              color: Colors.white,
+                              size: 60,
+                            ),
+                            Text(
+                              'Perfil',
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      height: 100,
+                      child: ElevatedButton(
+                        onPressed: _telaSobre,
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color.fromARGB(255, 144, 224, 239),
+                          elevation: 6,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            Icon(
+                              Icons.info_outline_rounded,
+                              color: Colors.white,
+                              size: 60,
+                            ),
+                            Text(
+                              'Sobre',
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      height: 100,
+                      child: ElevatedButton(
+                        onPressed: null,
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color.fromARGB(255, 202, 240, 248),
+                          elevation: 6,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            Icon(
+                              Icons.rocket_outlined,
+                              color: Color.fromARGB(255, 143, 146, 148),
+                              size: 60,
+                            ),
+                            Text(
+                              'Vamos jogar?',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Color.fromARGB(255, 143, 146, 148)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),
