@@ -3,6 +3,8 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:provider/provider.dart';
 import 'package:technoed/pages/perfil_page.dart';
 import 'package:technoed/pages/sobre_page.dart';
+import 'package:technoed/pages/escolha_desafio_page.dart';
+import 'package:technoed/pages/gerenciamento_grupos_page.dart';
 import 'package:technoed/services/auth_service.dart';
 
 class ProfessorPage extends StatefulWidget {
@@ -30,6 +32,24 @@ class _ProfessorPageState extends State<ProfessorPage> {
       context,
       MaterialPageRoute(
         builder: (_) => const SobrePage(),
+      ),
+    );
+  }
+
+  _telaEscolhaDesafio() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const EscolhaDesafioPage(),
+      ),
+    );
+  }
+
+  _telaGerenciamentoGrupos() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const GerenciamentoGruposPage(),
       ),
     );
   }
@@ -147,7 +167,7 @@ class _ProfessorPageState extends State<ProfessorPage> {
                     child: SizedBox(
                       height: 100,
                       child: ElevatedButton(
-                        onPressed: _telaSobre,
+                        onPressed: _telaEscolhaDesafio,
                         style: ElevatedButton.styleFrom(
                           primary: const Color.fromARGB(255, 202, 240, 248),
                           elevation: 6,
@@ -186,7 +206,7 @@ class _ProfessorPageState extends State<ProfessorPage> {
                     child: SizedBox(
                       height: 100,
                       child: ElevatedButton(
-                        onPressed: _telaSobre,
+                        onPressed: _telaGerenciamentoGrupos,
                         style: ElevatedButton.styleFrom(
                           primary: const Color.fromARGB(255, 202, 240, 248),
                           elevation: 6,
@@ -225,7 +245,7 @@ class _ProfessorPageState extends State<ProfessorPage> {
                     child: SizedBox(
                       height: 100,
                       child: ElevatedButton(
-                        onPressed: _telaSobre,
+                        onPressed: null,
                         style: ElevatedButton.styleFrom(
                           primary: const Color.fromARGB(255, 202, 240, 248),
                           elevation: 6,
