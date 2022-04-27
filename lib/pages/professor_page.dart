@@ -134,6 +134,123 @@ class _ProfessorPageState extends State<ProfessorPage> {
               ],
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      height: 100,
+                      child: ElevatedButton(
+                        onPressed: _telaSobre,
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color.fromARGB(255, 202, 240, 248),
+                          elevation: 6,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            Icon(
+                              Icons.ads_click,
+                              color: Color.fromARGB(255, 143, 146, 148),
+                              size: 60,
+                            ),
+                            Text(
+                              'Desafio',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Color.fromARGB(255, 143, 146, 148)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      height: 100,
+                      child: ElevatedButton(
+                        onPressed: _telaSobre,
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color.fromARGB(255, 202, 240, 248),
+                          elevation: 6,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            Icon(
+                              Icons.group_outlined,
+                              color: Color.fromARGB(255, 143, 146, 148),
+                              size: 60,
+                            ),
+                            Text(
+                              'Grupos',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Color.fromARGB(255, 143, 146, 148)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SizedBox(
+                      height: 100,
+                      child: ElevatedButton(
+                        onPressed: _telaSobre,
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color.fromARGB(255, 202, 240, 248),
+                          elevation: 6,
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const <Widget>[
+                            Icon(
+                              Icons.insert_chart_outlined_outlined,
+                              color: Color.fromARGB(255, 143, 146, 148),
+                              size: 60,
+                            ),
+                            Text(
+                              'Relatórios',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Color.fromARGB(255, 143, 146, 148)),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
