@@ -38,6 +38,7 @@ class CadastroService extends ChangeNotifier {
         .firstWhere((documento) => documento.id == 'cadastro')['tipo'];
   }
 
+/*
   obterTeste(String uid) {
     DocumentReference documentReference =
         db.collection('usuarios/$uid/dados').doc('cadastro');
@@ -46,4 +47,5 @@ class CadastroService extends ChangeNotifier {
       documentSnapshot.get('nome');
     });
   }
+  */
 }

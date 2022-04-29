@@ -5,7 +5,8 @@ import 'package:technoed/pages/sobre_page.dart';
 import 'package:technoed/services/auth_service.dart';
 
 class AlunoPage extends StatefulWidget {
-  const AlunoPage({Key? key}) : super(key: key);
+  final String nome;
+  const AlunoPage(this.nome, {Key? key}) : super(key: key);
 
   @override
   State<AlunoPage> createState() => _AlunoPageState();
@@ -31,33 +32,31 @@ class _AlunoPageState extends State<AlunoPage> {
       },
       child: Column(
         children: <Widget>[
-          Container(
-            color: const Color.fromARGB(255, 0, 180, 216),
-            height: 80,
-            width: double.infinity,
-            alignment: Alignment.bottomCenter,
-            child: const Text(
-              'Olá, ' + 'Aluno',
-              style: TextStyle(
+          AppBar(
+            automaticallyImplyLeading: false,
+            toolbarHeight: 100,
+            title: Text(
+              'Olá, ' + widget.nome,
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,
               ),
             ),
-          ),
-          Container(
-            color: const Color.fromARGB(255, 0, 180, 216),
-            height: 50,
-            width: double.infinity,
-            alignment: Alignment.bottomRight,
-            child: IconButton(
-                tooltip: 'Sair da Conta',
-                padding: const EdgeInsets.only(right: 5, bottom: 5),
-                icon: const Icon(
-                  MdiIcons.accountArrowLeftOutline,
-                  color: Colors.white,
-                  size: 40,
-                ),
-                onPressed: () => context.read<AuthService>().logout()),
+            centerTitle: true,
+            actions: <Widget>[
+              Container(
+                alignment: Alignment.bottomRight,
+                child: IconButton(
+                    tooltip: 'Sair da Conta',
+                    padding: const EdgeInsets.only(right: 5, bottom: 5),
+                    icon: const Icon(
+                      MdiIcons.accountArrowLeftOutline,
+                      color: Colors.white,
+                      size: 40,
+                    ),
+                    onPressed: () => context.read<AuthService>().logout()),
+              ),
+            ],
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),

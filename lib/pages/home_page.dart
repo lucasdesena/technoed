@@ -13,6 +13,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool isLoading = true;
+
+  loading() {
+    return Scaffold(
+      body: Container(
+        color: const Color.fromARGB(255, 0, 180, 216),
+        child: const Center(
+          child: CircularProgressIndicator(
+            backgroundColor: Colors.white,
+          ),
+        ),
+      ),
+    );
+  }
+
   CadastroService cadastro = CadastroService();
   String nome = '';
   String tipo = '';
@@ -20,23 +35,28 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _ObterDados();
+    _obterDados();
   }
 
-  _ObterDados() {
+  _obterDados() {
     cadastro.obterTipo(widget.auth.usuario!.uid).then((value) => setState(() {
           tipo = value;
         }));
 
     cadastro.obterNome(widget.auth.usuario!.uid).then((value) => setState(() {
           nome = value;
+          isLoading = false;
         }));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: tipo == 'Aluno' ? const AlunoPage() : ProfessorPage(nome),
+      body: isLoading == true
+          ? loading()
+          : tipo == 'Aluno'
+              ? AlunoPage(nome)
+              : ProfessorPage(nome),
     );
   }
 }

@@ -19,13 +19,13 @@ class _EscolhaDesafioState extends State<EscolhaDesafioPage> {
             title: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: const [
                 Text(
                   'Desafio',
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
                 Text(
-                  'Escolha a figura e a dificuldade do Tangram',
+                  'Escolha a dificuldade do Tangram',
                   style: TextStyle(
                       color: Color.fromARGB(255, 208, 211, 214), fontSize: 15),
                 )
