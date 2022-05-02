@@ -23,7 +23,7 @@ class ListaDesafios extends StatelessWidget {
             children: snapshot.data!.docs.map((doc) {
               return Card(
                 child: ListTile(
-                  title: Text(doc.data().toString()),
+                  title: Text(doc['desafio']),
                 ),
               );
             }).toList(),
