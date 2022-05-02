@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:technoed/pages/lista_desafios_page.dart';
 import 'package:technoed/pages/sobre_page.dart';
 import 'package:technoed/services/auth_service.dart';
 
@@ -20,6 +21,15 @@ class _AlunoPageState extends State<AlunoPage> {
       context,
       MaterialPageRoute(
         builder: (_) => const SobrePage(),
+      ),
+    );
+  }
+
+  _telaListaDesafios() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const ListaDesafiosPage(),
       ),
     );
   }
@@ -137,7 +147,7 @@ class _AlunoPageState extends State<AlunoPage> {
                     child: SizedBox(
                       height: 100,
                       child: ElevatedButton(
-                        onPressed: null,
+                        onPressed: _telaListaDesafios,
                         style: ElevatedButton.styleFrom(
                           primary: const Color.fromARGB(255, 202, 240, 248),
                           elevation: 6,
