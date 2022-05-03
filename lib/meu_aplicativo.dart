@@ -16,7 +16,6 @@ class MeuAplicativo extends StatelessWidget {
         ),
         home: AuthCheck(),
         onGenerateRoute: (RouteSettings settings) {
-          final arguments = settings.arguments;
           switch (settings.name) {
             case '/authCheck':
               return MaterialPageRoute(builder: (context) => AuthCheck());

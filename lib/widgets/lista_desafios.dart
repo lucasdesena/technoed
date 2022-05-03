@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:technoed/pages/teste.dart';
 import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/services/cadastro_service.dart';
 
@@ -22,8 +23,18 @@ class ListaDesafios extends StatelessWidget {
           return ListView(
             children: snapshot.data!.docs.map((doc) {
               return Card(
-                child: ListTile(
-                  title: Text(doc['desafio']),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => TestePage(),
+                      ),
+                    );
+                  },
+                  child: ListTile(
+                    title: Text(doc['desafio']),
+                  ),
                 ),
               );
             }).toList(),
