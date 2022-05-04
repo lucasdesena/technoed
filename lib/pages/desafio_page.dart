@@ -9,13 +9,13 @@ class DesafioPage extends StatefulWidget {
   static int shapeCount = 0;
 
   final List<Forma> dificuldade =
-      Dificuldades().levels[TiposDificuldade.nivelAtual].shapes;
+      Dificuldades().niveis[TiposDificuldade.nivelAtual].shapes;
 
   static int shapeOfCount = 0;
 
   DesafioPage({Key? key}) : super(key: key) {
     shapeOfCount =
-        Dificuldades().levels[TiposDificuldade.nivelAtual].shapeOfCount;
+        Dificuldades().niveis[TiposDificuldade.nivelAtual].shapeOfCount;
     shapeCount = 0;
   }
 

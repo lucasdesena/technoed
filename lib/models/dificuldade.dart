@@ -5,7 +5,7 @@ import 'package:technoed/models/forma.dart';
 import 'package:technoed/models/tipos_forma.dart';
 
 class Dificuldades {
-  final levels = [
+  final niveis = [
     //Desafio 0
     TiposDificuldade([
       Forma(
