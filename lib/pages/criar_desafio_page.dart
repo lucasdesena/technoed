@@ -267,6 +267,74 @@ class _CriarDesafioPageState extends State<CriarDesafioPage> {
                         },
                       ),
                     ),
+                    widget.dificuldade == 'Normal'
+                        ? const Padding(padding: EdgeInsets.all(0.0))
+                        : Padding(
+                            padding: const EdgeInsets.fromLTRB(24, 6, 24, 6),
+                            child: TextFormField(
+                              controller: pergunta,
+                              decoration: const InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.assignment_outlined,
+                                  color: Colors.black,
+                                ),
+                                labelText: 'Pergunta 8',
+                                labelStyle: TextStyle(
+                                  color: Colors.black,
+                                ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                              ),
+                              keyboardType: TextInputType.name,
+                              style: const TextStyle(
+                                color: Colors.black,
+                              ),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'O campo não pode estar vazio.';
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                    widget.dificuldade == 'Normal'
+                        ? const Padding(padding: EdgeInsets.all(0.0))
+                        : Padding(
+                            padding: const EdgeInsets.fromLTRB(24, 6, 24, 6),
+                            child: TextFormField(
+                              controller: pergunta,
+                              decoration: const InputDecoration(
+                                prefixIcon: Icon(
+                                  Icons.assignment_outlined,
+                                  color: Colors.black,
+                                ),
+                                labelText: 'Pergunta 9',
+                                labelStyle: TextStyle(
+                                  color: Colors.black,
+                                ),
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.black),
+                                ),
+                              ),
+                              keyboardType: TextInputType.name,
+                              style: const TextStyle(
+                                color: Colors.black,
+                              ),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'O campo não pode estar vazio.';
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
                     Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: ElevatedButton(

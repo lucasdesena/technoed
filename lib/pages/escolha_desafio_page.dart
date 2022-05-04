@@ -11,7 +11,7 @@ class EscolhaDesafioPage extends StatefulWidget {
 class _EscolhaDesafioState extends State<EscolhaDesafioPage> {
   String dificuldade = '';
 
-  telaCriarDesafio(String dificuldade) {
+  telaCriarDesafio() {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -65,7 +65,10 @@ class _EscolhaDesafioState extends State<EscolhaDesafioPage> {
                     child: SizedBox(
                       height: 100,
                       child: ElevatedButton(
-                        onPressed: telaCriarDesafio('Normal'),
+                        onPressed: () {
+                          dificuldade = 'Normal';
+                          telaCriarDesafio();
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: const Color.fromARGB(255, 202, 240, 248),
                           elevation: 6,
@@ -122,7 +125,10 @@ class _EscolhaDesafioState extends State<EscolhaDesafioPage> {
                     child: SizedBox(
                       height: 100,
                       child: ElevatedButton(
-                        onPressed: telaCriarDesafio('Difícil'),
+                        onPressed: () {
+                          dificuldade = 'Dificil';
+                          telaCriarDesafio();
+                        },
                         style: ElevatedButton.styleFrom(
                           primary: const Color.fromARGB(255, 202, 240, 248),
                           elevation: 6,
