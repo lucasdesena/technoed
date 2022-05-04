@@ -44,7 +44,7 @@ class Dificuldades {
         id: 4,
         height: 80,
         width: 160,
-        targetPosition: Posicao(74, 110),
+        targetPosition: Posicao(75, 110),
         position: Posicao(50, 400),
         color: Colors.purple,
         targetColor: Colors.grey,

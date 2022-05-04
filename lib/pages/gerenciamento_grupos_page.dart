@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:technoed/pages/criar_grupo_page.dart';
 
 class GerenciamentoGruposPage extends StatefulWidget {
   const GerenciamentoGruposPage({Key? key}) : super(key: key);
@@ -8,6 +9,15 @@ class GerenciamentoGruposPage extends StatefulWidget {
 }
 
 class _GerenciamentoGruposState extends State<GerenciamentoGruposPage> {
+  _telaCriarGrupo() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const CriarGrupoPage(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,7 +29,7 @@ class _GerenciamentoGruposState extends State<GerenciamentoGruposPage> {
             title: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
+              children: const <Widget>[
                 Text(
                   'Grupos',
                   style: TextStyle(color: Colors.white, fontSize: 20),
@@ -53,7 +63,7 @@ class _GerenciamentoGruposState extends State<GerenciamentoGruposPage> {
                     child: SizedBox(
                       height: 100,
                       child: ElevatedButton(
-                        onPressed: null,
+                        onPressed: _telaCriarGrupo,
                         style: ElevatedButton.styleFrom(
                           primary: const Color.fromARGB(255, 202, 240, 248),
                           elevation: 6,
