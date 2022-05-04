@@ -3,7 +3,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:provider/provider.dart';
 import 'package:technoed/pages/lista_desafios_page.dart';
 import 'package:technoed/pages/sobre_page.dart';
-import 'package:technoed/pages/teste.dart';
+import 'package:technoed/pages/desafio_page.dart';
 import 'package:technoed/services/auth_service.dart';
 
 class AlunoPage extends StatefulWidget {

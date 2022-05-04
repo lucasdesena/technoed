@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:technoed/models/shape_model.dart';
+import 'package:technoed/models/forma.dart';
 
-class ShapeWidget extends StatefulWidget {
-  final ShapeModel shapeModel;
-  const ShapeWidget({
+class InteracaoForma extends StatefulWidget {
+  final Forma shapeModel;
+  const InteracaoForma({
     Key? key,
     required this.shapeModel,
   }) : super(key: key);
 
   @override
-  _ShapeWidgetState createState() => _ShapeWidgetState();
+  _InteracaoFormaState createState() => _InteracaoFormaState();
 }
 
-class _ShapeWidgetState extends State<ShapeWidget> {
+class _InteracaoFormaState extends State<InteracaoForma> {
   @override
   Widget build(BuildContext context) {
     return (widget.shapeModel.isPlaced)

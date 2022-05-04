@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Triangle extends CustomClipper<Path> {
+class Triangulo extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     return Path()
@@ -16,7 +16,7 @@ class Triangle extends CustomClipper<Path> {
   }
 }
 
-class Square extends CustomClipper<Path> {
+class Quadrado extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     return Path()
@@ -33,9 +33,9 @@ class Square extends CustomClipper<Path> {
   }
 }
 
-class Paralelogram extends CustomClipper<Path> {
+class Paralelograma extends CustomClipper<Path> {
   final bool flip;
-  Paralelogram({this.flip = false});
+  Paralelograma({this.flip = false});
   @override
   Path getClip(Size size) {
     return (flip)

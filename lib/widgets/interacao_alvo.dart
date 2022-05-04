@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:technoed/models/level_model.dart';
-import 'package:technoed/models/shape_model.dart';
-import 'package:technoed/pages/teste.dart';
+import 'package:technoed/models/forma.dart';
+import 'package:technoed/pages/desafio_page.dart';
 
-class TargetWidget extends StatefulWidget {
-  final ShapeModel shapeModel;
-  const TargetWidget({Key? key, required this.shapeModel}) : super(key: key);
+class InteracaoAlvo extends StatefulWidget {
+  final Forma shapeModel;
+  const InteracaoAlvo({Key? key, required this.shapeModel}) : super(key: key);
 
   @override
-  _TargetWidgetState createState() => _TargetWidgetState();
+  _InteracaoAlvoState createState() => _InteracaoAlvoState();
 }
 
-class _TargetWidgetState extends State<TargetWidget> {
+class _InteracaoAlvoState extends State<InteracaoAlvo> {
   @override
   Widget build(BuildContext context) {
     return Positioned(
       top: widget.shapeModel.targetPosition.x,
       left: widget.shapeModel.targetPosition.y,
-      child: DragTarget<ShapeModel>(
+      child: DragTarget<Forma>(
         builder: (context, candidateData, rejectedData) => RotationTransition(
           turns: AlwaysStoppedAnimation(widget.shapeModel.rotationAngle),
           child: ClipPath(
@@ -38,31 +37,11 @@ class _TargetWidgetState extends State<TargetWidget> {
             setState(() {
               data.isPlaced = true;
               data.targetColor = data.color;
-              TestePage.shapeCount++;
+              DesafioPage.shapeCount++;
             });
           }
         },
       ),
     );
-  }
-
-  void nextLevel() {
-    if (LevelModel.currentLevel != 8) {
-      LevelModel.currentLevel++;
-    }
-  }
-
-  bool checkLevel() {
-    if (TestePage.shapeOfCount == TestePage.shapeCount) {
-      return true;
-    }
-    return false;
-  }
-
-  bool checkLastLevel() {
-    if (LevelModel.currentLevel == 8 && TestePage.shapeCount == 6) {
-      return true;
-    }
-    return false;
   }
 }

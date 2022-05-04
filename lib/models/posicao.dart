@@ -1,5 +1,5 @@
-class PositionModel {
-  PositionModel(this._x, this._y);
+class Posicao {
+  Posicao(this._x, this._y);
 
   setPosition(double x, double y) {
     this._x = x;

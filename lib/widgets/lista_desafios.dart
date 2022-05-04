@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:technoed/pages/teste.dart';
+import 'package:technoed/pages/desafio_page.dart';
 import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/services/cadastro_service.dart';
 
@@ -28,7 +28,7 @@ class ListaDesafios extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => TestePage(),
+                        builder: (_) => DesafioPage(),
                       ),
                     );
                   },
