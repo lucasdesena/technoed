@@ -69,7 +69,7 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'O campo não pode estar vazio!';
+                            return 'O campo não pode estar vazio.';
                           }
                           return null;
                         },
@@ -81,7 +81,7 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                         controller: email,
                         decoration: const InputDecoration(
                           prefixIcon: Icon(
-                            MdiIcons.accountGroupOutline,
+                            MdiIcons.emailOutline,
                             color: Colors.black,
                           ),
                           labelText: 'Email do aluno',
@@ -101,7 +101,7 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'O campo não pode estar vazio!';
+                            return 'O campo não pode estar vazio.';
                           }
                           bool resultado = false;
                           listaAlunos.forEach((element) {
@@ -111,7 +111,7 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                             }
                           });
                           if (resultado == true) {
-                            return 'O email já foi adicionado ao grupo';
+                            return 'O email já foi adicionado ao grupo.';
                           }
                           return null;
                         },

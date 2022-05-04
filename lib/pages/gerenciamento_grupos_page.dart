@@ -126,7 +126,7 @@ class _GerenciamentoGruposState extends State<GerenciamentoGruposPage> {
                               size: 60,
                             ),
                             Text(
-                              'Grupos existentes',
+                              'Grupos',
                               style: TextStyle(
                                   fontSize: 20,
                                   color: Color.fromARGB(255, 143, 146, 148)),
