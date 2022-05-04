@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:technoed/pages/criar_desafio_page.dart';
 
 class EscolhaDesafioPage extends StatefulWidget {
   const EscolhaDesafioPage({Key? key}) : super(key: key);
@@ -8,6 +9,17 @@ class EscolhaDesafioPage extends StatefulWidget {
 }
 
 class _EscolhaDesafioState extends State<EscolhaDesafioPage> {
+  String dificuldade = '';
+
+  telaCriarDesafio(String dificuldade) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => CriarDesafioPage(dificuldade),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +65,7 @@ class _EscolhaDesafioState extends State<EscolhaDesafioPage> {
                     child: SizedBox(
                       height: 100,
                       child: ElevatedButton(
-                        onPressed: null,
+                        onPressed: telaCriarDesafio('Normal'),
                         style: ElevatedButton.styleFrom(
                           primary: const Color.fromARGB(255, 202, 240, 248),
                           elevation: 6,
@@ -110,7 +122,7 @@ class _EscolhaDesafioState extends State<EscolhaDesafioPage> {
                     child: SizedBox(
                       height: 100,
                       child: ElevatedButton(
-                        onPressed: null,
+                        onPressed: telaCriarDesafio('Difícil'),
                         style: ElevatedButton.styleFrom(
                           primary: const Color.fromARGB(255, 202, 240, 248),
                           elevation: 6,
