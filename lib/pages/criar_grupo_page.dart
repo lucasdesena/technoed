@@ -9,7 +9,8 @@ class CriarGrupoPage extends StatefulWidget {
 }
 
 class _CriarGrupoPageState extends State<CriarGrupoPage> {
-  final formKey = GlobalKey<FormState>();
+  final formKey1 = GlobalKey<FormState>();
+  final formKey2 = GlobalKey<FormState>();
   final nome = TextEditingController();
   final email = TextEditingController();
   List<String> listaAlunos = [];
@@ -38,165 +39,170 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
             ),
           ),
           Expanded(
-            child: SingleChildScrollView(
-              child: Form(
-                key: formKey,
-                child: Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(24, 6, 24, 6),
-                      child: TextFormField(
-                        controller: nome,
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(
-                            MdiIcons.accountGroupOutline,
-                            color: Colors.black,
-                          ),
-                          labelText: 'Nome',
-                          labelStyle: TextStyle(
-                            color: Colors.black,
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                        ),
-                        keyboardType: TextInputType.name,
-                        style: const TextStyle(
+            child: Column(
+              children: <Widget>[
+                Form(
+                  key: formKey1,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(24, 6, 24, 6),
+                    child: TextFormField(
+                      controller: nome,
+                      decoration: const InputDecoration(
+                        prefixIcon: Icon(
+                          MdiIcons.accountGroupOutline,
                           color: Colors.black,
                         ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'O campo não pode estar vazio.';
-                          }
-                          return null;
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.fromLTRB(24, 6, 24, 6),
-                      child: TextFormField(
-                        controller: email,
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(
-                            MdiIcons.emailOutline,
-                            color: Colors.black,
-                          ),
-                          labelText: 'Email do aluno',
-                          labelStyle: TextStyle(
-                            color: Colors.black,
-                          ),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black),
-                          ),
-                        ),
-                        keyboardType: TextInputType.name,
-                        style: const TextStyle(
+                        labelText: 'Nome',
+                        labelStyle: TextStyle(
                           color: Colors.black,
                         ),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'O campo não pode estar vazio.';
-                          }
-                          bool resultado = false;
-                          listaAlunos.forEach((element) {
-                            if (element == value) {
-                              resultado = true;
-                              return;
-                            }
-                          });
-                          if (resultado == true) {
-                            return 'O email já foi adicionado ao grupo.';
-                          }
-                          return null;
-                        },
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Column(
-                        children: <Widget>[
-                          ElevatedButton(
-                            onPressed: () {
-                              if (formKey.currentState!.validate()) {
-                                setState(() {
-                                  listaAlunos.add(email.text);
-                                });
-                              }
-                              email.clear();
-                            },
-                            style: ElevatedButton.styleFrom(
-                              primary: const Color.fromARGB(255, 144, 224, 239),
-                            ),
-                            child: const Text(
-                              "Adicionar aluno",
-                              style: TextStyle(fontSize: 14),
-                            ),
-                          ),
-                        ],
+                      keyboardType: TextInputType.name,
+                      style: const TextStyle(
+                        color: Colors.black,
                       ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'O campo não pode estar vazio.';
+                        }
+                        return null;
+                      },
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: ElevatedButton(
+                  ),
+                ),
+                Form(
+                  key: formKey2,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(24, 6, 24, 6),
+                    child: TextFormField(
+                      controller: email,
+                      decoration: const InputDecoration(
+                        prefixIcon: Icon(
+                          MdiIcons.emailOutline,
+                          color: Colors.black,
+                        ),
+                        labelText: 'Email do aluno',
+                        labelStyle: TextStyle(
+                          color: Colors.black,
+                        ),
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black),
+                        ),
+                      ),
+                      keyboardType: TextInputType.name,
+                      style: const TextStyle(
+                        color: Colors.black,
+                      ),
+                      validator: (value) {
+                        if (value!.isEmpty) {
+                          return 'O campo não pode estar vazio.';
+                        }
+                        bool resultado = false;
+                        listaAlunos.forEach((element) {
+                          if (element == value) {
+                            resultado = true;
+                            return;
+                          }
+                        });
+                        if (resultado == true) {
+                          return 'O email já foi adicionado ao grupo.';
+                        }
+                        return null;
+                      },
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    children: <Widget>[
+                      ElevatedButton(
                         onPressed: () {
-                          if (formKey.currentState!.validate()) {}
+                          if (formKey2.currentState!.validate()) {
+                            setState(() {
+                              listaAlunos.add(email.text);
+                            });
+                          }
+                          email.clear();
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: const Color.fromARGB(255, 3, 134, 208),
+                          primary: const Color.fromARGB(255, 144, 224, 239),
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const <Widget>[
-                            Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Text(
-                                'Criar grupo',
-                                style: TextStyle(fontSize: 20),
-                              ),
-                            ),
-                          ],
+                        child: const Text(
+                          "Adicionar aluno",
+                          style: TextStyle(fontSize: 14),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Column(
-                        children: <Widget>[
-                          listaAlunos.isEmpty
-                              ? const Text(
-                                  'Nenhum aluno foi inserido no grupo',
-                                  style: TextStyle(fontSize: 16),
-                                )
-                              : const Text(
-                                  'Lista de Alunos:',
-                                  style: TextStyle(fontSize: 16),
-                                ),
-                          Column(
-                              children: listaAlunos
-                                  .map((element) => Card(
-                                        child: Container(
-                                          padding: const EdgeInsets.all(10.0),
-                                          margin: const EdgeInsets.all(10.0),
-                                          decoration: const BoxDecoration(
-                                              color: Colors.white),
-                                          child: Text(element,
-                                              style: const TextStyle(
-                                                  color: Colors.black)),
-                                        ),
-                                      ))
-                                  .toList()),
-                        ],
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      if (formKey1.currentState!.validate()) {}
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: const Color.fromARGB(255, 3, 134, 208),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const <Widget>[
+                        Padding(
+                          padding: EdgeInsets.all(10.0),
+                          child: Text(
+                            'Criar grupo',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Column(
+                    children: <Widget>[
+                      listaAlunos.isEmpty
+                          ? const Text(
+                              'Nenhum aluno foi inserido no grupo',
+                              style: TextStyle(fontSize: 16),
+                            )
+                          : const Text(
+                              'Lista de Alunos:',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Column(
+                        children: listaAlunos
+                            .map((element) => Card(
+                                  child: Container(
+                                    padding: const EdgeInsets.all(10.0),
+                                    margin: const EdgeInsets.all(10.0),
+                                    decoration: const BoxDecoration(
+                                        color: Colors.white),
+                                    child: Text(element,
+                                        style: const TextStyle(
+                                            color: Colors.black)),
+                                  ),
+                                ))
+                            .toList()),
+                  ),
+                ),
+              ],
             ),
           ),
         ],
