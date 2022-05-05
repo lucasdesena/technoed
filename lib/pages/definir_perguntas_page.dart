@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:technoed/pages/definir_alternativas_page.dart';
 
-class CriarDesafioPage extends StatefulWidget {
+class DefinirPerguntasPage extends StatefulWidget {
   final String dificuldade;
-  const CriarDesafioPage(this.dificuldade, {Key? key}) : super(key: key);
+  const DefinirPerguntasPage(this.dificuldade, {Key? key}) : super(key: key);
 
   @override
-  State<CriarDesafioPage> createState() => _CriarDesafioPageState();
+  State<DefinirPerguntasPage> createState() => _DefinirPerguntasPageState();
 }
 
-class _CriarDesafioPageState extends State<CriarDesafioPage> {
+class _DefinirPerguntasPageState extends State<DefinirPerguntasPage> {
+  List<String> listaPerguntas = [];
   final formKey = GlobalKey<FormState>();
   final pergunta1 = TextEditingController();
   final pergunta2 = TextEditingController();
@@ -25,12 +26,11 @@ class _CriarDesafioPageState extends State<CriarDesafioPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => const DefinirAlternativasPage(),
+        builder: (_) => DefinirAlternativasPage(listaPerguntas),
       ),
     );
   }
 
-  List<String> listaPerguntas = [];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -15,7 +15,7 @@ class _EscolhaDesafioState extends State<EscolhaDesafioPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => CriarDesafioPage(dificuldade),
+        builder: (_) => DefinirPerguntasPage(dificuldade),
       ),
     );
   }
