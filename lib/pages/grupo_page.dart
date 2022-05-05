@@ -5,7 +5,8 @@ import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/services/cadastro_service.dart';
 
 class GrupoPage extends StatefulWidget {
-  const GrupoPage({Key? key}) : super(key: key);
+  final String nome;
+  const GrupoPage(this.nome, {Key? key}) : super(key: key);
 
   @override
   State<GrupoPage> createState() => _GrupoPageState();
@@ -43,31 +44,47 @@ class _GrupoPageState extends State<GrupoPage> {
               ),
             ],
           ),
-          StreamBuilder<QuerySnapshot>(
-            stream: cadastro.db.collection('usuarios/$uid/grupos').snapshots(),
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else {
-                return ListView(
-                  children: snapshot.data!.docs.map((doc) {
-                    return Card(
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: ListTile(
-                          title: Text(
-                            doc['emails'],
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ),
+          Expanded(
+            child: Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream:
+                    cadastro.db.collection('usuarios/$uid/grupos').snapshots(),
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return const Center(
+                      child: CircularProgressIndicator(),
                     );
-                  }).toList(),
-                );
-              }
-            },
+                  } else {
+                    int quantidade = 0;
+                    Iterable<dynamic> lista =
+                        snapshot.data!.docs.map((doc) => doc['emails']);
+                    lista.forEach((element) {
+                      quantidade = List.from(element).length;
+                    });
+                    return ListView.builder(
+                      itemCount: quantidade,
+                      itemBuilder: (context, index) {
+                        return Center(
+                            child: Card(
+                          child: GestureDetector(
+                            child: ListTile(
+                              title: Text(
+                                snapshot.data!.docs
+                                    .map((doc) => doc.id == widget.nome
+                                        ? doc['emails'][index]
+                                        : "")
+                                    .toString(),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        ));
+                      },
+                    );
+                  }
+                },
+              ),
+            ),
           ),
         ],
       ),
