@@ -10,7 +10,6 @@ class DefinirPerguntasPage extends StatefulWidget {
 }
 
 class _DefinirPerguntasPageState extends State<DefinirPerguntasPage> {
-  List<String> listaPerguntas = [];
   final formKey = GlobalKey<FormState>();
   final pergunta1 = TextEditingController();
   final pergunta2 = TextEditingController();
@@ -22,11 +21,18 @@ class _DefinirPerguntasPageState extends State<DefinirPerguntasPage> {
   final pergunta8 = TextEditingController();
   final pergunta9 = TextEditingController();
 
+  List<String> listaPerguntas = [];
+
+  _carregarDificuldade() {
+    return widget.dificuldade;
+  }
+
   _telaDefinirAlternativas() {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => DefinirAlternativasPage(listaPerguntas),
+        builder: (_) =>
+            DefinirAlternativasPage(_carregarDificuldade(), listaPerguntas),
       ),
     );
   }
@@ -366,9 +372,18 @@ class _DefinirPerguntasPageState extends State<DefinirPerguntasPage> {
                               listaPerguntas.add(pergunta5.text);
                               listaPerguntas.add(pergunta6.text);
                               listaPerguntas.add(pergunta7.text);
+                              pergunta1.clear();
+                              pergunta2.clear();
+                              pergunta3.clear();
+                              pergunta4.clear();
+                              pergunta5.clear();
+                              pergunta6.clear();
+                              pergunta7.clear();
                               if (widget.dificuldade == 'Difícil') {
                                 listaPerguntas.add(pergunta8.text);
                                 listaPerguntas.add(pergunta9.text);
+                                pergunta8.clear();
+                                pergunta9.clear();
                               }
                             });
                             _telaDefinirAlternativas();
