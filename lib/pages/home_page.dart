@@ -28,6 +28,12 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  pagina() {
+    return Scaffold(
+      body: tipo == 'Aluno' ? AlunoPage(nome) : ProfessorPage(nome),
+    );
+  }
+
   CadastroService cadastro = CadastroService();
   String nome = '';
   String tipo = '';
@@ -50,13 +56,6 @@ class _HomePageState extends State<HomePage> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: isLoading == true
-          ? loading()
-          : tipo == 'Aluno'
-              ? AlunoPage(nome)
-              : ProfessorPage(nome),
-    );
-  }
+  Widget build(BuildContext context) =>
+      isLoading == true ? loading() : pagina();
 }
