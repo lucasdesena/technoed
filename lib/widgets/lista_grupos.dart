@@ -1,19 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:technoed/pages/desafio_page.dart';
+import 'package:technoed/pages/grupo_page.dart';
 import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/services/cadastro_service.dart';
 
-class ListaDesafios extends StatelessWidget {
-  const ListaDesafios({Key? key}) : super(key: key);
+class ListaGrupos extends StatelessWidget {
+  const ListaGrupos({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     CadastroService cadastro = CadastroService();
     String uid = context.read<AuthService>().usuario!.uid;
     return StreamBuilder<QuerySnapshot>(
-      stream: cadastro.db.collection('usuarios/$uid/desafios').snapshots(),
+      stream: cadastro.db.collection('usuarios/$uid/grupos').snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
           return const Center(
@@ -28,13 +28,13 @@ class ListaDesafios extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => DesafioPage(),
+                        builder: (_) => const GrupoPage(),
                       ),
                     );
                   },
                   child: ListTile(
                     title: Text(
-                      doc['desafio'],
+                      doc.id,
                       textAlign: TextAlign.center,
                     ),
                   ),
