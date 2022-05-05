@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:provider/provider.dart';
+import 'package:technoed/services/auth_service.dart';
+import 'package:technoed/services/cadastro_service.dart';
 
 class CriarGrupoPage extends StatefulWidget {
   const CriarGrupoPage({Key? key}) : super(key: key);
@@ -13,9 +16,14 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
   final formKey2 = GlobalKey<FormState>();
   final nome = TextEditingController();
   final email = TextEditingController();
+
   List<String> listaAlunos = [];
+
+  CadastroService cadastro = CadastroService();
+
   @override
   Widget build(BuildContext context) {
+    String uid = context.read<AuthService>().usuario!.uid;
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -52,7 +60,7 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                           MdiIcons.accountGroupOutline,
                           color: Colors.black,
                         ),
-                        labelText: 'Nome',
+                        labelText: 'Nome do grupo',
                         labelStyle: TextStyle(
                           color: Colors.black,
                         ),
@@ -149,7 +157,14 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                   padding: const EdgeInsets.all(12.0),
                   child: ElevatedButton(
                     onPressed: () {
-                      if (formKey1.currentState!.validate()) {}
+                      if (formKey1.currentState!.validate()) {
+                        cadastro.cadastrarGrupo(uid, nome.text, listaAlunos);
+                        Navigator.pop(context);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                              content: Text('Grupo criado com sucesso!')),
+                        );
+                      }
                     },
                     style: ElevatedButton.styleFrom(
                       primary: const Color.fromARGB(255, 3, 134, 208),
