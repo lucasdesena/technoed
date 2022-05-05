@@ -41,10 +41,10 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    _obterDados();
+    obterDados();
   }
 
-  _obterDados() {
+  obterDados() {
     cadastro.obterTipo(widget.auth.usuario!.uid).then((value) => setState(() {
           tipo = value;
         }));
