@@ -365,6 +365,7 @@ class _DefinirPerguntasPageState extends State<DefinirPerguntasPage> {
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             setState(() {
+                              listaPerguntas.clear();
                               listaPerguntas.add(pergunta1.text);
                               listaPerguntas.add(pergunta2.text);
                               listaPerguntas.add(pergunta3.text);
@@ -372,18 +373,9 @@ class _DefinirPerguntasPageState extends State<DefinirPerguntasPage> {
                               listaPerguntas.add(pergunta5.text);
                               listaPerguntas.add(pergunta6.text);
                               listaPerguntas.add(pergunta7.text);
-                              pergunta1.clear();
-                              pergunta2.clear();
-                              pergunta3.clear();
-                              pergunta4.clear();
-                              pergunta5.clear();
-                              pergunta6.clear();
-                              pergunta7.clear();
                               if (widget.dificuldade == 'Difícil') {
                                 listaPerguntas.add(pergunta8.text);
                                 listaPerguntas.add(pergunta9.text);
-                                pergunta8.clear();
-                                pergunta9.clear();
                               }
                             });
                             _telaDefinirAlternativas();

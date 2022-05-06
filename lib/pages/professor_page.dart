@@ -3,8 +3,8 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:provider/provider.dart';
 import 'package:technoed/pages/perfil_page.dart';
 import 'package:technoed/pages/sobre_page.dart';
-import 'package:technoed/pages/escolha_desafio_page.dart';
-import 'package:technoed/pages/gerenciamento_grupos_page.dart';
+import 'package:technoed/pages/escolher_desafio_page.dart';
+import 'package:technoed/pages/gerenciar_grupos_page.dart';
 import 'package:technoed/services/auth_service.dart';
 
 class ProfessorPage extends StatefulWidget {
@@ -40,7 +40,7 @@ class _ProfessorPageState extends State<ProfessorPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => const EscolhaDesafioPage(),
+        builder: (_) => const EscolherDesafioPage(),
       ),
     );
   }
@@ -49,7 +49,7 @@ class _ProfessorPageState extends State<ProfessorPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => const GerenciamentoGruposPage(),
+        builder: (_) => const GerenciarGruposPage(),
       ),
     );
   }
@@ -181,7 +181,7 @@ class _ProfessorPageState extends State<ProfessorPage> {
                               size: 60,
                             ),
                             Text(
-                              'Desafio',
+                              'Novo desafio',
                               style: TextStyle(
                                   fontSize: 20,
                                   color: Color.fromARGB(255, 143, 146, 148)),

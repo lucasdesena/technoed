@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:technoed/pages/definir_perguntas_page.dart';
+import 'package:technoed/pages/criar_grupo_page.dart';
+import 'package:technoed/pages/ver_grupo_page.dart';
 
-class EscolhaDesafioPage extends StatefulWidget {
-  const EscolhaDesafioPage({Key? key}) : super(key: key);
+class GerenciarGruposPage extends StatefulWidget {
+  const GerenciarGruposPage({Key? key}) : super(key: key);
 
   @override
-  State<EscolhaDesafioPage> createState() => _EscolhaDesafioState();
+  State<GerenciarGruposPage> createState() => _GerenciarGruposState();
 }
 
-class _EscolhaDesafioState extends State<EscolhaDesafioPage> {
-  String dificuldade = '';
-
-  telaDefinirPerguntas() {
+class _GerenciarGruposState extends State<GerenciarGruposPage> {
+  _telaCriarGrupo() {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => DefinirPerguntasPage(dificuldade),
+        builder: (_) => const CriarGrupoPage(),
+      ),
+    );
+  }
+
+  _telaVerGrupo() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const VerGrupoPage(),
       ),
     );
   }
@@ -31,13 +39,13 @@ class _EscolhaDesafioState extends State<EscolhaDesafioPage> {
             title: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: const [
+              children: const <Widget>[
                 Text(
-                  'Desafio',
+                  'Grupos',
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
                 Text(
-                  'Escolha a dificuldade do Tangram',
+                  'Crie e veja seus grupos de alunos',
                   style: TextStyle(
                       color: Color.fromARGB(255, 208, 211, 214), fontSize: 15),
                 )
@@ -47,7 +55,7 @@ class _EscolhaDesafioState extends State<EscolhaDesafioPage> {
           const Padding(
             padding: EdgeInsets.only(top: 30.0, bottom: 0.0),
             child: Text(
-              'Normal',
+              'Criar',
               style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -65,10 +73,7 @@ class _EscolhaDesafioState extends State<EscolhaDesafioPage> {
                     child: SizedBox(
                       height: 100,
                       child: ElevatedButton(
-                        onPressed: () {
-                          dificuldade = 'Normal';
-                          telaDefinirPerguntas();
-                        },
+                        onPressed: _telaCriarGrupo,
                         style: ElevatedButton.styleFrom(
                           primary: const Color.fromARGB(255, 202, 240, 248),
                           elevation: 6,
@@ -77,12 +82,12 @@ class _EscolhaDesafioState extends State<EscolhaDesafioPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const <Widget>[
                             Icon(
-                              Icons.star_half,
+                              Icons.create_new_folder_outlined,
                               color: Color.fromARGB(255, 143, 146, 148),
                               size: 60,
                             ),
                             Text(
-                              'Normal',
+                              'Novo grupo',
                               style: TextStyle(
                                   fontSize: 20,
                                   color: Color.fromARGB(255, 143, 146, 148)),
@@ -94,20 +99,12 @@ class _EscolhaDesafioState extends State<EscolhaDesafioPage> {
                   ),
                 ),
               ],
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-            child: Text(
-              'Descrição: Tangram com 7 peças e 7 perguntas.',
-              style: TextStyle(
-                  fontSize: 15, color: Color.fromARGB(255, 143, 146, 148)),
             ),
           ),
           const Padding(
             padding: EdgeInsets.only(top: 30.0, bottom: 0.0),
             child: Text(
-              'Difícil',
+              'Ver',
               style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
@@ -125,10 +122,7 @@ class _EscolhaDesafioState extends State<EscolhaDesafioPage> {
                     child: SizedBox(
                       height: 100,
                       child: ElevatedButton(
-                        onPressed: () {
-                          dificuldade = 'Difícil';
-                          telaDefinirPerguntas();
-                        },
+                        onPressed: _telaVerGrupo,
                         style: ElevatedButton.styleFrom(
                           primary: const Color.fromARGB(255, 202, 240, 248),
                           elevation: 6,
@@ -137,12 +131,12 @@ class _EscolhaDesafioState extends State<EscolhaDesafioPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const <Widget>[
                             Icon(
-                              Icons.star_outlined,
+                              Icons.folder_open,
                               color: Color.fromARGB(255, 143, 146, 148),
                               size: 60,
                             ),
                             Text(
-                              'Difícil',
+                              'Grupos',
                               style: TextStyle(
                                   fontSize: 20,
                                   color: Color.fromARGB(255, 143, 146, 148)),
@@ -154,14 +148,6 @@ class _EscolhaDesafioState extends State<EscolhaDesafioPage> {
                   ),
                 ),
               ],
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-            child: Text(
-              'Descrição: Tangram com 9 peças e 7 perguntas.',
-              style: TextStyle(
-                  fontSize: 15, color: Color.fromARGB(255, 143, 146, 148)),
             ),
           ),
         ],

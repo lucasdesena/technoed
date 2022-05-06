@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:technoed/pages/escolher_grupo_page.dart';
 
 class DefinirAlternativasPage extends StatefulWidget {
   final String dificuldade;
@@ -15,8 +16,11 @@ class DefinirAlternativasPage extends StatefulWidget {
 
 class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
   final formKey = GlobalKey<FormState>();
-  final pergunta = TextEditingController();
+
   String dropdownValue = 'Escolha uma pergunta';
+
+  List<String> listaAlternativas = [];
+
   final alternativa1 = TextEditingController();
   final alternativa2 = TextEditingController();
   final alternativa3 = TextEditingController();
@@ -54,6 +58,24 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
   final alternativaCorreta7 = TextEditingController();
   final alternativaCorreta8 = TextEditingController();
   final alternativaCorreta9 = TextEditingController();
+
+  _carregarDificuldade() {
+    return widget.dificuldade;
+  }
+
+  _carregarListaPerguntas() {
+    return widget.listaPerguntas;
+  }
+
+  _telaEscolherGrupo() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => EscolherGrupoPage(_carregarDificuldade(),
+            _carregarListaPerguntas(), listaAlternativas),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -1536,7 +1558,50 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                       padding: const EdgeInsets.all(12.0),
                       child: ElevatedButton(
                         onPressed: () {
-                          if (formKey.currentState!.validate()) {}
+                          if (formKey.currentState!.validate()) {
+                            setState(() {
+                              listaAlternativas.clear();
+                              listaAlternativas.add(alternativa1.text);
+                              listaAlternativas.add(alternativa2.text);
+                              listaAlternativas.add(alternativa3.text);
+                              listaAlternativas.add(alternativa4.text);
+                              listaAlternativas.add(alternativa5.text);
+                              listaAlternativas.add(alternativa6.text);
+                              listaAlternativas.add(alternativa7.text);
+                              listaAlternativas.add(alternativa8.text);
+                              listaAlternativas.add(alternativa9.text);
+                              listaAlternativas.add(alternativa10.text);
+                              listaAlternativas.add(alternativa11.text);
+                              listaAlternativas.add(alternativa12.text);
+                              listaAlternativas.add(alternativa13.text);
+                              listaAlternativas.add(alternativa14.text);
+                              listaAlternativas.add(alternativa15.text);
+                              listaAlternativas.add(alternativa16.text);
+                              listaAlternativas.add(alternativa17.text);
+                              listaAlternativas.add(alternativa18.text);
+                              listaAlternativas.add(alternativa19.text);
+                              listaAlternativas.add(alternativa20.text);
+                              listaAlternativas.add(alternativa21.text);
+                              listaAlternativas.add(alternativaCorreta1.text);
+                              listaAlternativas.add(alternativaCorreta2.text);
+                              listaAlternativas.add(alternativaCorreta3.text);
+                              listaAlternativas.add(alternativaCorreta4.text);
+                              listaAlternativas.add(alternativaCorreta5.text);
+                              listaAlternativas.add(alternativaCorreta6.text);
+                              listaAlternativas.add(alternativaCorreta7.text);
+                              if (widget.dificuldade == 'Difícil') {
+                                listaAlternativas.add(alternativa22.text);
+                                listaAlternativas.add(alternativa23.text);
+                                listaAlternativas.add(alternativa24.text);
+                                listaAlternativas.add(alternativa25.text);
+                                listaAlternativas.add(alternativa26.text);
+                                listaAlternativas.add(alternativa27.text);
+                                listaAlternativas.add(alternativaCorreta8.text);
+                                listaAlternativas.add(alternativaCorreta9.text);
+                              }
+                            });
+                            _telaEscolherGrupo();
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           primary: const Color.fromARGB(255, 3, 134, 208),
