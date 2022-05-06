@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:technoed/services/cadastro_service.dart';
 
@@ -13,28 +14,6 @@ class GrupoPage extends StatefulWidget {
 class _GrupoPageState extends State<GrupoPage> {
   List<String> lista = <String>[];
   CadastroService cadastro = CadastroService();
-
-  @override
-  void initState() {
-    super.initState();
-    obterListaAlunos(widget.uid);
-  }
-
-  obterListaAlunos(String uid) async {
-    await cadastro.db
-        .collection('usuarios/$uid/grupos')
-        .doc(widget.nome)
-        .get()
-        .then((value) {
-      setState(() {
-        List.from(value['emails']).forEach((element) {
-          String data = element;
-
-          lista.add(data);
-        });
-      });
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,21 +44,43 @@ class _GrupoPageState extends State<GrupoPage> {
               ),
             ],
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: lista.length,
-              itemBuilder: (BuildContext context, int index) {
-                return Card(
-                  child: ListTile(
-                      leading: const Icon(Icons.email_outlined),
-                      trailing: const Icon(
-                        Icons.delete_outline,
-                        color: Colors.red,
-                      ),
-                      title: Text(lista[index].toString())),
+          StreamBuilder<QuerySnapshot>(
+            stream: cadastro.db
+                .collection('usuarios/${widget.uid}/grupos')
+                .snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return const Center(
+                  child: CircularProgressIndicator(),
                 );
-              },
-            ),
+              } else {
+                int tamanho = int.parse(snapshot.data!.docs
+                    .where((grupo) => grupo.id.toString() == widget.nome)
+                    .map((doc) => List.from(doc['emails']).length)
+                    .toString()
+                    .substring(1, 2));
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: tamanho,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        child: ListTile(
+                            leading: const Icon(Icons.email_outlined),
+                            trailing: const Icon(
+                              Icons.delete_outline,
+                              color: Colors.red,
+                            ),
+                            title: Text(snapshot.data!.docs
+                                .where((grupo) =>
+                                    grupo.id.toString() == widget.nome)
+                                .map((doc) => doc['emails'][index])
+                                .toString())),
+                      );
+                    },
+                  ),
+                );
+              }
+            },
           ),
         ],
       ),
