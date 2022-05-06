@@ -1,22 +1,43 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/services/cadastro_service.dart';
 
 class GrupoPage extends StatefulWidget {
+  final String uid;
   final String nome;
-  const GrupoPage(this.nome, {Key? key}) : super(key: key);
+  const GrupoPage(this.uid, this.nome, {Key? key}) : super(key: key);
 
   @override
   State<GrupoPage> createState() => _GrupoPageState();
 }
 
 class _GrupoPageState extends State<GrupoPage> {
+  List<String> lista = <String>[];
+  CadastroService cadastro = CadastroService();
+
+  @override
+  void initState() {
+    super.initState();
+    obterListaAlunos(widget.uid);
+  }
+
+  obterListaAlunos(String uid) async {
+    await cadastro.db
+        .collection('usuarios/$uid/grupos')
+        .doc(widget.nome)
+        .get()
+        .then((value) {
+      setState(() {
+        List.from(value['emails']).forEach((element) {
+          String data = element;
+
+          lista.add(data);
+        });
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    CadastroService cadastro = CadastroService();
-    String uid = context.read<AuthService>().usuario!.uid;
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -34,7 +55,7 @@ class _GrupoPageState extends State<GrupoPage> {
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     Text(
-                      'Altere o nome do grupo e gerencie os alunos',
+                      'Gerencie os alunos',
                       style: TextStyle(
                           color: Color.fromARGB(255, 208, 211, 214),
                           fontSize: 15),
@@ -45,45 +66,19 @@ class _GrupoPageState extends State<GrupoPage> {
             ],
           ),
           Expanded(
-            child: Expanded(
-              child: StreamBuilder<QuerySnapshot>(
-                stream:
-                    cadastro.db.collection('usuarios/$uid/grupos').snapshots(),
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  } else {
-                    int quantidade = 0;
-                    Iterable<dynamic> lista =
-                        snapshot.data!.docs.map((doc) => doc['emails']);
-                    lista.forEach((element) {
-                      quantidade = List.from(element).length;
-                    });
-                    return ListView.builder(
-                      itemCount: quantidade,
-                      itemBuilder: (context, index) {
-                        return Center(
-                            child: Card(
-                          child: GestureDetector(
-                            child: ListTile(
-                              title: Text(
-                                snapshot.data!.docs
-                                    .map((doc) => doc.id == widget.nome
-                                        ? doc['emails'][index]
-                                        : "")
-                                    .toString(),
-                                textAlign: TextAlign.center,
-                              ),
-                            ),
-                          ),
-                        ));
-                      },
-                    );
-                  }
-                },
-              ),
+            child: ListView.builder(
+              itemCount: lista.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Card(
+                  child: ListTile(
+                      leading: const Icon(Icons.email_outlined),
+                      trailing: const Icon(
+                        Icons.delete_outline,
+                        color: Colors.red,
+                      ),
+                      title: Text(lista[index].toString())),
+                );
+              },
             ),
           ),
         ],

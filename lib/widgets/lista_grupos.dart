@@ -28,7 +28,7 @@ class ListaGrupos extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => GrupoPage(doc.id),
+                        builder: (_) => GrupoPage(uid, doc.id),
                       ),
                     );
                   },
