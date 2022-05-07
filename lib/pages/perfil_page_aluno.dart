@@ -85,13 +85,25 @@ class _PerfilPageAlunoState extends State<PerfilPageAluno> {
           widget.elo == 'nenhum'
               ? Padding(
                   padding: const EdgeInsets.only(top: 10.0),
-                  child: Text(
-                    widget.nome,
-                    style: const TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        widget.nome,
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const Text(
+                        'Sem rank',
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
                   ),
                 )
               : Padding(
@@ -110,17 +122,29 @@ class _PerfilPageAlunoState extends State<PerfilPageAluno> {
                           ),
                           Container(
                             padding: const EdgeInsets.only(right: 70.0),
-                            child: Text(
-                              widget.nome,
-                              style: const TextStyle(
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
-                              ),
+                            child: Column(
+                              children: <Widget>[
+                                Text(
+                                  widget.nome,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  widget.elo,
+                                  style: const TextStyle(
+                                    color: Colors.grey,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 20,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
-                      )
+                      ),
                     ],
                   ),
                 ),
