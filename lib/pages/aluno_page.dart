@@ -85,9 +85,11 @@ class _AlunoPageState extends State<AlunoPage> {
                 return AppBar(
                   automaticallyImplyLeading: false,
                   toolbarHeight: 100,
-                  centerTitle: elo == 'nenhum' ? true : false,
+                  centerTitle: elo == 'nenhum' ? false : true,
                   title: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: elo == 'nenhum'
+                        ? MainAxisAlignment.spaceEvenly
+                        : MainAxisAlignment.center,
                     children: <Widget>[
                       elo == 'nenhum'
                           ? const Padding(padding: EdgeInsets.all(0.0))
@@ -105,6 +107,20 @@ class _AlunoPageState extends State<AlunoPage> {
                     ],
                   ),
                   actions: <Widget>[
+                    Container(
+                      alignment: Alignment.topRight,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: <Widget>[
+                          const Icon(
+                            MdiIcons.star,
+                            color: Colors.yellow,
+                            size: 20,
+                          ),
+                          Text(pontos.toString()),
+                        ],
+                      ),
+                    ),
                     Container(
                       alignment: Alignment.bottomRight,
                       child: IconButton(
