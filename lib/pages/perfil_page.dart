@@ -13,6 +13,7 @@ class PerfilPage extends StatefulWidget {
 }
 
 class _PerfilPageState extends State<PerfilPage> {
+  String tipo = '';
   final formKey = GlobalKey<FormState>();
   final nome = TextEditingController();
   CadastroService cadastro = CadastroService();

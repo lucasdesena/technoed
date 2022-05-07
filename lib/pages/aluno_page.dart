@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:technoed/pages/lista_desafios_page.dart';
+import 'package:technoed/pages/perfil_page.dart';
 import 'package:technoed/pages/sobre_page.dart';
 import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/services/cadastro_service.dart';
@@ -18,6 +19,30 @@ class _AlunoPageState extends State<AlunoPage> {
   CadastroService cadastro = CadastroService();
   bool voltar = false;
   String nome = '';
+  String elo = '';
+  int pontos = 0;
+
+  ImageProvider retornarElo(elo) {
+    switch (elo) {
+      case 'bronze':
+        return const AssetImage('assets/images/rank-bronze.png');
+      case 'prata':
+        return const AssetImage('assets/images/rank-prata.png');
+      case 'ouro':
+        return const AssetImage('assets/images/rank-ouro.png');
+      default:
+        return const AssetImage('assets/images/rank-bronze.png');
+    }
+  }
+
+  _telaEditar() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => PerfilPage(nome),
+      ),
+    );
+  }
 
   _telaSobre() {
     Navigator.push(
@@ -54,18 +79,31 @@ class _AlunoPageState extends State<AlunoPage> {
                   child: CircularProgressIndicator(),
                 );
               } else {
-                nome = snapshot.data!.docs.map((doc) => doc['nome']).single;
+                nome = snapshot.data!.docs.map((doc) => doc['nome']).first;
+                pontos = snapshot.data!.docs.map((doc) => doc['pontos']).last;
+                elo = snapshot.data!.docs.map((doc) => doc['elo']).last;
                 return AppBar(
                   automaticallyImplyLeading: false,
                   toolbarHeight: 100,
-                  title: Text(
-                    'Olá, ' + nome,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ),
+                  centerTitle: elo == 'nenhum' ? true : false,
+                  title: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      elo == 'nenhum'
+                          ? const Padding(padding: EdgeInsets.all(0.0))
+                          : SizedBox(
+                              height: 100,
+                              child: Image(image: retornarElo(elo)),
+                            ),
+                      Text(
+                        'Olá, ' + nome,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                        ),
+                      ),
+                    ],
                   ),
-                  centerTitle: true,
                   actions: <Widget>[
                     Container(
                       alignment: Alignment.bottomRight,
@@ -96,7 +134,7 @@ class _AlunoPageState extends State<AlunoPage> {
                     child: SizedBox(
                       height: 100,
                       child: ElevatedButton(
-                        onPressed: null,
+                        onPressed: _telaEditar,
                         style: ElevatedButton.styleFrom(
                           primary: const Color.fromARGB(255, 144, 224, 239),
                           elevation: 6,
