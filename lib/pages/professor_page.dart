@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
-import 'package:technoed/pages/perfil_page.dart';
+import 'package:technoed/pages/perfil_page_professor.dart';
 import 'package:technoed/pages/sobre_page.dart';
 import 'package:technoed/pages/escolher_desafio_page.dart';
 import 'package:technoed/pages/gerenciar_grupos_page.dart';
@@ -25,7 +25,7 @@ class _ProfessorPageState extends State<ProfessorPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => PerfilPage(nome),
+        builder: (_) => PerfilPageProfessor(nome),
       ),
     );
   }
