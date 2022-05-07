@@ -14,6 +14,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool isLoading = true;
+  String tipo = '';
+  CadastroService cadastro = CadastroService();
 
   loading() {
     return Scaffold(
@@ -30,13 +32,9 @@ class _HomePageState extends State<HomePage> {
 
   pagina() {
     return Scaffold(
-      body: tipo == 'Aluno' ? AlunoPage(nome) : ProfessorPage(nome),
+      body: tipo == 'Aluno' ? const AlunoPage() : const ProfessorPage(),
     );
   }
-
-  CadastroService cadastro = CadastroService();
-  String nome = '';
-  String tipo = '';
 
   @override
   void initState() {
@@ -47,10 +45,6 @@ class _HomePageState extends State<HomePage> {
   obterDados() {
     cadastro.obterTipo(widget.auth.usuario!.uid).then((value) => setState(() {
           tipo = value;
-        }));
-
-    cadastro.obterNome(widget.auth.usuario!.uid).then((value) => setState(() {
-          nome = value;
           isLoading = false;
         }));
   }

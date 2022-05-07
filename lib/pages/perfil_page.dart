@@ -54,7 +54,7 @@ class _PerfilPageState extends State<PerfilPage> {
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       cadastro.editarNome(uid, nome.text);
-                      Navigator.popAndPushNamed(context, '/authCheck');
+                      Navigator.pop(context);
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                             content: Text('Nome alterado com sucesso!')),

@@ -1,20 +1,23 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:technoed/pages/lista_desafios_page.dart';
 import 'package:technoed/pages/sobre_page.dart';
 import 'package:technoed/services/auth_service.dart';
+import 'package:technoed/services/cadastro_service.dart';
 
 class AlunoPage extends StatefulWidget {
-  final String nome;
-  const AlunoPage(this.nome, {Key? key}) : super(key: key);
+  const AlunoPage({Key? key}) : super(key: key);
 
   @override
   State<AlunoPage> createState() => _AlunoPageState();
 }
 
 class _AlunoPageState extends State<AlunoPage> {
+  CadastroService cadastro = CadastroService();
   bool voltar = false;
+  String nome = '';
 
   _telaSobre() {
     Navigator.push(
@@ -36,37 +39,51 @@ class _AlunoPageState extends State<AlunoPage> {
 
   @override
   Widget build(BuildContext context) {
+    String uid = context.read<AuthService>().usuario!.uid;
     return WillPopScope(
       onWillPop: () async {
         return voltar;
       },
       child: Column(
         children: <Widget>[
-          AppBar(
-            automaticallyImplyLeading: false,
-            toolbarHeight: 100,
-            title: Text(
-              'Olá, ' + widget.nome,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 20,
-              ),
-            ),
-            centerTitle: true,
-            actions: <Widget>[
-              Container(
-                alignment: Alignment.bottomRight,
-                child: IconButton(
-                    tooltip: 'Sair da Conta',
-                    padding: const EdgeInsets.only(right: 5, bottom: 5),
-                    icon: const Icon(
-                      MdiIcons.accountArrowLeftOutline,
+          StreamBuilder<QuerySnapshot>(
+            stream: cadastro.db.collection('usuarios/$uid/dados').snapshots(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                nome = snapshot.data!.docs.map((doc) => doc['nome']).single;
+                return AppBar(
+                  automaticallyImplyLeading: false,
+                  toolbarHeight: 100,
+                  title: Text(
+                    'Olá, ' + nome,
+                    style: const TextStyle(
                       color: Colors.white,
-                      size: 40,
+                      fontSize: 20,
                     ),
-                    onPressed: () => context.read<AuthService>().logout()),
-              ),
-            ],
+                  ),
+                  centerTitle: true,
+                  actions: <Widget>[
+                    Container(
+                      alignment: Alignment.bottomRight,
+                      child: IconButton(
+                          tooltip: 'Sair da Conta',
+                          padding: const EdgeInsets.only(right: 5, bottom: 5),
+                          icon: const Icon(
+                            MdiIcons.accountArrowLeftOutline,
+                            color: Colors.white,
+                            size: 40,
+                          ),
+                          onPressed: () =>
+                              context.read<AuthService>().logout()),
+                    ),
+                  ],
+                );
+              }
+            },
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),

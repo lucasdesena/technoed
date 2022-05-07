@@ -12,7 +12,6 @@ class GrupoPage extends StatefulWidget {
 }
 
 class _GrupoPageState extends State<GrupoPage> {
-  List<String> lista = <String>[];
   CadastroService cadastro = CadastroService();
 
   @override
@@ -54,14 +53,12 @@ class _GrupoPageState extends State<GrupoPage> {
                   child: CircularProgressIndicator(),
                 );
               } else {
-                int tamanho = int.parse(snapshot.data!.docs
-                    .where((grupo) => grupo.id.toString() == widget.nome)
-                    .map((doc) => List.from(doc['emails']).length)
-                    .toString()
-                    .substring(1, 2));
                 return Expanded(
                   child: ListView.builder(
-                    itemCount: tamanho,
+                    itemCount: snapshot.data!.docs
+                        .where((grupo) => grupo.id.toString() == widget.nome)
+                        .map((doc) => List.from(doc['emails']).length)
+                        .single,
                     itemBuilder: (BuildContext context, int index) {
                       return Card(
                         child: ListTile(
@@ -74,7 +71,7 @@ class _GrupoPageState extends State<GrupoPage> {
                                 .where((grupo) =>
                                     grupo.id.toString() == widget.nome)
                                 .map((doc) => doc['emails'][index])
-                                .toString())),
+                                .single)),
                       );
                     },
                   ),
