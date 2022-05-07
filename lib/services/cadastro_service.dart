@@ -17,6 +17,13 @@ class CadastroService extends ChangeNotifier {
         .set({'nome': nome, 'email': email, 'tipo': tipoConta});
   }
 
+  cadastrarPontuacao(String uid) async {
+    await db
+        .collection('usuarios/$uid/dados')
+        .doc('pontuação')
+        .set({'elo': 'nenhum', 'pontos': 0});
+  }
+
   cadastrarGrupo(String uid, String nome, List<String> lista) async {
     await db
         .collection('usuarios/$uid/grupos')

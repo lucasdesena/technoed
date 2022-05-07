@@ -74,6 +74,9 @@ class _LoginPageState extends State<LoginPage> {
       if (uid.isNotEmpty) {
         await CadastroService()
             .cadastrarDados(uid, nome.text, email.text, dropdownValue);
+        if (dropdownValue == 'Aluno') {
+          await CadastroService().cadastrarPontuacao(uid);
+        }
       }
     } on AuthException catch (e) {
       setState(() => loading = false);
