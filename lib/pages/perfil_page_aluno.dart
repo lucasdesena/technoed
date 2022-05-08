@@ -148,6 +148,31 @@ class _PerfilPageAlunoState extends State<PerfilPageAluno> {
                     ],
                   ),
                 ),
+          Padding(
+            padding: const EdgeInsets.only(top: 10.0, bottom: 10.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.center,
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      const Icon(
+                        MdiIcons.star,
+                        color: Colors.yellow,
+                        size: 20,
+                      ),
+                      Text(
+                        widget.pontos.toString(),
+                        style: const TextStyle(fontSize: 15),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: const <Widget>[
