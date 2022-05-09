@@ -20,6 +20,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
   String dropdownValue = 'Escolha uma pergunta';
 
   List<String> listaAlternativas = [];
+  List<String> listaRespostas = [];
 
   final alternativa1 = TextEditingController();
   final alternativa2 = TextEditingController();
@@ -49,15 +50,15 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
   final alternativa26 = TextEditingController();
   final alternativa27 = TextEditingController();
 
-  final alternativaCorreta1 = TextEditingController();
-  final alternativaCorreta2 = TextEditingController();
-  final alternativaCorreta3 = TextEditingController();
-  final alternativaCorreta4 = TextEditingController();
-  final alternativaCorreta5 = TextEditingController();
-  final alternativaCorreta6 = TextEditingController();
-  final alternativaCorreta7 = TextEditingController();
-  final alternativaCorreta8 = TextEditingController();
-  final alternativaCorreta9 = TextEditingController();
+  final respostaPergunta1 = TextEditingController();
+  final respostaPergunta2 = TextEditingController();
+  final respostaPergunta3 = TextEditingController();
+  final respostaPergunta4 = TextEditingController();
+  final respostaPergunta5 = TextEditingController();
+  final respostaPergunta6 = TextEditingController();
+  final respostaPergunta7 = TextEditingController();
+  final respostaPergunta8 = TextEditingController();
+  final respostaPergunta9 = TextEditingController();
 
   _carregarDificuldade() {
     return widget.dificuldade;
@@ -326,7 +327,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 padding:
                                     const EdgeInsets.fromLTRB(24, 6, 24, 6),
                                 child: TextFormField(
-                                  controller: alternativaCorreta1,
+                                  controller: respostaPergunta1,
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(
                                       Icons.assignment_turned_in_outlined,
@@ -474,7 +475,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 padding:
                                     const EdgeInsets.fromLTRB(24, 6, 24, 6),
                                 child: TextFormField(
-                                  controller: alternativaCorreta2,
+                                  controller: respostaPergunta2,
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(
                                       Icons.assignment_turned_in_outlined,
@@ -622,7 +623,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 padding:
                                     const EdgeInsets.fromLTRB(24, 6, 24, 6),
                                 child: TextFormField(
-                                  controller: alternativaCorreta3,
+                                  controller: respostaPergunta3,
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(
                                       Icons.assignment_turned_in_outlined,
@@ -770,7 +771,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 padding:
                                     const EdgeInsets.fromLTRB(24, 6, 24, 6),
                                 child: TextFormField(
-                                  controller: alternativaCorreta4,
+                                  controller: respostaPergunta4,
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(
                                       Icons.assignment_turned_in_outlined,
@@ -918,7 +919,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 padding:
                                     const EdgeInsets.fromLTRB(24, 6, 24, 6),
                                 child: TextFormField(
-                                  controller: alternativaCorreta5,
+                                  controller: respostaPergunta5,
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(
                                       Icons.assignment_turned_in_outlined,
@@ -1066,7 +1067,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 padding:
                                     const EdgeInsets.fromLTRB(24, 6, 24, 6),
                                 child: TextFormField(
-                                  controller: alternativaCorreta6,
+                                  controller: respostaPergunta6,
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(
                                       Icons.assignment_turned_in_outlined,
@@ -1214,7 +1215,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 padding:
                                     const EdgeInsets.fromLTRB(24, 6, 24, 6),
                                 child: TextFormField(
-                                  controller: alternativaCorreta7,
+                                  controller: respostaPergunta7,
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(
                                       Icons.assignment_turned_in_outlined,
@@ -1363,7 +1364,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                     padding:
                                         const EdgeInsets.fromLTRB(24, 6, 24, 6),
                                     child: TextFormField(
-                                      controller: alternativaCorreta8,
+                                      controller: respostaPergunta8,
                                       decoration: const InputDecoration(
                                         prefixIcon: Icon(
                                           Icons.assignment_turned_in_outlined,
@@ -1515,7 +1516,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                     padding:
                                         const EdgeInsets.fromLTRB(24, 6, 24, 6),
                                     child: TextFormField(
-                                      controller: alternativaCorreta9,
+                                      controller: respostaPergunta9,
                                       decoration: const InputDecoration(
                                         prefixIcon: Icon(
                                           Icons.assignment_turned_in_outlined,
@@ -1560,47 +1561,79 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             setState(() {
-                              listaAlternativas.clear();
-                              listaAlternativas.add(alternativa1.text);
-                              listaAlternativas.add(alternativa2.text);
-                              listaAlternativas.add(alternativa3.text);
-                              listaAlternativas.add(alternativa4.text);
-                              listaAlternativas.add(alternativa5.text);
-                              listaAlternativas.add(alternativa6.text);
-                              listaAlternativas.add(alternativa7.text);
-                              listaAlternativas.add(alternativa8.text);
-                              listaAlternativas.add(alternativa9.text);
-                              listaAlternativas.add(alternativa10.text);
-                              listaAlternativas.add(alternativa11.text);
-                              listaAlternativas.add(alternativa12.text);
-                              listaAlternativas.add(alternativa13.text);
-                              listaAlternativas.add(alternativa14.text);
-                              listaAlternativas.add(alternativa15.text);
-                              listaAlternativas.add(alternativa16.text);
-                              listaAlternativas.add(alternativa17.text);
-                              listaAlternativas.add(alternativa18.text);
-                              listaAlternativas.add(alternativa19.text);
-                              listaAlternativas.add(alternativa20.text);
-                              listaAlternativas.add(alternativa21.text);
-                              listaAlternativas.add(alternativaCorreta1.text);
-                              listaAlternativas.add(alternativaCorreta2.text);
-                              listaAlternativas.add(alternativaCorreta3.text);
-                              listaAlternativas.add(alternativaCorreta4.text);
-                              listaAlternativas.add(alternativaCorreta5.text);
-                              listaAlternativas.add(alternativaCorreta6.text);
-                              listaAlternativas.add(alternativaCorreta7.text);
+                              if (dropdownValue == widget.listaPerguntas[0]) {
+                                listaAlternativas.add(alternativa1.text);
+                                listaAlternativas.add(alternativa2.text);
+                                listaAlternativas.add(alternativa3.text);
+                                listaRespostas.add(respostaPergunta1.text);
+
+                                dropdownValue = widget.listaPerguntas[1];
+                              } else if (dropdownValue ==
+                                  widget.listaPerguntas[1]) {
+                                listaAlternativas.add(alternativa4.text);
+                                listaAlternativas.add(alternativa5.text);
+                                listaAlternativas.add(alternativa6.text);
+                                listaRespostas.add(respostaPergunta2.text);
+
+                                dropdownValue = widget.listaPerguntas[2];
+                              } else if (dropdownValue ==
+                                  widget.listaPerguntas[2]) {
+                                listaAlternativas.add(alternativa7.text);
+                                listaAlternativas.add(alternativa8.text);
+                                listaAlternativas.add(alternativa9.text);
+                                listaRespostas.add(respostaPergunta3.text);
+
+                                dropdownValue = widget.listaPerguntas[3];
+                              } else if (dropdownValue ==
+                                  widget.listaPerguntas[3]) {
+                                listaAlternativas.add(alternativa10.text);
+                                listaAlternativas.add(alternativa11.text);
+                                listaAlternativas.add(alternativa12.text);
+                                listaRespostas.add(respostaPergunta4.text);
+
+                                dropdownValue = widget.listaPerguntas[4];
+                              } else if (dropdownValue ==
+                                  widget.listaPerguntas[4]) {
+                                listaAlternativas.add(alternativa13.text);
+                                listaAlternativas.add(alternativa14.text);
+                                listaAlternativas.add(alternativa15.text);
+                                listaRespostas.add(respostaPergunta5.text);
+
+                                dropdownValue = widget.listaPerguntas[5];
+                              } else if (dropdownValue ==
+                                  widget.listaPerguntas[5]) {
+                                listaAlternativas.add(alternativa16.text);
+                                listaAlternativas.add(alternativa17.text);
+                                listaAlternativas.add(alternativa18.text);
+                                listaRespostas.add(respostaPergunta6.text);
+
+                                dropdownValue = widget.listaPerguntas[6];
+                              } else if (dropdownValue ==
+                                  widget.listaPerguntas[6]) {
+                                listaAlternativas.add(alternativa19.text);
+                                listaAlternativas.add(alternativa20.text);
+                                listaAlternativas.add(alternativa21.text);
+                                listaRespostas.add(respostaPergunta7.text);
+                              }
+
                               if (widget.dificuldade == 'Difícil') {
-                                listaAlternativas.add(alternativa22.text);
-                                listaAlternativas.add(alternativa23.text);
-                                listaAlternativas.add(alternativa24.text);
-                                listaAlternativas.add(alternativa25.text);
-                                listaAlternativas.add(alternativa26.text);
-                                listaAlternativas.add(alternativa27.text);
-                                listaAlternativas.add(alternativaCorreta8.text);
-                                listaAlternativas.add(alternativaCorreta9.text);
+                                dropdownValue = widget.listaPerguntas[7];
+                                if (dropdownValue == widget.listaPerguntas[7]) {
+                                  listaAlternativas.add(alternativa22.text);
+                                  listaAlternativas.add(alternativa23.text);
+                                  listaAlternativas.add(alternativa24.text);
+                                  listaRespostas.add(respostaPergunta8.text);
+
+                                  dropdownValue = widget.listaPerguntas[8];
+                                } else if (dropdownValue ==
+                                    widget.listaPerguntas[8]) {
+                                  listaAlternativas.add(alternativa25.text);
+                                  listaAlternativas.add(alternativa26.text);
+                                  listaAlternativas.add(alternativa27.text);
+                                  listaRespostas.add(respostaPergunta9.text);
+                                }
                               }
                             });
-                            _telaEscolherGrupo();
                           }
                         },
                         style: ElevatedButton.styleFrom(
