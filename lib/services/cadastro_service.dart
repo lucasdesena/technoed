@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:technoed/databases/db_firestore.dart';
@@ -36,6 +38,12 @@ class CadastroService extends ChangeNotifier {
         .collection('usuarios/$uid/dados')
         .doc('cadastro')
         .update({'nome': nome});
+  }
+
+  excluirEmails(String uid, String nomeGrupo, String email) async {
+    await db.collection('usuarios/$uid/grupos').doc(nomeGrupo).update({
+      'emails': FieldValue.arrayRemove([email])
+    });
   }
 
   obterNome(String uid) async {

@@ -12,6 +12,7 @@ class GrupoPage extends StatefulWidget {
 }
 
 class _GrupoPageState extends State<GrupoPage> {
+  String email = '';
   CadastroService cadastro = CadastroService();
 
   @override
@@ -60,18 +61,51 @@ class _GrupoPageState extends State<GrupoPage> {
                         .map((doc) => List.from(doc['emails']).length)
                         .single,
                     itemBuilder: (BuildContext context, int index) {
+                      email = snapshot.data!.docs
+                          .where((grupo) => grupo.id.toString() == widget.nome)
+                          .map((doc) => doc['emails'][index])
+                          .single;
                       return Card(
                         child: ListTile(
-                            leading: const Icon(Icons.email_outlined),
-                            trailing: const Icon(
+                          leading: const Icon(Icons.email_outlined),
+                          trailing: GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  actionsAlignment: MainAxisAlignment.center,
+                                  title: const Text(
+                                    'Confirmação',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  content: const Text(
+                                    'Deseja excluir esse email?',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        cadastro.excluirEmails(
+                                            widget.uid, widget.nome, email);
+                                      },
+                                      child: const Text('Confirmar'),
+                                    ),
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, 'Cancelar'),
+                                      child: const Text('Cancelar'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                            child: const Icon(
                               Icons.delete_outline,
                               color: Colors.red,
                             ),
-                            title: Text(snapshot.data!.docs
-                                .where((grupo) =>
-                                    grupo.id.toString() == widget.nome)
-                                .map((doc) => doc['emails'][index])
-                                .single)),
+                          ),
+                          title: Text(email),
+                        ),
                       );
                     },
                   ),
