@@ -73,7 +73,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
       context,
       MaterialPageRoute(
         builder: (_) => EscolherGrupoPage(_carregarDificuldade(),
-            _carregarListaPerguntas(), listaAlternativas),
+            _carregarListaPerguntas(), listaAlternativas, listaRespostas),
       ),
     );
   }

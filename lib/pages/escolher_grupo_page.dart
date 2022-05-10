@@ -5,8 +5,9 @@ class EscolherGrupoPage extends StatefulWidget {
   final String dificuldade;
   final List<String> listaPerguntas;
   final List<String> listaAlternativas;
-  const EscolherGrupoPage(
-      this.dificuldade, this.listaPerguntas, this.listaAlternativas,
+  final List<String> listaRespostas;
+  const EscolherGrupoPage(this.dificuldade, this.listaPerguntas,
+      this.listaAlternativas, this.listaRespostas,
       {Key? key})
       : super(key: key);
 
