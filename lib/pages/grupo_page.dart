@@ -87,6 +87,7 @@ class _GrupoPageState extends State<GrupoPage> {
                                       onPressed: () {
                                         cadastro.excluirEmails(
                                             widget.uid, widget.nome, email);
+                                        Navigator.pop(context, 'Confirmar');
                                       },
                                       child: const Text('Confirmar'),
                                     ),
