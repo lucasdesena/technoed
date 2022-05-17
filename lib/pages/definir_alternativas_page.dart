@@ -17,7 +17,7 @@ class DefinirAlternativasPage extends StatefulWidget {
 class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
   final formKey = GlobalKey<FormState>();
 
-  String dropdownValue = 'Escolha uma pergunta';
+  String pergunta = '';
 
   List<String> listaAlternativas = [];
   List<String> listaRespostas = [];
@@ -59,6 +59,12 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
   final respostaPergunta7 = TextEditingController();
   final respostaPergunta8 = TextEditingController();
   final respostaPergunta9 = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    pergunta = widget.listaPerguntas[0];
+  }
 
   _carregarDificuldade() {
     return widget.dificuldade;
@@ -108,114 +114,21 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                 key: formKey,
                 child: Column(
                   children: <Widget>[
-                    widget.dificuldade == 'Normal'
-                        ? Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255),
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: DropdownButtonFormField<String>(
-                                  decoration: const InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.black)),
-                                    border: OutlineInputBorder(),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.black)),
-                                  ),
-                                  isExpanded: true,
-                                  value: dropdownValue,
-                                  icon: const Icon(
-                                    MdiIcons.chevronDown,
-                                    color: Colors.black,
-                                  ),
-                                  iconSize: 20,
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                  onChanged: (newValue) {
-                                    setState(() {
-                                      dropdownValue = newValue!;
-                                    });
-                                  },
-                                  items: <String>[
-                                    'Escolha uma pergunta',
-                                    widget.listaPerguntas[0],
-                                    widget.listaPerguntas[1],
-                                    widget.listaPerguntas[2],
-                                    widget.listaPerguntas[3],
-                                    widget.listaPerguntas[4],
-                                    widget.listaPerguntas[5],
-                                    widget.listaPerguntas[6],
-                                  ].map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Center(
-                                        child: Text(value),
-                                      ),
-                                    );
-                                  }).toList()),
-                            ),
-                          )
-                        : Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color:
-                                      const Color.fromARGB(255, 255, 255, 255),
-                                  borderRadius: BorderRadius.circular(5)),
-                              child: DropdownButtonFormField<String>(
-                                  decoration: const InputDecoration(
-                                    enabledBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.black)),
-                                    border: OutlineInputBorder(),
-                                    focusedBorder: OutlineInputBorder(
-                                        borderSide:
-                                            BorderSide(color: Colors.black)),
-                                  ),
-                                  isExpanded: true,
-                                  value: dropdownValue,
-                                  icon: const Icon(
-                                    MdiIcons.chevronDown,
-                                    color: Colors.black,
-                                  ),
-                                  iconSize: 20,
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                  ),
-                                  onChanged: (newValue) {
-                                    setState(() {
-                                      dropdownValue = newValue!;
-                                    });
-                                  },
-                                  items: <String>[
-                                    'Escolha uma pergunta',
-                                    widget.listaPerguntas[0],
-                                    widget.listaPerguntas[1],
-                                    widget.listaPerguntas[2],
-                                    widget.listaPerguntas[3],
-                                    widget.listaPerguntas[4],
-                                    widget.listaPerguntas[5],
-                                    widget.listaPerguntas[6],
-                                    widget.listaPerguntas[7],
-                                    widget.listaPerguntas[8],
-                                  ].map<DropdownMenuItem<String>>(
-                                      (String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Center(
-                                        child: Text(value),
-                                      ),
-                                    );
-                                  }).toList()),
-                            ),
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(5)),
+                        child: Text(
+                          'Pergunta: ' + pergunta,
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
                           ),
-                    dropdownValue == widget.listaPerguntas[0]
+                        ),
+                      ),
+                    ),
+                    pergunta == widget.listaPerguntas[0]
                         ? Column(
                             children: <Widget>[
                               Padding(
@@ -363,7 +276,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         : const Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           ),
-                    dropdownValue == widget.listaPerguntas[1]
+                    pergunta == widget.listaPerguntas[1]
                         ? Column(
                             children: <Widget>[
                               Padding(
@@ -511,7 +424,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         : const Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           ),
-                    dropdownValue == widget.listaPerguntas[2]
+                    pergunta == widget.listaPerguntas[2]
                         ? Column(
                             children: <Widget>[
                               Padding(
@@ -659,7 +572,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         : const Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           ),
-                    dropdownValue == widget.listaPerguntas[3]
+                    pergunta == widget.listaPerguntas[3]
                         ? Column(
                             children: <Widget>[
                               Padding(
@@ -807,7 +720,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         : const Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           ),
-                    dropdownValue == widget.listaPerguntas[4]
+                    pergunta == widget.listaPerguntas[4]
                         ? Column(
                             children: <Widget>[
                               Padding(
@@ -955,7 +868,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         : const Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           ),
-                    dropdownValue == widget.listaPerguntas[5]
+                    pergunta == widget.listaPerguntas[5]
                         ? Column(
                             children: <Widget>[
                               Padding(
@@ -1103,7 +1016,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         : const Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           ),
-                    dropdownValue == widget.listaPerguntas[6]
+                    pergunta == widget.listaPerguntas[6]
                         ? Column(
                             children: <Widget>[
                               Padding(
@@ -1252,7 +1165,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           ),
                     widget.dificuldade == 'Difícil'
-                        ? dropdownValue == widget.listaPerguntas[7]
+                        ? pergunta == widget.listaPerguntas[7]
                             ? Column(
                                 children: <Widget>[
                                   Padding(
@@ -1404,7 +1317,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           ),
                     widget.dificuldade == 'Difícil'
-                        ? dropdownValue == widget.listaPerguntas[8]
+                        ? pergunta == widget.listaPerguntas[8]
                             ? Column(
                                 children: <Widget>[
                                   Padding(
@@ -1561,7 +1474,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             setState(() {
-                              if (dropdownValue == widget.listaPerguntas[0]) {
+                              if (pergunta == widget.listaPerguntas[0]) {
                                 if (listaAlternativas.isNotEmpty) {
                                   for (var i = 2; i >= 0; i--) {
                                     listaAlternativas.removeAt(i);
@@ -1575,9 +1488,8 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 listaAlternativas.add(alternativa3.text);
                                 listaRespostas.add(respostaPergunta1.text);
 
-                                dropdownValue = widget.listaPerguntas[1];
-                              } else if (dropdownValue ==
-                                  widget.listaPerguntas[1]) {
+                                pergunta = widget.listaPerguntas[1];
+                              } else if (pergunta == widget.listaPerguntas[1]) {
                                 if (listaAlternativas.length > 3) {
                                   for (var i = 5; i >= 3; i--) {
                                     listaAlternativas.removeAt(i);
@@ -1591,9 +1503,8 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 listaAlternativas.add(alternativa6.text);
                                 listaRespostas.add(respostaPergunta2.text);
 
-                                dropdownValue = widget.listaPerguntas[2];
-                              } else if (dropdownValue ==
-                                  widget.listaPerguntas[2]) {
+                                pergunta = widget.listaPerguntas[2];
+                              } else if (pergunta == widget.listaPerguntas[2]) {
                                 if (listaAlternativas.length > 6) {
                                   for (var i = 8; i >= 6; i--) {
                                     listaAlternativas.removeAt(i);
@@ -1607,9 +1518,8 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 listaAlternativas.add(alternativa9.text);
                                 listaRespostas.add(respostaPergunta3.text);
 
-                                dropdownValue = widget.listaPerguntas[3];
-                              } else if (dropdownValue ==
-                                  widget.listaPerguntas[3]) {
+                                pergunta = widget.listaPerguntas[3];
+                              } else if (pergunta == widget.listaPerguntas[3]) {
                                 if (listaAlternativas.length > 9) {
                                   for (var i = 11; i >= 9; i--) {
                                     listaAlternativas.removeAt(i);
@@ -1623,9 +1533,8 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 listaAlternativas.add(alternativa12.text);
                                 listaRespostas.add(respostaPergunta4.text);
 
-                                dropdownValue = widget.listaPerguntas[4];
-                              } else if (dropdownValue ==
-                                  widget.listaPerguntas[4]) {
+                                pergunta = widget.listaPerguntas[4];
+                              } else if (pergunta == widget.listaPerguntas[4]) {
                                 if (listaAlternativas.length > 12) {
                                   for (var i = 14; i >= 12; i--) {
                                     listaAlternativas.removeAt(i);
@@ -1639,9 +1548,8 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 listaAlternativas.add(alternativa15.text);
                                 listaRespostas.add(respostaPergunta5.text);
 
-                                dropdownValue = widget.listaPerguntas[5];
-                              } else if (dropdownValue ==
-                                  widget.listaPerguntas[5]) {
+                                pergunta = widget.listaPerguntas[5];
+                              } else if (pergunta == widget.listaPerguntas[5]) {
                                 if (listaAlternativas.length > 15) {
                                   for (var i = 17; i >= 15; i--) {
                                     listaAlternativas.removeAt(i);
@@ -1655,9 +1563,8 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 listaAlternativas.add(alternativa18.text);
                                 listaRespostas.add(respostaPergunta6.text);
 
-                                dropdownValue = widget.listaPerguntas[6];
-                              } else if (dropdownValue ==
-                                  widget.listaPerguntas[6]) {
+                                pergunta = widget.listaPerguntas[6];
+                              } else if (pergunta == widget.listaPerguntas[6]) {
                                 if (listaAlternativas.length > 18) {
                                   for (var i = 20; i >= 18; i--) {
                                     listaAlternativas.removeAt(i);
@@ -1676,8 +1583,8 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                               }
 
                               if (widget.dificuldade == 'Difícil') {
-                                dropdownValue = widget.listaPerguntas[7];
-                                if (dropdownValue == widget.listaPerguntas[7]) {
+                                pergunta = widget.listaPerguntas[7];
+                                if (pergunta == widget.listaPerguntas[7]) {
                                   if (listaAlternativas.length > 21) {
                                     for (var i = 23; i >= 21; i--) {
                                       listaAlternativas.removeAt(i);
@@ -1691,8 +1598,8 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                   listaAlternativas.add(alternativa24.text);
                                   listaRespostas.add(respostaPergunta8.text);
 
-                                  dropdownValue = widget.listaPerguntas[8];
-                                } else if (dropdownValue ==
+                                  pergunta = widget.listaPerguntas[8];
+                                } else if (pergunta ==
                                     widget.listaPerguntas[8]) {
                                   if (listaAlternativas.length > 24) {
                                     for (var i = 26; i >= 24; i--) {
@@ -1717,18 +1624,85 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         ),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const <Widget>[
+                          children: <Widget>[
                             Padding(
-                              padding: EdgeInsets.all(10.0),
-                              child: Text(
-                                'Avançar',
-                                style: TextStyle(fontSize: 20),
-                              ),
+                              padding: const EdgeInsets.all(10.0),
+                              child: widget.dificuldade == 'Normal'
+                                  ? pergunta == widget.listaPerguntas[6]
+                                      ? const Text(
+                                          'Concluir',
+                                          style: TextStyle(fontSize: 20),
+                                        )
+                                      : const Text(
+                                          'Avançar',
+                                          style: TextStyle(fontSize: 20),
+                                        )
+                                  : pergunta == widget.listaPerguntas[8]
+                                      ? const Text(
+                                          'Concluir',
+                                          style: TextStyle(fontSize: 20),
+                                        )
+                                      : const Text(
+                                          'Avançar',
+                                          style: TextStyle(fontSize: 20),
+                                        ),
                             ),
                           ],
                         ),
                       ),
                     ),
+                    pergunta == widget.listaPerguntas[0]
+                        ? const Padding(
+                            padding: EdgeInsets.all(0.0),
+                          )
+                        : Padding(
+                            padding: const EdgeInsets.fromLTRB(12, 0, 12, 0.0),
+                            child: ElevatedButton(
+                              onPressed: () {
+                                setState(() {
+                                  if (pergunta == widget.listaPerguntas[1]) {
+                                    pergunta = widget.listaPerguntas[0];
+                                  } else if (pergunta ==
+                                      widget.listaPerguntas[2]) {
+                                    pergunta = widget.listaPerguntas[1];
+                                  } else if (pergunta ==
+                                      widget.listaPerguntas[3]) {
+                                    pergunta = widget.listaPerguntas[2];
+                                  } else if (pergunta ==
+                                      widget.listaPerguntas[4]) {
+                                    pergunta = widget.listaPerguntas[3];
+                                  } else if (pergunta ==
+                                      widget.listaPerguntas[5]) {
+                                    pergunta = widget.listaPerguntas[4];
+                                  } else if (pergunta ==
+                                      widget.listaPerguntas[6]) {
+                                    pergunta = widget.listaPerguntas[5];
+                                  } else if (pergunta ==
+                                      widget.listaPerguntas[7]) {
+                                    pergunta = widget.listaPerguntas[6];
+                                  } else if (pergunta ==
+                                      widget.listaPerguntas[8]) {
+                                    pergunta = widget.listaPerguntas[7];
+                                  }
+                                });
+                              },
+                              style: ElevatedButton.styleFrom(
+                                primary: const Color.fromARGB(255, 0, 180, 216),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const <Widget>[
+                                  Padding(
+                                    padding: EdgeInsets.all(10.0),
+                                    child: Text(
+                                      'Voltar',
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                   ],
                 ),
               ),
