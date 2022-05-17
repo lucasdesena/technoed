@@ -1476,12 +1476,10 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                             setState(() {
                               if (pergunta == widget.listaPerguntas[0]) {
                                 if (listaAlternativas.isNotEmpty) {
-                                  for (var i = 2; i >= 0; i--) {
-                                    listaAlternativas.removeAt(i);
-                                  }
+                                  listaAlternativas.clear();
                                 }
                                 if (listaRespostas.isNotEmpty) {
-                                  listaRespostas.removeAt(0);
+                                  listaRespostas.clear();
                                 }
                                 listaAlternativas.add(alternativa1.text);
                                 listaAlternativas.add(alternativa2.text);
@@ -1661,27 +1659,91 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                               onPressed: () {
                                 setState(() {
                                   if (pergunta == widget.listaPerguntas[1]) {
+                                    if (listaAlternativas.length > 3) {
+                                      for (var i = 5; i >= 3; i--) {
+                                        listaAlternativas.removeAt(i);
+                                      }
+                                    }
+                                    if (listaRespostas.length > 1) {
+                                      listaRespostas.removeAt(1);
+                                    }
                                     pergunta = widget.listaPerguntas[0];
                                   } else if (pergunta ==
                                       widget.listaPerguntas[2]) {
+                                    if (listaAlternativas.length > 6) {
+                                      for (var i = 8; i >= 6; i--) {
+                                        listaAlternativas.removeAt(i);
+                                      }
+                                    }
+                                    if (listaRespostas.length > 2) {
+                                      listaRespostas.removeAt(2);
+                                    }
                                     pergunta = widget.listaPerguntas[1];
                                   } else if (pergunta ==
                                       widget.listaPerguntas[3]) {
+                                    if (listaAlternativas.length > 9) {
+                                      for (var i = 11; i >= 9; i--) {
+                                        listaAlternativas.removeAt(i);
+                                      }
+                                    }
+                                    if (listaRespostas.length > 3) {
+                                      listaRespostas.removeAt(3);
+                                    }
                                     pergunta = widget.listaPerguntas[2];
                                   } else if (pergunta ==
                                       widget.listaPerguntas[4]) {
+                                    if (listaAlternativas.length > 12) {
+                                      for (var i = 14; i >= 12; i--) {
+                                        listaAlternativas.removeAt(i);
+                                      }
+                                    }
+                                    if (listaRespostas.length > 4) {
+                                      listaRespostas.removeAt(4);
+                                    }
                                     pergunta = widget.listaPerguntas[3];
                                   } else if (pergunta ==
                                       widget.listaPerguntas[5]) {
+                                    if (listaAlternativas.length > 15) {
+                                      for (var i = 17; i >= 15; i--) {
+                                        listaAlternativas.removeAt(i);
+                                      }
+                                    }
+                                    if (listaRespostas.length > 5) {
+                                      listaRespostas.removeAt(5);
+                                    }
                                     pergunta = widget.listaPerguntas[4];
                                   } else if (pergunta ==
                                       widget.listaPerguntas[6]) {
+                                    if (listaAlternativas.length > 18) {
+                                      for (var i = 20; i >= 18; i--) {
+                                        listaAlternativas.removeAt(i);
+                                      }
+                                    }
+                                    if (listaRespostas.length > 6) {
+                                      listaRespostas.removeAt(6);
+                                    }
                                     pergunta = widget.listaPerguntas[5];
                                   } else if (pergunta ==
                                       widget.listaPerguntas[7]) {
+                                    if (listaAlternativas.length > 21) {
+                                      for (var i = 23; i >= 21; i--) {
+                                        listaAlternativas.removeAt(i);
+                                      }
+                                    }
+                                    if (listaRespostas.length > 7) {
+                                      listaRespostas.removeAt(7);
+                                    }
                                     pergunta = widget.listaPerguntas[6];
                                   } else if (pergunta ==
                                       widget.listaPerguntas[8]) {
+                                    if (listaAlternativas.length > 24) {
+                                      for (var i = 26; i >= 24; i--) {
+                                        listaAlternativas.removeAt(i);
+                                      }
+                                    }
+                                    if (listaRespostas.length > 8) {
+                                      listaRespostas.removeAt(8);
+                                    }
                                     pergunta = widget.listaPerguntas[7];
                                   }
                                 });
