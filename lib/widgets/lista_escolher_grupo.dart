@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:technoed/pages/grupo_page.dart';
 import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/services/cadastro_service.dart';
 
@@ -24,6 +23,7 @@ class ListaEscolherGrupo extends StatelessWidget {
             children: snapshot.data!.docs.map((doc) {
               return Card(
                 child: GestureDetector(
+                  //Ao escolher o grupo pegar lista de alunos(emails)
                   onTap: () {},
                   child: ListTile(
                     title: Text(

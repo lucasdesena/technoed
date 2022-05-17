@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:technoed/databases/db_firestore.dart';
@@ -27,10 +25,12 @@ class CadastroService extends ChangeNotifier {
   }
 
   cadastrarGrupo(String uid, String nome, List<String> lista) async {
-    await db
-        .collection('usuarios/$uid/grupos')
-        .doc(nome)
-        .set({'emails': lista});
+    if (lista.isNotEmpty) {
+      await db
+          .collection('usuarios/$uid/grupos')
+          .doc(nome)
+          .set({'emails': lista});
+    }
   }
 
   editarNome(String uid, String nome) async {
