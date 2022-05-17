@@ -1562,6 +1562,14 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                           if (formKey.currentState!.validate()) {
                             setState(() {
                               if (dropdownValue == widget.listaPerguntas[0]) {
+                                if (listaAlternativas.isNotEmpty) {
+                                  for (var i = 2; i >= 0; i--) {
+                                    listaAlternativas.removeAt(i);
+                                  }
+                                }
+                                if (listaRespostas.isNotEmpty) {
+                                  listaRespostas.removeAt(0);
+                                }
                                 listaAlternativas.add(alternativa1.text);
                                 listaAlternativas.add(alternativa2.text);
                                 listaAlternativas.add(alternativa3.text);
@@ -1570,6 +1578,14 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 dropdownValue = widget.listaPerguntas[1];
                               } else if (dropdownValue ==
                                   widget.listaPerguntas[1]) {
+                                if (listaAlternativas.length > 3) {
+                                  for (var i = 5; i >= 3; i--) {
+                                    listaAlternativas.removeAt(i);
+                                  }
+                                }
+                                if (listaRespostas.length > 1) {
+                                  listaRespostas.removeAt(1);
+                                }
                                 listaAlternativas.add(alternativa4.text);
                                 listaAlternativas.add(alternativa5.text);
                                 listaAlternativas.add(alternativa6.text);
@@ -1578,6 +1594,14 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 dropdownValue = widget.listaPerguntas[2];
                               } else if (dropdownValue ==
                                   widget.listaPerguntas[2]) {
+                                if (listaAlternativas.length > 6) {
+                                  for (var i = 8; i >= 6; i--) {
+                                    listaAlternativas.removeAt(i);
+                                  }
+                                }
+                                if (listaRespostas.length > 2) {
+                                  listaRespostas.removeAt(2);
+                                }
                                 listaAlternativas.add(alternativa7.text);
                                 listaAlternativas.add(alternativa8.text);
                                 listaAlternativas.add(alternativa9.text);
@@ -1586,6 +1610,14 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 dropdownValue = widget.listaPerguntas[3];
                               } else if (dropdownValue ==
                                   widget.listaPerguntas[3]) {
+                                if (listaAlternativas.length > 9) {
+                                  for (var i = 11; i >= 9; i--) {
+                                    listaAlternativas.removeAt(i);
+                                  }
+                                }
+                                if (listaRespostas.length > 3) {
+                                  listaRespostas.removeAt(3);
+                                }
                                 listaAlternativas.add(alternativa10.text);
                                 listaAlternativas.add(alternativa11.text);
                                 listaAlternativas.add(alternativa12.text);
@@ -1594,6 +1626,14 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 dropdownValue = widget.listaPerguntas[4];
                               } else if (dropdownValue ==
                                   widget.listaPerguntas[4]) {
+                                if (listaAlternativas.length > 12) {
+                                  for (var i = 14; i >= 12; i--) {
+                                    listaAlternativas.removeAt(i);
+                                  }
+                                }
+                                if (listaRespostas.length > 4) {
+                                  listaRespostas.removeAt(4);
+                                }
                                 listaAlternativas.add(alternativa13.text);
                                 listaAlternativas.add(alternativa14.text);
                                 listaAlternativas.add(alternativa15.text);
@@ -1602,6 +1642,14 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 dropdownValue = widget.listaPerguntas[5];
                               } else if (dropdownValue ==
                                   widget.listaPerguntas[5]) {
+                                if (listaAlternativas.length > 15) {
+                                  for (var i = 17; i >= 15; i--) {
+                                    listaAlternativas.removeAt(i);
+                                  }
+                                }
+                                if (listaRespostas.length > 5) {
+                                  listaRespostas.removeAt(5);
+                                }
                                 listaAlternativas.add(alternativa16.text);
                                 listaAlternativas.add(alternativa17.text);
                                 listaAlternativas.add(alternativa18.text);
@@ -1610,15 +1658,34 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 dropdownValue = widget.listaPerguntas[6];
                               } else if (dropdownValue ==
                                   widget.listaPerguntas[6]) {
+                                if (listaAlternativas.length > 18) {
+                                  for (var i = 20; i >= 18; i--) {
+                                    listaAlternativas.removeAt(i);
+                                  }
+                                }
+                                if (listaRespostas.length > 6) {
+                                  listaRespostas.removeAt(6);
+                                }
                                 listaAlternativas.add(alternativa19.text);
                                 listaAlternativas.add(alternativa20.text);
                                 listaAlternativas.add(alternativa21.text);
                                 listaRespostas.add(respostaPergunta7.text);
+                                if (widget.dificuldade == 'Normal') {
+                                  _telaEscolherGrupo();
+                                }
                               }
 
                               if (widget.dificuldade == 'Difícil') {
                                 dropdownValue = widget.listaPerguntas[7];
                                 if (dropdownValue == widget.listaPerguntas[7]) {
+                                  if (listaAlternativas.length > 21) {
+                                    for (var i = 23; i >= 21; i--) {
+                                      listaAlternativas.removeAt(i);
+                                    }
+                                  }
+                                  if (listaRespostas.length > 7) {
+                                    listaRespostas.removeAt(7);
+                                  }
                                   listaAlternativas.add(alternativa22.text);
                                   listaAlternativas.add(alternativa23.text);
                                   listaAlternativas.add(alternativa24.text);
@@ -1627,10 +1694,19 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                   dropdownValue = widget.listaPerguntas[8];
                                 } else if (dropdownValue ==
                                     widget.listaPerguntas[8]) {
+                                  if (listaAlternativas.length > 24) {
+                                    for (var i = 26; i >= 24; i--) {
+                                      listaAlternativas.removeAt(i);
+                                    }
+                                  }
+                                  if (listaRespostas.length > 8) {
+                                    listaRespostas.removeAt(8);
+                                  }
                                   listaAlternativas.add(alternativa25.text);
                                   listaAlternativas.add(alternativa26.text);
                                   listaAlternativas.add(alternativa27.text);
                                   listaRespostas.add(respostaPergunta9.text);
+                                  _telaEscolherGrupo();
                                 }
                               }
                             });
