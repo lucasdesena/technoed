@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:technoed/pages/definir_perguntas_page.dart';
+import 'package:technoed/pages/escolher_desafio_page.dart';
+import 'package:technoed/pages/professor_page.dart';
 import 'package:technoed/widgets/auth_check.dart';
 
 class MeuAplicativo extends StatelessWidget {

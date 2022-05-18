@@ -24,13 +24,26 @@ class CadastroService extends ChangeNotifier {
         .set({'elo': 'nenhum', 'pontos': 0});
   }
 
-  cadastrarGrupo(String uid, String nome, List<String> lista) async {
-    if (lista.isNotEmpty) {
-      await db
-          .collection('usuarios/$uid/grupos')
-          .doc(nome)
-          .set({'emails': lista});
-    }
+  cadastrarGrupo(String uid, String nome, List<String> listaEmails) async {
+    await db
+        .collection('usuarios/$uid/grupos')
+        .doc(nome)
+        .set({'emails': listaEmails});
+  }
+
+  cadastrarDesafio(
+      List<String> listaEmails,
+      List<String> listaPerguntas,
+      List<String> listaAlternativas,
+      List<String> listaRespostas,
+      String dificuldade) async {
+    await db.collection('desafios').doc().set({
+      'emails': listaEmails,
+      'perguntas': listaPerguntas,
+      'alternativas': listaAlternativas,
+      'respostas': listaRespostas,
+      'dificuldade': dificuldade
+    });
   }
 
   editarNome(String uid, String nome) async {

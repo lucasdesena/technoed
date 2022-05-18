@@ -1627,7 +1627,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                               child: widget.dificuldade == 'Normal'
                                   ? pergunta == widget.listaPerguntas[6]
                                       ? const Text(
-                                          'Concluir',
+                                          'Escolher grupo',
                                           style: TextStyle(fontSize: 20),
                                         )
                                       : const Text(
@@ -1636,7 +1636,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                         )
                                   : pergunta == widget.listaPerguntas[8]
                                       ? const Text(
-                                          'Concluir',
+                                          'Escolher grupo',
                                           style: TextStyle(fontSize: 20),
                                         )
                                       : const Text(

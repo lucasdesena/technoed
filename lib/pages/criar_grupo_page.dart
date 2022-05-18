@@ -17,7 +17,7 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
   final nome = TextEditingController();
   final email = TextEditingController();
 
-  List<String> listaAlunos = [];
+  List<String> listaEmails = [];
 
   CadastroService cadastro = CadastroService();
 
@@ -115,7 +115,7 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                           return 'O campo não pode estar vazio.';
                         }
                         bool resultado = false;
-                        listaAlunos.forEach((element) {
+                        listaEmails.forEach((element) {
                           if (element == value) {
                             resultado = true;
                             return;
@@ -137,7 +137,7 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                         onPressed: () {
                           if (formKey2.currentState!.validate()) {
                             setState(() {
-                              listaAlunos.add(email.text);
+                              listaEmails.add(email.text);
                             });
                           }
                           email.clear();
@@ -158,7 +158,7 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                   child: ElevatedButton(
                     onPressed: () {
                       if (formKey1.currentState!.validate()) {
-                        cadastro.cadastrarGrupo(uid, nome.text, listaAlunos);
+                        cadastro.cadastrarGrupo(uid, nome.text, listaEmails);
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -187,7 +187,7 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                   padding: const EdgeInsets.all(12.0),
                   child: Column(
                     children: <Widget>[
-                      listaAlunos.isEmpty
+                      listaEmails.isEmpty
                           ? const Text(
                               'Nenhum aluno foi inserido no grupo',
                               style: TextStyle(fontSize: 16),
@@ -202,7 +202,7 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                 Expanded(
                   child: SingleChildScrollView(
                     child: Column(
-                        children: listaAlunos
+                        children: listaEmails
                             .map((element) => Card(
                                   child: Container(
                                     padding: const EdgeInsets.all(10.0),
