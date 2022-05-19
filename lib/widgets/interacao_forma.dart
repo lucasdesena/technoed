@@ -46,9 +46,10 @@ class _InteracaoFormaState extends State<InteracaoForma> {
               ),
               childWhenDragging: Container(),
               onDragEnd: (DraggableDetails d) {
+                //Faz mover  forma pra cima
                 setState(() {
-                  widget.shapeModel.position
-                      .setPosition(d.offset.dx, d.offset.dy);
+                  /*widget.shapeModel.position
+                      .setPosition(d.offset.dx, d.offset.dy);*/
                 });
               },
             ),
