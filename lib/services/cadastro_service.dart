@@ -59,11 +59,11 @@ class CadastroService extends ChangeNotifier {
     });
   }
 
-  obterNome(String uid) async {
+  obterEmail(String uid) async {
     QuerySnapshot resultado = await db.collection('usuarios/$uid/dados').get();
 
     return resultado.docs
-        .firstWhere((documento) => documento.id == 'cadastro')['nome'];
+        .firstWhere((documento) => documento.id == 'cadastro')['email'];
   }
 
   obterTipo(String uid) async {

@@ -61,7 +61,6 @@ class _EscolherGrupoPageState extends State<EscolherGrupoPage> {
                     children: snapshot.data!.docs.map((doc) {
                       return Card(
                         child: GestureDetector(
-                          //Ao escolher o grupo pegar lista de alunos(emails)
                           onTap: () {
                             listaEmails = List<String>.from(snapshot.data!.docs
                                 .where((grupo) => grupo.id.toString() == doc.id)
