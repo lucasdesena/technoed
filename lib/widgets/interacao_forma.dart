@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:technoed/models/forma.dart';
+import 'package:technoed/pages/pergunta_page.dart';
 import 'package:technoed/services/cadastro_service.dart';
 
 class InteracaoForma extends StatefulWidget {
@@ -56,11 +57,88 @@ class _InteracaoFormaState extends State<InteracaoForma> {
                   ),
                   childWhenDragging: Container(),
                   onDragStarted: () {
-                    print(snapshot.data!.docs
+                    int numeroDaPergunta = widget.shapeModel.id - 1;
+                    int numeroDaResposta = widget.shapeModel.id - 1;
+
+                    String pergunta = snapshot.data!.docs
                         .where((grupo) => grupo.id == widget.nomeDesafio)
-                        .map(
-                            (doc) => doc['perguntas'][widget.shapeModel.id - 1])
-                        .single);
+                        .map((doc) => doc['perguntas'][numeroDaPergunta])
+                        .single;
+
+                    String resposta = snapshot.data!.docs
+                        .where((grupo) => grupo.id == widget.nomeDesafio)
+                        .map((doc) => doc['perguntas'][numeroDaPergunta])
+                        .single;
+
+                    List<String> altervatinas = [];
+
+                    switch (numeroDaPergunta) {
+                      case 0:
+                        for (var i = 0; i < 3; i++) {
+                          altervatinas.add(snapshot.data!.docs
+                              .where((grupo) => grupo.id == widget.nomeDesafio)
+                              .map((doc) => doc['alternativas'][i])
+                              .single);
+                        }
+                        break;
+                      case 1:
+                        for (var i = 3; i < 6; i++) {
+                          altervatinas.add(snapshot.data!.docs
+                              .where((grupo) => grupo.id == widget.nomeDesafio)
+                              .map((doc) => doc['alternativas'][i])
+                              .single);
+                        }
+                        break;
+                      case 2:
+                        for (var i = 6; i < 9; i++) {
+                          altervatinas.add(snapshot.data!.docs
+                              .where((grupo) => grupo.id == widget.nomeDesafio)
+                              .map((doc) => doc['alternativas'][i])
+                              .single);
+                        }
+                        break;
+                      case 3:
+                        for (var i = 9; i < 12; i++) {
+                          altervatinas.add(snapshot.data!.docs
+                              .where((grupo) => grupo.id == widget.nomeDesafio)
+                              .map((doc) => doc['alternativas'][i])
+                              .single);
+                        }
+                        break;
+                      case 4:
+                        for (var i = 12; i < 15; i++) {
+                          altervatinas.add(snapshot.data!.docs
+                              .where((grupo) => grupo.id == widget.nomeDesafio)
+                              .map((doc) => doc['alternativas'][i])
+                              .single);
+                        }
+                        break;
+                      case 5:
+                        for (var i = 15; i < 18; i++) {
+                          altervatinas.add(snapshot.data!.docs
+                              .where((grupo) => grupo.id == widget.nomeDesafio)
+                              .map((doc) => doc['alternativas'][i])
+                              .single);
+                        }
+                        break;
+                      case 6:
+                        for (var i = 18; i < 21; i++) {
+                          altervatinas.add(snapshot.data!.docs
+                              .where((grupo) => grupo.id == widget.nomeDesafio)
+                              .map((doc) => doc['alternativas'][i])
+                              .single);
+                        }
+                        break;
+                      default:
+                    }
+
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) =>
+                            PerguntaPage(pergunta, altervatinas, resposta),
+                      ),
+                    );
                   },
                   onDragEnd: (DraggableDetails d) {
                     //Faz mover forma pra cima
