@@ -57,7 +57,7 @@ class _GrupoPageState extends State<GrupoPage> {
                 return Expanded(
                   child: ListView.builder(
                     itemCount: snapshot.data!.docs
-                        .where((grupo) => grupo.id.toString() == widget.nome)
+                        .where((grupo) => grupo.id == widget.nome)
                         .map((doc) => List.from(doc['emails']).length)
                         .single,
                     itemBuilder: (BuildContext context, int index) {

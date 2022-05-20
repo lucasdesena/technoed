@@ -34,13 +34,13 @@ class ListaDesafios extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) => DesafioPage(),
+                          builder: (_) => DesafioPage(doc.id),
                         ),
                       );
                     },
                     child: ListTile(
                       title: Text(
-                        'Dificuldade: ' + doc['dificuldade'],
+                        'Desafio - ' + doc['dificuldade'],
                         textAlign: TextAlign.center,
                       ),
                     ),

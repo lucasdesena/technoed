@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:technoed/models/forma.dart';
-import 'package:technoed/pages/desafio_page.dart';
 
 class InteracaoAlvo extends StatefulWidget {
   final Forma shapeModel;
@@ -37,7 +36,6 @@ class _InteracaoAlvoState extends State<InteracaoAlvo> {
             setState(() {
               data.isPlaced = true;
               data.targetColor = data.color;
-              DesafioPage.shapeCount++;
             });
           }
         },

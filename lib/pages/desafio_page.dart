@@ -6,18 +6,11 @@ import 'package:technoed/widgets/interacao_forma.dart';
 import 'package:technoed/widgets/interacao_alvo.dart';
 
 class DesafioPage extends StatefulWidget {
-  static int shapeCount = 0;
-
+  final String nomeDesafio;
   final List<Forma> dificuldade =
-      Dificuldades().niveis[TiposDificuldade.nivelAtual].shapes;
+      Dificuldades().niveis[TiposDificuldade.tangram].shapes;
 
-  static int shapeOfCount = 0;
-
-  DesafioPage({Key? key}) : super(key: key) {
-    shapeOfCount =
-        Dificuldades().niveis[TiposDificuldade.nivelAtual].shapeOfCount;
-    shapeCount = 0;
-  }
+  DesafioPage(this.nomeDesafio, {Key? key}) : super(key: key);
 
   @override
   _DesafioPageState createState() => _DesafioPageState();
@@ -31,7 +24,10 @@ class _DesafioPageState extends State<DesafioPage> {
       body: Center(
         child: Stack(children: [
           ...widget.dificuldade.map((e) => InteracaoAlvo(shapeModel: e)),
-          ...widget.dificuldade.map((e) => InteracaoForma(shapeModel: e)),
+          ...widget.dificuldade.map((e) => InteracaoForma(
+                widget.nomeDesafio,
+                shapeModel: e,
+              )),
         ]),
       ),
     );
