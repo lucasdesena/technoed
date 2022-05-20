@@ -58,7 +58,6 @@ class _InteracaoFormaState extends State<InteracaoForma> {
                   childWhenDragging: Container(),
                   onDragStarted: () {
                     int numeroDaPergunta = widget.shapeModel.id - 1;
-                    int numeroDaResposta = widget.shapeModel.id - 1;
 
                     String pergunta = snapshot.data!.docs
                         .where((grupo) => grupo.id == widget.nomeDesafio)
@@ -67,7 +66,7 @@ class _InteracaoFormaState extends State<InteracaoForma> {
 
                     String resposta = snapshot.data!.docs
                         .where((grupo) => grupo.id == widget.nomeDesafio)
-                        .map((doc) => doc['perguntas'][numeroDaPergunta])
+                        .map((doc) => doc['respostas'][numeroDaPergunta])
                         .single;
 
                     List<String> altervatinas = [];
