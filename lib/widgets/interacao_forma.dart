@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:technoed/models/forma.dart';
-import 'package:technoed/pages/desafio_page.dart';
 import 'package:technoed/services/cadastro_service.dart';
 
 class InteracaoForma extends StatefulWidget {

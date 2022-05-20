@@ -76,10 +76,12 @@ class _EscolherGrupoPageState extends State<EscolherGrupoPage> {
                                 '/authCheck',
                                 //Não funcionou ModalRoute withName
                                 ModalRoute.withName('/authCheck'));
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content:
-                                        Text('Desafio criado com sucesso!')));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                                    content: Text(
+                              'Desafio criado com sucesso!',
+                              textAlign: TextAlign.center,
+                            )));
                           },
                           child: ListTile(
                             title: Text(

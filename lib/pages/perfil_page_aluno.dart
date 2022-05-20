@@ -74,7 +74,10 @@ class _PerfilPageAlunoState extends State<PerfilPageAluno> {
                       Navigator.pop(context);
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
-                            content: Text('Nome alterado com sucesso!')),
+                            content: Text(
+                          'Nome alterado com sucesso!',
+                          textAlign: TextAlign.center,
+                        )),
                       );
                     }
                   },
