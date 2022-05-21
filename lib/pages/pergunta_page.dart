@@ -14,6 +14,8 @@ class PerguntaPage extends StatefulWidget {
 
 class _PerguntaPageState extends State<PerguntaPage> {
   bool voltar = false;
+  int pontos = 0;
+  int tentativa = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -25,40 +27,61 @@ class _PerguntaPageState extends State<PerguntaPage> {
         backgroundColor: const Color.fromARGB(255, 202, 240, 248),
         body: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.fromLTRB(12.0, 60.0, 12.0, 12.0),
-                child: Center(
-                  child: Container(
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(5)),
-                    child: Text(
-                      'Pergunta: ' + widget.pergunta,
-                      style: const TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.bold,
-                      ),
+                child: Container(
+                  decoration:
+                      BoxDecoration(borderRadius: BorderRadius.circular(5)),
+                  child: Text(
+                    'Pergunta: ' + widget.pergunta,
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(12, 48, 12, 0.0),
+                padding: const EdgeInsets.fromLTRB(20, 48, 20, 0.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context, true);
+                    if (widget.alternativas[0] == widget.resposta) {
+                      switch (tentativa) {
+                        case 1:
+                          pontos += 4;
+                          break;
+                        case 2:
+                          pontos += 2;
+                          break;
+                        case 3:
+                          pontos += 0;
+                          break;
+                      }
+                      Navigator.pop(context, pontos);
+                    } else {
+                      tentativa++;
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     primary: const Color.fromARGB(255, 0, 180, 216),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Text(
-                          widget.alternativas[0],
-                          style: const TextStyle(fontSize: 20),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(25.0),
+                              child: Text(
+                                widget.alternativas[0],
+                                overflow: TextOverflow.clip,
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -66,22 +89,43 @@ class _PerguntaPageState extends State<PerguntaPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(12, 48, 12, 0.0),
+                padding: const EdgeInsets.fromLTRB(20, 48, 20, 0.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context, true);
+                    if (widget.alternativas[1] == widget.resposta) {
+                      switch (tentativa) {
+                        case 1:
+                          pontos += 4;
+                          break;
+                        case 2:
+                          pontos += 2;
+                          break;
+                        case 3:
+                          pontos += 0;
+                          break;
+                      }
+                      Navigator.pop(context, pontos);
+                    } else {
+                      tentativa++;
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     primary: const Color.fromARGB(255, 0, 180, 216),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Text(
-                          widget.alternativas[1],
-                          style: const TextStyle(fontSize: 20),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(28.0),
+                              child: Text(
+                                widget.alternativas[1],
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -89,22 +133,43 @@ class _PerguntaPageState extends State<PerguntaPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(12, 48, 12, 0.0),
+                padding: const EdgeInsets.fromLTRB(20, 48, 20, 0.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context, true);
+                    if (widget.alternativas[2] == widget.resposta) {
+                      switch (tentativa) {
+                        case 1:
+                          pontos += 4;
+                          break;
+                        case 2:
+                          pontos += 2;
+                          break;
+                        case 3:
+                          pontos += 0;
+                          break;
+                      }
+                      Navigator.pop(context, pontos);
+                    } else {
+                      tentativa++;
+                    }
                   },
                   style: ElevatedButton.styleFrom(
                     primary: const Color.fromARGB(255, 0, 180, 216),
                   ),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.all(20.0),
-                        child: Text(
-                          widget.alternativas[2],
-                          style: const TextStyle(fontSize: 20),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(28.0),
+                              child: Text(
+                                widget.alternativas[2],
+                                style: const TextStyle(fontSize: 20),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],

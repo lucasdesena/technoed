@@ -18,6 +18,8 @@ class InteracaoForma extends StatefulWidget {
 }
 
 class _InteracaoFormaState extends State<InteracaoForma> {
+  double pontuacaoTotal = 0;
+
   @override
   Widget build(BuildContext context) {
     CadastroService cadastro = CadastroService();
@@ -69,12 +71,12 @@ class _InteracaoFormaState extends State<InteracaoForma> {
                         .map((doc) => doc['respostas'][numeroDaPergunta])
                         .single;
 
-                    List<String> altervatinas = [];
+                    List<String> alternativas = [];
 
                     switch (numeroDaPergunta) {
                       case 0:
                         for (var i = 0; i < 3; i++) {
-                          altervatinas.add(snapshot.data!.docs
+                          alternativas.add(snapshot.data!.docs
                               .where((grupo) => grupo.id == widget.nomeDesafio)
                               .map((doc) => doc['alternativas'][i])
                               .single);
@@ -82,7 +84,7 @@ class _InteracaoFormaState extends State<InteracaoForma> {
                         break;
                       case 1:
                         for (var i = 3; i < 6; i++) {
-                          altervatinas.add(snapshot.data!.docs
+                          alternativas.add(snapshot.data!.docs
                               .where((grupo) => grupo.id == widget.nomeDesafio)
                               .map((doc) => doc['alternativas'][i])
                               .single);
@@ -90,7 +92,7 @@ class _InteracaoFormaState extends State<InteracaoForma> {
                         break;
                       case 2:
                         for (var i = 6; i < 9; i++) {
-                          altervatinas.add(snapshot.data!.docs
+                          alternativas.add(snapshot.data!.docs
                               .where((grupo) => grupo.id == widget.nomeDesafio)
                               .map((doc) => doc['alternativas'][i])
                               .single);
@@ -98,7 +100,7 @@ class _InteracaoFormaState extends State<InteracaoForma> {
                         break;
                       case 3:
                         for (var i = 9; i < 12; i++) {
-                          altervatinas.add(snapshot.data!.docs
+                          alternativas.add(snapshot.data!.docs
                               .where((grupo) => grupo.id == widget.nomeDesafio)
                               .map((doc) => doc['alternativas'][i])
                               .single);
@@ -106,7 +108,7 @@ class _InteracaoFormaState extends State<InteracaoForma> {
                         break;
                       case 4:
                         for (var i = 12; i < 15; i++) {
-                          altervatinas.add(snapshot.data!.docs
+                          alternativas.add(snapshot.data!.docs
                               .where((grupo) => grupo.id == widget.nomeDesafio)
                               .map((doc) => doc['alternativas'][i])
                               .single);
@@ -114,7 +116,7 @@ class _InteracaoFormaState extends State<InteracaoForma> {
                         break;
                       case 5:
                         for (var i = 15; i < 18; i++) {
-                          altervatinas.add(snapshot.data!.docs
+                          alternativas.add(snapshot.data!.docs
                               .where((grupo) => grupo.id == widget.nomeDesafio)
                               .map((doc) => doc['alternativas'][i])
                               .single);
@@ -122,22 +124,39 @@ class _InteracaoFormaState extends State<InteracaoForma> {
                         break;
                       case 6:
                         for (var i = 18; i < 21; i++) {
-                          altervatinas.add(snapshot.data!.docs
+                          alternativas.add(snapshot.data!.docs
                               .where((grupo) => grupo.id == widget.nomeDesafio)
                               .map((doc) => doc['alternativas'][i])
                               .single);
                         }
                         break;
-                      default:
+                      case 7:
+                        for (var i = 21; i < 24; i++) {
+                          alternativas.add(snapshot.data!.docs
+                              .where((grupo) => grupo.id == widget.nomeDesafio)
+                              .map((doc) => doc['alternativas'][i])
+                              .single);
+                        }
+                        break;
+                      case 8:
+                        for (var i = 24; i < 27; i++) {
+                          alternativas.add(snapshot.data!.docs
+                              .where((grupo) => grupo.id == widget.nomeDesafio)
+                              .map((doc) => doc['alternativas'][i])
+                              .single);
+                        }
+                        break;
                     }
 
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (_) =>
-                            PerguntaPage(pergunta, altervatinas, resposta),
+                            PerguntaPage(pergunta, alternativas, resposta),
                       ),
-                    );
+                    ).then((value) {
+                      pontuacaoTotal += value;
+                    });
                   },
                   onDragEnd: (DraggableDetails d) {
                     //Faz mover forma pra cima
@@ -148,6 +167,7 @@ class _InteracaoFormaState extends State<InteracaoForma> {
                   },
                 ),
               );
-            });
+            },
+          );
   }
 }
