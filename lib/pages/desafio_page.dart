@@ -17,6 +17,8 @@ class DesafioPage extends StatefulWidget {
 
 class _DesafioPageState extends State<DesafioPage> {
   List<Forma> pecas = Dificuldades().niveis[0].shapes;
+  int shapeOfCount = 0;
+  int shapeCount = 0;
   double pontuacaoTotal = 0;
 
   @override
@@ -25,10 +27,19 @@ class _DesafioPageState extends State<DesafioPage> {
     setState(() {
       if (widget.dificuldade == 'Normal') {
         pecas = Dificuldades().niveis[3].shapes;
+        shapeOfCount = Dificuldades().niveis[3].shapeOfCount;
       } else {
         pecas = Dificuldades().niveis[7].shapes;
+        shapeOfCount = Dificuldades().niveis[7].shapeOfCount;
       }
     });
+  }
+
+  bool tangramFinalizado() {
+    if (shapeOfCount == shapeCount) {
+      return true;
+    }
+    return false;
   }
 
   @override
@@ -64,6 +75,10 @@ class _DesafioPageState extends State<DesafioPage> {
                     setState(() {
                       data.isPlaced = true;
                       data.targetColor = data.color;
+                      shapeCount++;
+                      if (tangramFinalizado()) {
+                        print('Tangram feito');
+                      }
                     });
                   }
                 },
@@ -209,18 +224,153 @@ class _DesafioPageState extends State<DesafioPage> {
                                 break;
                             }
 
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => PerguntaPage(
-                                    pergunta, alternativas, resposta),
-                              ),
-                            ).then((value) {
-                              //Pontuação esta sendo para cada peça
-                              pontuacaoTotal += value;
-                              print(value);
-                              print(pontuacaoTotal);
-                            });
+                            switch (shapeModel.id) {
+                              case 1:
+                                if (shapeModel.firstInteraction) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => PerguntaPage(
+                                          pergunta, alternativas, resposta),
+                                    ),
+                                  ).then((value) {
+                                    pontuacaoTotal += value;
+                                    print(value);
+                                    print(pontuacaoTotal);
+                                  });
+                                  shapeModel.firstInteraction = false;
+                                }
+                                break;
+                              case 2:
+                                if (shapeModel.firstInteraction) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => PerguntaPage(
+                                          pergunta, alternativas, resposta),
+                                    ),
+                                  ).then((value) {
+                                    pontuacaoTotal += value;
+                                    print(value);
+                                    print(pontuacaoTotal);
+                                  });
+                                  shapeModel.firstInteraction = false;
+                                }
+                                break;
+                              case 3:
+                                if (shapeModel.firstInteraction) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => PerguntaPage(
+                                          pergunta, alternativas, resposta),
+                                    ),
+                                  ).then((value) {
+                                    pontuacaoTotal += value;
+                                    print(value);
+                                    print(pontuacaoTotal);
+                                  });
+                                  shapeModel.firstInteraction = false;
+                                }
+                                break;
+                              case 4:
+                                if (shapeModel.firstInteraction) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => PerguntaPage(
+                                          pergunta, alternativas, resposta),
+                                    ),
+                                  ).then((value) {
+                                    pontuacaoTotal += value;
+                                    print(value);
+                                    print(pontuacaoTotal);
+                                  });
+                                  shapeModel.firstInteraction = false;
+                                }
+                                break;
+                              case 5:
+                                if (shapeModel.firstInteraction) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => PerguntaPage(
+                                          pergunta, alternativas, resposta),
+                                    ),
+                                  ).then((value) {
+                                    pontuacaoTotal += value;
+                                    print(value);
+                                    print(pontuacaoTotal);
+                                  });
+                                  shapeModel.firstInteraction = false;
+                                }
+                                break;
+                              case 6:
+                                if (shapeModel.firstInteraction) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => PerguntaPage(
+                                          pergunta, alternativas, resposta),
+                                    ),
+                                  ).then((value) {
+                                    //Pontuação esta sendo para cada peça
+                                    pontuacaoTotal += value;
+                                    print(value);
+                                    print(pontuacaoTotal);
+                                  });
+                                  shapeModel.firstInteraction = false;
+                                }
+                                break;
+                              case 7:
+                                if (shapeModel.firstInteraction) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => PerguntaPage(
+                                          pergunta, alternativas, resposta),
+                                    ),
+                                  ).then((value) {
+                                    pontuacaoTotal += value;
+                                    print(value);
+                                    print(pontuacaoTotal);
+                                  });
+                                  shapeModel.firstInteraction = false;
+                                }
+                                break;
+                              case 8:
+                                if (shapeModel.firstInteraction) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => PerguntaPage(
+                                          pergunta, alternativas, resposta),
+                                    ),
+                                  ).then((value) {
+                                    pontuacaoTotal += value;
+                                    print(value);
+                                    print(pontuacaoTotal);
+                                  });
+                                  shapeModel.firstInteraction = false;
+                                }
+                                break;
+                              case 9:
+                                if (shapeModel.firstInteraction) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (_) => PerguntaPage(
+                                          pergunta, alternativas, resposta),
+                                    ),
+                                  ).then((value) {
+                                    pontuacaoTotal += value;
+                                    print(value);
+                                    print(pontuacaoTotal);
+                                  });
+                                  shapeModel.firstInteraction = false;
+                                }
+                                break;
+                            }
                           },
                           onDragEnd: (DraggableDetails d) {
                             //Faz mover forma pra cima

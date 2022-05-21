@@ -3,6 +3,7 @@ import 'package:technoed/models/posicao.dart';
 
 class Forma {
   bool isPlaced = false;
+  bool firstInteraction = true;
   final int id;
   final double height;
   final double width;
