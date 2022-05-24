@@ -1576,42 +1576,40 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 listaRespostas.add(respostaPergunta7.text);
                                 if (widget.dificuldade == 'Normal') {
                                   _telaEscolherGrupo();
+                                } else {
+                                  pergunta = widget.listaPerguntas[7];
                                 }
-                              }
-
-                              if (widget.dificuldade == 'Difícil') {
-                                pergunta = widget.listaPerguntas[7];
-                                if (pergunta == widget.listaPerguntas[7]) {
-                                  if (listaAlternativas.length > 21) {
-                                    for (var i = 23; i >= 21; i--) {
-                                      listaAlternativas.removeAt(i);
-                                    }
+                              } else if (pergunta == widget.listaPerguntas[7] &&
+                                  widget.dificuldade == 'Difícil') {
+                                if (listaAlternativas.length > 21) {
+                                  for (var i = 23; i >= 21; i--) {
+                                    listaAlternativas.removeAt(i);
                                   }
-                                  if (listaRespostas.length > 7) {
-                                    listaRespostas.removeAt(7);
-                                  }
-                                  listaAlternativas.add(alternativa22.text);
-                                  listaAlternativas.add(alternativa23.text);
-                                  listaAlternativas.add(alternativa24.text);
-                                  listaRespostas.add(respostaPergunta8.text);
-
-                                  pergunta = widget.listaPerguntas[8];
-                                } else if (pergunta ==
-                                    widget.listaPerguntas[8]) {
-                                  if (listaAlternativas.length > 24) {
-                                    for (var i = 26; i >= 24; i--) {
-                                      listaAlternativas.removeAt(i);
-                                    }
-                                  }
-                                  if (listaRespostas.length > 8) {
-                                    listaRespostas.removeAt(8);
-                                  }
-                                  listaAlternativas.add(alternativa25.text);
-                                  listaAlternativas.add(alternativa26.text);
-                                  listaAlternativas.add(alternativa27.text);
-                                  listaRespostas.add(respostaPergunta9.text);
-                                  _telaEscolherGrupo();
                                 }
+                                if (listaRespostas.length > 7) {
+                                  listaRespostas.removeAt(7);
+                                }
+                                listaAlternativas.add(alternativa22.text);
+                                listaAlternativas.add(alternativa23.text);
+                                listaAlternativas.add(alternativa24.text);
+                                listaRespostas.add(respostaPergunta8.text);
+
+                                pergunta = widget.listaPerguntas[8];
+                              } else if (pergunta == widget.listaPerguntas[8] &&
+                                  widget.dificuldade == 'Difícil') {
+                                if (listaAlternativas.length > 24) {
+                                  for (var i = 26; i >= 24; i--) {
+                                    listaAlternativas.removeAt(i);
+                                  }
+                                }
+                                if (listaRespostas.length > 8) {
+                                  listaRespostas.removeAt(8);
+                                }
+                                listaAlternativas.add(alternativa25.text);
+                                listaAlternativas.add(alternativa26.text);
+                                listaAlternativas.add(alternativa27.text);
+                                listaRespostas.add(respostaPergunta9.text);
+                                _telaEscolherGrupo();
                               }
                             });
                           }

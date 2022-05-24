@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/services/cadastro_service.dart';
@@ -76,12 +77,12 @@ class _EscolherGrupoPageState extends State<EscolherGrupoPage> {
                                 '/authCheck',
                                 //Não funcionou ModalRoute withName
                                 ModalRoute.withName('/authCheck'));
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(const SnackBar(
-                                    content: Text(
-                              'Desafio criado com sucesso!',
-                              textAlign: TextAlign.center,
-                            )));
+                            Fluttertoast.showToast(
+                              msg: 'Desafio criado com sucesso!',
+                              toastLength: Toast.LENGTH_LONG,
+                              backgroundColor:
+                                  const Color.fromARGB(255, 0, 180, 216),
+                            );
                           },
                           child: ListTile(
                             title: Text(

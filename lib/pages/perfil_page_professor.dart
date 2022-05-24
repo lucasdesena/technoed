@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:technoed/services/auth_service.dart';
@@ -55,12 +56,10 @@ class _PerfilPageProfessorState extends State<PerfilPageProfessor> {
                     if (formKey.currentState!.validate()) {
                       cadastro.editarNome(uid, nome.text);
                       Navigator.pop(context);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            content: Text(
-                          'Nome alterado com sucesso!',
-                          textAlign: TextAlign.center,
-                        )),
+                      Fluttertoast.showToast(
+                        msg: 'Nome alterado com sucesso!',
+                        toastLength: Toast.LENGTH_LONG,
+                        backgroundColor: const Color.fromARGB(255, 0, 180, 216),
                       );
                     }
                   },

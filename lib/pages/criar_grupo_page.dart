@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:technoed/services/auth_service.dart';
@@ -160,9 +161,11 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                       if (formKey1.currentState!.validate()) {
                         cadastro.cadastrarGrupo(uid, nome.text, listaEmails);
                         Navigator.pop(context);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                              content: Text('Grupo criado com sucesso!')),
+                        Fluttertoast.showToast(
+                          msg: 'Grupo criado com sucesso!',
+                          toastLength: Toast.LENGTH_LONG,
+                          backgroundColor:
+                              const Color.fromARGB(255, 0, 180, 216),
                         );
                       }
                     },

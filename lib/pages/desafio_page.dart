@@ -83,7 +83,7 @@ class _DesafioPageState extends State<DesafioPage> {
                             shapeCount++;
                             if (tangramFinalizado()) {
                               print('Tangram feito');
-                              cadastro.concluirDesafio(
+                              /*cadastro.concluirDesafio(
                                   widget.nomeDesafio, widget.emailAluno);
                               List<String> listaEmails = List<String>.from(
                                   snapshot.data!.docs
@@ -95,6 +95,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                 cadastro.excluirDesafio(
                                     widget.nomeDesafio, listaEmails);
                               }
+                              Navigator.pop(context);
+                              */
                             }
                           });
                         } else {
