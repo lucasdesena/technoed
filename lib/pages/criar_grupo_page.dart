@@ -77,9 +77,21 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                         color: Colors.black,
                       ),
                       validator: (value) {
+                        bool resultado = false;
+                        /*List<String> listaGrupos = cadastro.obterGrupos(uid);
+
+                        listaEmails.forEach((element) {
+                          if (element == value) {
+                            resultado = true;
+                            return;
+                          }
+                        });*/
                         if (value!.isEmpty) {
                           return 'O campo não pode estar vazio.';
                         }
+                        /*if (resultado == true) {
+                          return 'Você já criou um grupo com esse nome.';
+                        }*/
                         return null;
                       },
                     ),

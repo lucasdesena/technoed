@@ -33,6 +33,42 @@ class ListaGrupos extends StatelessWidget {
                     );
                   },
                   child: ListTile(
+                    trailing: GestureDetector(
+                      onTap: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            actionsAlignment: MainAxisAlignment.center,
+                            title: const Text(
+                              'Confirmação',
+                              textAlign: TextAlign.center,
+                            ),
+                            content: const Text(
+                              'Deseja excluir esse grupo?',
+                              textAlign: TextAlign.center,
+                            ),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  cadastro.excluirGrupo(uid, doc.id);
+                                  Navigator.pop(context, 'Confirmar');
+                                },
+                                child: const Text('Confirmar'),
+                              ),
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(context, 'Cancelar'),
+                                child: const Text('Cancelar'),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                      child: const Icon(
+                        Icons.delete_outline,
+                        color: Colors.red,
+                      ),
+                    ),
                     title: Text(
                       doc.id,
                       textAlign: TextAlign.center,
