@@ -161,7 +161,7 @@ class _EscolherDesafioState extends State<EscolherDesafioPage> {
             const Padding(
               padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
               child: Text(
-                'Descrição: Tangram com 9 peças e 7 perguntas.',
+                'Descrição: Tangram com 9 peças e 9 perguntas.',
                 style: TextStyle(
                     fontSize: 15, color: Color.fromARGB(255, 143, 146, 148)),
               ),

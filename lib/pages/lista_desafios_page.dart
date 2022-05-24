@@ -12,7 +12,7 @@ class ListaDesafiosPage extends StatefulWidget {
 }
 
 class _ListaDesafiosPageState extends State<ListaDesafiosPage> {
-  String email = '';
+  String emailAluno = '';
 
   @override
   void initState() {
@@ -20,7 +20,7 @@ class _ListaDesafiosPageState extends State<ListaDesafiosPage> {
     CadastroService cadastro = CadastroService();
     String uid = context.read<AuthService>().usuario!.uid;
     cadastro.obterEmail(uid).then((value) => setState(() {
-          email = value;
+          emailAluno = value;
         }));
   }
 
@@ -53,7 +53,7 @@ class _ListaDesafiosPageState extends State<ListaDesafiosPage> {
               ),
             ],
           ),
-          Expanded(child: ListaDesafios(email)),
+          Expanded(child: ListaDesafios(emailAluno)),
         ],
       ),
     );

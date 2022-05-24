@@ -46,6 +46,20 @@ class CadastroService extends ChangeNotifier {
     });
   }
 
+  obterEmail(String uid) async {
+    QuerySnapshot resultado = await db.collection('usuarios/$uid/dados').get();
+
+    return resultado.docs
+        .firstWhere((documento) => documento.id == 'cadastro')['email'];
+  }
+
+  obterTipo(String uid) async {
+    QuerySnapshot resultado = await db.collection('usuarios/$uid/dados').get();
+
+    return resultado.docs
+        .firstWhere((documento) => documento.id == 'cadastro')['tipo'];
+  }
+
   editarNome(String uid, String nome) async {
     await db
         .collection('usuarios/$uid/dados')
@@ -59,17 +73,13 @@ class CadastroService extends ChangeNotifier {
     });
   }
 
-  obterEmail(String uid) async {
-    QuerySnapshot resultado = await db.collection('usuarios/$uid/dados').get();
-
-    return resultado.docs
-        .firstWhere((documento) => documento.id == 'cadastro')['email'];
+  concluirDesafio(String nomeDesafio, String email) async {
+    await db.collection('desafios').doc(nomeDesafio).update({
+      'emails': FieldValue.arrayRemove([email])
+    });
   }
 
-  obterTipo(String uid) async {
-    QuerySnapshot resultado = await db.collection('usuarios/$uid/dados').get();
-
-    return resultado.docs
-        .firstWhere((documento) => documento.id == 'cadastro')['tipo'];
+  excluirDesafio(String nomeDesafio, List<String> listaEmails) async {
+    await db.collection('desafios').doc(nomeDesafio).delete();
   }
 }

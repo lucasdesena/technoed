@@ -34,8 +34,8 @@ class ListaDesafios extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (_) =>
-                              DesafioPage(doc.id, doc['dificuldade']),
+                          builder: (_) => DesafioPage(
+                              doc.id, doc['dificuldade'], emailAluno),
                         ),
                       );
                     },

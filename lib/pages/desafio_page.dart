@@ -8,7 +8,9 @@ import 'package:technoed/services/cadastro_service.dart';
 class DesafioPage extends StatefulWidget {
   final String nomeDesafio;
   final String dificuldade;
-  const DesafioPage(this.nomeDesafio, this.dificuldade, {Key? key})
+  final String emailAluno;
+  const DesafioPage(this.nomeDesafio, this.dificuldade, this.emailAluno,
+      {Key? key})
       : super(key: key);
 
   @override
@@ -50,40 +52,59 @@ class _DesafioPageState extends State<DesafioPage> {
       body: Stack(
         children: <Widget>[
           ...pecas.map(
-            (shapeModel) => Positioned(
-              top: shapeModel.targetPosition.x,
-              left: shapeModel.targetPosition.y,
-              child: DragTarget<Forma>(
-                builder: (context, candidateData, rejectedData) =>
-                    RotationTransition(
-                  turns: AlwaysStoppedAnimation(shapeModel.rotationAngle),
-                  child: ClipPath(
-                    child: Container(
-                      color: shapeModel.targetColor,
-                      width: shapeModel.width,
-                      height: shapeModel.height,
+            (shapeModel) => StreamBuilder<QuerySnapshot>(
+                stream: cadastro.db.collection('desafios').snapshots(),
+                builder: (context, snapshot) {
+                  return Positioned(
+                    top: shapeModel.targetPosition.x,
+                    left: shapeModel.targetPosition.y,
+                    child: DragTarget<Forma>(
+                      builder: (context, candidateData, rejectedData) =>
+                          RotationTransition(
+                        turns: AlwaysStoppedAnimation(shapeModel.rotationAngle),
+                        child: ClipPath(
+                          child: Container(
+                            color: shapeModel.targetColor,
+                            width: shapeModel.width,
+                            height: shapeModel.height,
+                          ),
+                          clipper: shapeModel.shape,
+                        ),
+                      ),
+                      onWillAccept: (data) {
+                        print(data);
+                        return true;
+                      },
+                      onAccept: (data) {
+                        if (data.id == shapeModel.id) {
+                          setState(() {
+                            data.isPlaced = true;
+                            data.targetColor = data.color;
+                            shapeCount++;
+                            if (tangramFinalizado()) {
+                              print('Tangram feito');
+                              cadastro.concluirDesafio(
+                                  widget.nomeDesafio, widget.emailAluno);
+                              List<String> listaEmails = List<String>.from(
+                                  snapshot.data!.docs
+                                      .where((grupo) =>
+                                          grupo.id == widget.nomeDesafio)
+                                      .map((doc) => doc['emails'])
+                                      .single);
+                              if (listaEmails.isEmpty) {
+                                cadastro.excluirDesafio(
+                                    widget.nomeDesafio, listaEmails);
+                              }
+                            }
+                          });
+                        } else {
+                          pontuacaoTotal -= 1;
+                          print(pontuacaoTotal);
+                        }
+                      },
                     ),
-                    clipper: shapeModel.shape,
-                  ),
-                ),
-                onWillAccept: (data) {
-                  print(data);
-                  return true;
-                },
-                onAccept: (data) {
-                  if (data.id == shapeModel.id) {
-                    setState(() {
-                      data.isPlaced = true;
-                      data.targetColor = data.color;
-                      shapeCount++;
-                      if (tangramFinalizado()) {
-                        print('Tangram feito');
-                      }
-                    });
-                  }
-                },
-              ),
-            ),
+                  );
+                }),
           ),
           ...pecas.map(
             (shapeModel) => (shapeModel.isPlaced)
