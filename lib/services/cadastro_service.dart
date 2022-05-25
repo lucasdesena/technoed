@@ -60,17 +60,6 @@ class CadastroService extends ChangeNotifier {
         .firstWhere((documento) => documento.id == 'cadastro')['tipo'];
   }
 
-  obterGrupos(String uid) async {
-    QuerySnapshot resultado = await db.collection('usuarios/$uid/grupos').get();
-    List<String> listaGrupos = [];
-
-    for (var grupo in resultado.docs) {
-      listaGrupos.add(grupo.id);
-    }
-
-    return listaGrupos;
-  }
-
   editarNome(String uid, String nome) async {
     await db
         .collection('usuarios/$uid/dados')

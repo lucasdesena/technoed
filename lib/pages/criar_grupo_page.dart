@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -54,47 +55,54 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                   key: formKey1,
                   child: Padding(
                     padding: const EdgeInsets.fromLTRB(24, 6, 24, 6),
-                    child: TextFormField(
-                      controller: nome,
-                      decoration: const InputDecoration(
-                        prefixIcon: Icon(
-                          MdiIcons.accountGroupOutline,
-                          color: Colors.black,
-                        ),
-                        labelText: 'Nome do grupo',
-                        labelStyle: TextStyle(
-                          color: Colors.black,
-                        ),
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black),
-                        ),
-                      ),
-                      keyboardType: TextInputType.name,
-                      style: const TextStyle(
-                        color: Colors.black,
-                      ),
-                      validator: (value) {
-                        bool resultado = false;
-                        /*List<String> listaGrupos = cadastro.obterGrupos(uid);
+                    child: StreamBuilder<QuerySnapshot>(
+                        stream: cadastro.db
+                            .collection('usuarios/$uid/grupos')
+                            .snapshots(),
+                        builder: (context, snapshot) {
+                          return TextFormField(
+                            controller: nome,
+                            decoration: const InputDecoration(
+                              prefixIcon: Icon(
+                                MdiIcons.accountGroupOutline,
+                                color: Colors.black,
+                              ),
+                              labelText: 'Nome do grupo',
+                              labelStyle: TextStyle(
+                                color: Colors.black,
+                              ),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(color: Colors.black),
+                              ),
+                            ),
+                            keyboardType: TextInputType.name,
+                            style: const TextStyle(
+                              color: Colors.black,
+                            ),
+                            validator: (value) {
+                              bool resultado = false;
+                              List<String> listaGrupos = List<String>.from(
+                                  snapshot.data!.docs.map((doc) => doc.id));
 
-                        listaEmails.forEach((element) {
-                          if (element == value) {
-                            resultado = true;
-                            return;
-                          }
-                        });*/
-                        if (value!.isEmpty) {
-                          return 'O campo não pode estar vazio.';
-                        }
-                        /*if (resultado == true) {
-                          return 'Você já criou um grupo com esse nome.';
-                        }*/
-                        return null;
-                      },
-                    ),
+                              listaGrupos.forEach((element) {
+                                if (element == value) {
+                                  resultado = true;
+                                  return;
+                                }
+                              });
+                              if (value!.isEmpty) {
+                                return 'O campo não pode estar vazio.';
+                              }
+                              if (resultado == true) {
+                                return 'Você já tem um grupo criado com esse nome.';
+                              }
+                              return null;
+                            },
+                          );
+                        }),
                   ),
                 ),
                 Form(
