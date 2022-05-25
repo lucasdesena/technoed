@@ -10,8 +10,9 @@ class EscolherGrupoPage extends StatefulWidget {
   final List<String> listaPerguntas;
   final List<String> listaAlternativas;
   final List<String> listaRespostas;
+  final String titulo;
   const EscolherGrupoPage(this.dificuldade, this.listaPerguntas,
-      this.listaAlternativas, this.listaRespostas,
+      this.listaAlternativas, this.listaRespostas, this.titulo,
       {Key? key})
       : super(key: key);
 
@@ -73,7 +74,8 @@ class _EscolherGrupoPageState extends State<EscolherGrupoPage> {
                                   widget.listaPerguntas,
                                   widget.listaAlternativas,
                                   widget.listaRespostas,
-                                  widget.dificuldade);
+                                  widget.dificuldade,
+                                  widget.titulo);
                               Navigator.of(context).pushNamedAndRemoveUntil(
                                   '/authCheck',
                                   //Não funcionou ModalRoute withName

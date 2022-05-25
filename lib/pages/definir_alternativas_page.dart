@@ -4,7 +4,9 @@ import 'package:technoed/pages/escolher_grupo_page.dart';
 class DefinirAlternativasPage extends StatefulWidget {
   final String dificuldade;
   final List<String> listaPerguntas;
-  const DefinirAlternativasPage(this.dificuldade, this.listaPerguntas,
+  final String titulo;
+  const DefinirAlternativasPage(
+      this.dificuldade, this.listaPerguntas, this.titulo,
       {Key? key})
       : super(key: key);
 
@@ -69,6 +71,10 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
     return widget.dificuldade;
   }
 
+  _carregarTitulo() {
+    return widget.titulo;
+  }
+
   _carregarListaPerguntas() {
     return widget.listaPerguntas;
   }
@@ -77,8 +83,12 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => EscolherGrupoPage(_carregarDificuldade(),
-            _carregarListaPerguntas(), listaAlternativas, listaRespostas),
+        builder: (_) => EscolherGrupoPage(
+            _carregarDificuldade(),
+            _carregarListaPerguntas(),
+            listaAlternativas,
+            listaRespostas,
+            _carregarTitulo()),
       ),
     );
   }

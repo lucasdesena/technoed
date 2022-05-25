@@ -44,13 +44,15 @@ class CadastroService extends ChangeNotifier {
       List<String> listaPerguntas,
       List<String> listaAlternativas,
       List<String> listaRespostas,
-      String dificuldade) async {
+      String dificuldade,
+      String titulo) async {
     await db.collection('desafios').doc().set({
       'emails': listaEmails,
       'perguntas': listaPerguntas,
       'alternativas': listaAlternativas,
       'respostas': listaRespostas,
-      'dificuldade': dificuldade
+      'dificuldade': dificuldade,
+      'titulo': titulo
     });
   }
 

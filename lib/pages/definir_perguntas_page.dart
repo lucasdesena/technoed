@@ -3,7 +3,9 @@ import 'package:technoed/pages/definir_alternativas_page.dart';
 
 class DefinirPerguntasPage extends StatefulWidget {
   final String dificuldade;
-  const DefinirPerguntasPage(this.dificuldade, {Key? key}) : super(key: key);
+  final String titulo;
+  const DefinirPerguntasPage(this.dificuldade, this.titulo, {Key? key})
+      : super(key: key);
 
   @override
   State<DefinirPerguntasPage> createState() => _DefinirPerguntasPageState();
@@ -27,12 +29,16 @@ class _DefinirPerguntasPageState extends State<DefinirPerguntasPage> {
     return widget.dificuldade;
   }
 
+  _carregarTitulo() {
+    return widget.titulo;
+  }
+
   _telaDefinirAlternativas() {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) =>
-            DefinirAlternativasPage(_carregarDificuldade(), listaPerguntas),
+        builder: (_) => DefinirAlternativasPage(
+            _carregarDificuldade(), listaPerguntas, _carregarTitulo()),
       ),
     );
   }
