@@ -67,22 +67,47 @@ class _EscolherGrupoPageState extends State<EscolherGrupoPage> {
                                 .where((grupo) => grupo.id.toString() == doc.id)
                                 .map((doc) => doc['emails'])
                                 .single);
-                            cadastro.cadastrarDesafio(
-                                listaEmails,
-                                widget.listaPerguntas,
-                                widget.listaAlternativas,
-                                widget.listaRespostas,
-                                widget.dificuldade);
-                            Navigator.of(context).pushNamedAndRemoveUntil(
-                                '/authCheck',
-                                //Não funcionou ModalRoute withName
-                                ModalRoute.withName('/authCheck'));
-                            Fluttertoast.showToast(
-                              msg: 'Desafio criado com sucesso!',
-                              toastLength: Toast.LENGTH_LONG,
-                              backgroundColor:
-                                  const Color.fromARGB(255, 0, 180, 216),
-                            );
+                            if (listaEmails.isNotEmpty) {
+                              cadastro.cadastrarDesafio(
+                                  listaEmails,
+                                  widget.listaPerguntas,
+                                  widget.listaAlternativas,
+                                  widget.listaRespostas,
+                                  widget.dificuldade);
+                              Navigator.of(context).pushNamedAndRemoveUntil(
+                                  '/authCheck',
+                                  //Não funcionou ModalRoute withName
+                                  ModalRoute.withName('/authCheck'));
+                              Fluttertoast.showToast(
+                                msg: 'Desafio criado com sucesso!',
+                                toastLength: Toast.LENGTH_LONG,
+                                backgroundColor:
+                                    const Color.fromARGB(255, 0, 180, 216),
+                              );
+                            } else {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  actionsAlignment: MainAxisAlignment.center,
+                                  title: const Text(
+                                    'Aviso',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  content: const Text(
+                                    'Esse grupo não pode ser escolhido pois não há nenhum aluno nele.',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.pop(context, 'Confirmar');
+                                      },
+                                      child: const Text('Confirmar'),
+                                    ),
+                                  ],
+                                ),
+                              );
+                            }
                           },
                           child: ListTile(
                             title: Text(
