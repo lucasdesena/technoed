@@ -40,9 +40,21 @@ class ListaDesafios extends StatelessWidget {
                       );
                     },
                     child: ListTile(
-                      title: Text(
-                        'Desafio - ' + doc['dificuldade'],
-                        textAlign: TextAlign.center,
+                      //tileColor: const Color.fromARGB(255, 202, 240, 248),
+                      title: Column(
+                        children: <Widget>[
+                          Text(
+                            doc['titulo'],
+                            textAlign: TextAlign.center,
+                            //style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(
+                            doc['dificuldade'],
+                            style: const TextStyle(
+                                color: Color.fromARGB(255, 109, 110, 110),
+                                fontSize: 15),
+                          ),
+                        ],
                       ),
                     ),
                   ),
