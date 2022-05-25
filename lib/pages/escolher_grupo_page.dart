@@ -100,9 +100,9 @@ class _EscolherGrupoPageState extends State<EscolherGrupoPage> {
                                   actions: <Widget>[
                                     TextButton(
                                       onPressed: () {
-                                        Navigator.pop(context, 'Confirmar');
+                                        Navigator.pop(context, 'Ok');
                                       },
-                                      child: const Text('Confirmar'),
+                                      child: const Text('Ok'),
                                     ),
                                   ],
                                 ),
