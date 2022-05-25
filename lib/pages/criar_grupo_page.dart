@@ -143,7 +143,7 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                           }
                         });
                         if (resultado == true) {
-                          return 'O email já foi adicionado ao grupo.';
+                          return 'Esse email já foi adicionado ao grupo.';
                         }
                         return null;
                       },

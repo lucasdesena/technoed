@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:technoed/pages/adicionar_aluno_page.dart';
 import 'package:technoed/services/cadastro_service.dart';
 
 class GrupoPage extends StatefulWidget {
   final String uid;
-  final String nome;
-  const GrupoPage(this.uid, this.nome, {Key? key}) : super(key: key);
+  final String nomeGrupo;
+  const GrupoPage(this.uid, this.nomeGrupo, {Key? key}) : super(key: key);
 
   @override
   State<GrupoPage> createState() => _GrupoPageState();
@@ -20,29 +21,24 @@ class _GrupoPageState extends State<GrupoPage> {
     return Scaffold(
       body: Column(
         children: <Widget>[
-          Column(
-            children: <Widget>[
-              AppBar(
-                leading: const BackButton(color: Colors.white),
-                toolbarHeight: 100,
-                title: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'Gerenciar grupo',
-                      style: TextStyle(color: Colors.white, fontSize: 20),
-                    ),
-                    Text(
-                      'Gerencie os alunos',
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 208, 211, 214),
-                          fontSize: 15),
-                    ),
-                  ],
+          AppBar(
+            leading: const BackButton(color: Colors.white),
+            toolbarHeight: 100,
+            title: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: const [
+                Text(
+                  'Gerenciar grupo',
+                  style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
-              ),
-            ],
+                Text(
+                  'Gerencie os alunos',
+                  style: TextStyle(
+                      color: Color.fromARGB(255, 208, 211, 214), fontSize: 15),
+                ),
+              ],
+            ),
           ),
           StreamBuilder<QuerySnapshot>(
             stream: cadastro.db
@@ -57,12 +53,13 @@ class _GrupoPageState extends State<GrupoPage> {
                 return Expanded(
                   child: ListView.builder(
                     itemCount: snapshot.data!.docs
-                        .where((grupo) => grupo.id == widget.nome)
+                        .where((grupo) => grupo.id == widget.nomeGrupo)
                         .map((doc) => List.from(doc['emails']).length)
                         .single,
                     itemBuilder: (BuildContext context, int index) {
                       email = snapshot.data!.docs
-                          .where((grupo) => grupo.id.toString() == widget.nome)
+                          .where((grupo) =>
+                              grupo.id.toString() == widget.nomeGrupo)
                           .map((doc) => doc['emails'][index])
                           .single;
                       return Card(
@@ -85,8 +82,8 @@ class _GrupoPageState extends State<GrupoPage> {
                                   actions: <Widget>[
                                     TextButton(
                                       onPressed: () {
-                                        cadastro.excluirEmails(
-                                            widget.uid, widget.nome, email);
+                                        cadastro.excluirEmails(widget.uid,
+                                            widget.nomeGrupo, email);
                                         Navigator.pop(context, 'Confirmar');
                                       },
                                       child: const Text('Confirmar'),
@@ -113,6 +110,34 @@ class _GrupoPageState extends State<GrupoPage> {
                 );
               }
             },
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => AdicionarAlunoPage(widget.nomeGrupo),
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                primary: const Color.fromARGB(255, 3, 134, 208),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(10.0),
+                    child: Text(
+                      'Adicionar alunos',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
         ],
       ),
