@@ -30,8 +30,6 @@ class CadastroService extends ChangeNotifier {
     int pontosDaConta = resultado.docs
         .firstWhere((documento) => documento.id == 'pontuação')['pontos'];
 
-    print(pontosDaConta);
-
     int calculo = pontosDaConta + pontosObtidos;
     String elo = 'nenhum';
 

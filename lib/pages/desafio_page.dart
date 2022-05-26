@@ -154,7 +154,6 @@ class _DesafioPageState extends State<DesafioPage> {
                           });
                         } else {
                           pontuacaoTotal -= 1;
-                          print(pontuacaoTotal);
                         }
                       },
                     ),
@@ -312,8 +311,6 @@ class _DesafioPageState extends State<DesafioPage> {
                                   ).then((value) {
                                     pontuacaoTotal =
                                         (pontuacaoTotal + value).toInt();
-                                    print(value);
-                                    print(pontuacaoTotal);
                                   });
                                   shapeModel.firstInteraction = false;
                                 }
@@ -329,8 +326,6 @@ class _DesafioPageState extends State<DesafioPage> {
                                   ).then((value) {
                                     pontuacaoTotal =
                                         (pontuacaoTotal + value).toInt();
-                                    print(value);
-                                    print(pontuacaoTotal);
                                   });
                                   shapeModel.firstInteraction = false;
                                 }
@@ -346,8 +341,6 @@ class _DesafioPageState extends State<DesafioPage> {
                                   ).then((value) {
                                     pontuacaoTotal =
                                         (pontuacaoTotal + value).toInt();
-                                    print(value);
-                                    print(pontuacaoTotal);
                                   });
                                   shapeModel.firstInteraction = false;
                                 }
@@ -363,8 +356,6 @@ class _DesafioPageState extends State<DesafioPage> {
                                   ).then((value) {
                                     pontuacaoTotal =
                                         (pontuacaoTotal + value).toInt();
-                                    print(value);
-                                    print(pontuacaoTotal);
                                   });
                                   shapeModel.firstInteraction = false;
                                 }
@@ -380,8 +371,6 @@ class _DesafioPageState extends State<DesafioPage> {
                                   ).then((value) {
                                     pontuacaoTotal =
                                         (pontuacaoTotal + value).toInt();
-                                    print(value);
-                                    print(pontuacaoTotal);
                                   });
                                   shapeModel.firstInteraction = false;
                                 }
@@ -398,8 +387,6 @@ class _DesafioPageState extends State<DesafioPage> {
                                     //Pontuação esta sendo para cada peça
                                     pontuacaoTotal =
                                         (pontuacaoTotal + value).toInt();
-                                    print(value);
-                                    print(pontuacaoTotal);
                                   });
                                   shapeModel.firstInteraction = false;
                                 }
@@ -415,8 +402,6 @@ class _DesafioPageState extends State<DesafioPage> {
                                   ).then((value) {
                                     pontuacaoTotal =
                                         (pontuacaoTotal + value).toInt();
-                                    print(value);
-                                    print(pontuacaoTotal);
                                   });
                                   shapeModel.firstInteraction = false;
                                 }
@@ -432,8 +417,6 @@ class _DesafioPageState extends State<DesafioPage> {
                                   ).then((value) {
                                     pontuacaoTotal =
                                         (pontuacaoTotal + value).toInt();
-                                    print(value);
-                                    print(pontuacaoTotal);
                                   });
                                   shapeModel.firstInteraction = false;
                                 }
@@ -449,8 +432,6 @@ class _DesafioPageState extends State<DesafioPage> {
                                   ).then((value) {
                                     pontuacaoTotal =
                                         (pontuacaoTotal + value).toInt();
-                                    print(value);
-                                    print(pontuacaoTotal);
                                   });
                                   shapeModel.firstInteraction = false;
                                 }
