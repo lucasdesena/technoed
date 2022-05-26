@@ -1,5 +1,7 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:technoed/models/dificuldade.dart';
 import 'package:technoed/models/forma.dart';
@@ -85,10 +87,12 @@ class _DesafioPageState extends State<DesafioPage> {
                             data.targetColor = data.color;
                             shapeCount++;
                             if (tangramFinalizado()) {
-                              print('Tangram feito');
-                              /*cadastro.concluirDesafio(
+                              cadastro.concluirDesafio(
                                   widget.nomeDesafio, widget.emailAluno);
-                                  
+                              if (pontuacaoTotal > 0) {
+                                cadastro.adicionarPontuacao(
+                                    uid, pontuacaoTotal);
+                              }
                               List<String> listaEmails = List<String>.from(
                                   snapshot.data!.docs
                                       .where((grupo) =>
@@ -99,12 +103,53 @@ class _DesafioPageState extends State<DesafioPage> {
                                 cadastro.excluirDesafio(
                                     widget.nomeDesafio, listaEmails);
                               }
-                              Navigator.pop(context);
-                              */
-                              if (pontuacaoTotal > 0) {
-                                cadastro.adicionarPontuacao(
-                                    uid, pontuacaoTotal);
-                              }
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) => AlertDialog(
+                                  actionsAlignment: MainAxisAlignment.center,
+                                  title: Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: const <Widget>[
+                                      Text(
+                                        'Parabéns',
+                                      ),
+                                      Icon(
+                                        MdiIcons.star,
+                                        color: Colors.yellow,
+                                        size: 20,
+                                      ),
+                                    ],
+                                  ),
+                                  content: AnimatedTextKit(
+                                    animatedTexts: [
+                                      ColorizeAnimatedText(
+                                        'Você ganhou $pontuacaoTotal ponto(s) no desafio',
+                                        colors: [
+                                          Colors.black,
+                                          const Color.fromARGB(
+                                              255, 0, 180, 216),
+                                          const Color.fromARGB(
+                                              255, 231, 235, 6),
+                                          const Color.fromARGB(255, 6, 236, 56),
+                                          const Color.fromARGB(255, 48, 6, 236),
+                                        ],
+                                        speed:
+                                            const Duration(milliseconds: 400),
+                                        textAlign: TextAlign.center,
+                                        textStyle:
+                                            const TextStyle(fontSize: 16),
+                                      )
+                                    ],
+                                  ),
+                                  actions: <Widget>[
+                                    TextButton(
+                                      onPressed: () =>
+                                          Navigator.pop(context, 'Ok'),
+                                      child: const Text('Ok'),
+                                    ),
+                                  ],
+                                ),
+                              ).then((value) => Navigator.pop(context));
                             }
                           });
                         } else {

@@ -38,6 +38,7 @@ dependencies:
   firebase_auth:
   cloud_firestore:
   fluttertoast:
+  animated_text_kit:
 
 dev_dependencies:
   flutter_test:
