@@ -95,6 +95,7 @@ class _PerfilPageProfessorState extends State<PerfilPageProfessor> {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(24, 6, 24, 6),
                   child: TextFormField(
+                    maxLength: 14,
                     controller: nome,
                     decoration: const InputDecoration(
                       prefixIcon: Icon(

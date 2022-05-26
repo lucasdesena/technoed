@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:technoed/services/auth_service.dart';
 
 class RecuperarSenhaPage extends StatefulWidget {
   const RecuperarSenhaPage({Key? key}) : super(key: key);
@@ -70,7 +72,16 @@ class _RecuperarSenhaPageState extends State<RecuperarSenhaPage> {
                     padding: const EdgeInsets.all(12.0),
                     child: ElevatedButton(
                       onPressed: () {
-                        if (formKey.currentState!.validate()) {}
+                        if (formKey.currentState!.validate()) {
+                          AuthService().recuperarSenha(email.text);
+                        }
+                        Navigator.pop(context);
+                        Fluttertoast.showToast(
+                          msg: 'Email enviado com sucesso!',
+                          toastLength: Toast.LENGTH_LONG,
+                          backgroundColor:
+                              const Color.fromARGB(255, 3, 134, 208),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         primary: const Color.fromARGB(255, 3, 134, 208),

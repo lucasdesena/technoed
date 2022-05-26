@@ -110,6 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                       ? Padding(
                           padding: const EdgeInsets.fromLTRB(24, 6, 24, 6),
                           child: TextFormField(
+                            maxLength: 14,
                             controller: nome,
                             decoration: const InputDecoration(
                               prefixIcon: Icon(
@@ -126,6 +127,7 @@ class _LoginPageState extends State<LoginPage> {
                               focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(color: Colors.white),
                               ),
+                              counterText: '',
                             ),
                             keyboardType: TextInputType.name,
                             style: const TextStyle(
@@ -339,12 +341,17 @@ class _LoginPageState extends State<LoginPage> {
                   !isLogin
                       ? const Padding(padding: EdgeInsets.all(0.0))
                       : TextButton(
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (_) => const RecuperarSenhaPage(),
-                            ),
-                          ),
+                          onPressed: () {
+                            setState(() {
+                              formKey.currentState!.reset();
+                            });
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const RecuperarSenhaPage(),
+                              ),
+                            );
+                          },
                           child: const Text(
                             'Esqueceu sua senha?',
                             style: TextStyle(color: Colors.white),

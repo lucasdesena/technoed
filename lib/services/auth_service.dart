@@ -58,4 +58,8 @@ class AuthService extends ChangeNotifier {
     await _auth.signOut();
     _getUser();
   }
+
+  recuperarSenha(String email) async {
+    await _auth.sendPasswordResetEmail(email: email);
+  }
 }
