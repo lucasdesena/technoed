@@ -100,6 +100,18 @@ class _RecuperarSenhaPageState extends State<RecuperarSenhaPage> {
                       ),
                     ),
                   ),
+                  TextButton(
+                    onPressed: () {
+                      setState(() {
+                        formKey.currentState!.reset();
+                      });
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      'Voltar ao Login.',
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
+                  ),
                 ],
               ),
             ),
