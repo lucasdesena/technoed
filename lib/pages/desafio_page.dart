@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:technoed/models/dificuldade.dart';
 import 'package:technoed/models/forma.dart';
 import 'package:technoed/pages/pergunta_page.dart';
+import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/services/cadastro_service.dart';
 
 class DesafioPage extends StatefulWidget {
@@ -21,7 +23,7 @@ class _DesafioPageState extends State<DesafioPage> {
   List<Forma> pecas = Dificuldades().niveis[0].shapes;
   int shapeOfCount = 0;
   int shapeCount = 0;
-  double pontuacaoTotal = 0;
+  int pontuacaoTotal = 0;
 
   @override
   void initState() {
@@ -47,6 +49,7 @@ class _DesafioPageState extends State<DesafioPage> {
   @override
   Widget build(BuildContext context) {
     CadastroService cadastro = CadastroService();
+    String uid = context.read<AuthService>().usuario!.uid;
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 202, 240, 248),
       body: Stack(
@@ -85,6 +88,7 @@ class _DesafioPageState extends State<DesafioPage> {
                               print('Tangram feito');
                               /*cadastro.concluirDesafio(
                                   widget.nomeDesafio, widget.emailAluno);
+                                  
                               List<String> listaEmails = List<String>.from(
                                   snapshot.data!.docs
                                       .where((grupo) =>
@@ -97,6 +101,10 @@ class _DesafioPageState extends State<DesafioPage> {
                               }
                               Navigator.pop(context);
                               */
+                              if (pontuacaoTotal > 0) {
+                                cadastro.adicionarPontuacao(
+                                    uid, pontuacaoTotal);
+                              }
                             }
                           });
                         } else {
@@ -257,7 +265,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                           pergunta, alternativas, resposta),
                                     ),
                                   ).then((value) {
-                                    pontuacaoTotal += value;
+                                    pontuacaoTotal =
+                                        (pontuacaoTotal + value).toInt();
                                     print(value);
                                     print(pontuacaoTotal);
                                   });
@@ -273,7 +282,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                           pergunta, alternativas, resposta),
                                     ),
                                   ).then((value) {
-                                    pontuacaoTotal += value;
+                                    pontuacaoTotal =
+                                        (pontuacaoTotal + value).toInt();
                                     print(value);
                                     print(pontuacaoTotal);
                                   });
@@ -289,7 +299,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                           pergunta, alternativas, resposta),
                                     ),
                                   ).then((value) {
-                                    pontuacaoTotal += value;
+                                    pontuacaoTotal =
+                                        (pontuacaoTotal + value).toInt();
                                     print(value);
                                     print(pontuacaoTotal);
                                   });
@@ -305,7 +316,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                           pergunta, alternativas, resposta),
                                     ),
                                   ).then((value) {
-                                    pontuacaoTotal += value;
+                                    pontuacaoTotal =
+                                        (pontuacaoTotal + value).toInt();
                                     print(value);
                                     print(pontuacaoTotal);
                                   });
@@ -321,7 +333,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                           pergunta, alternativas, resposta),
                                     ),
                                   ).then((value) {
-                                    pontuacaoTotal += value;
+                                    pontuacaoTotal =
+                                        (pontuacaoTotal + value).toInt();
                                     print(value);
                                     print(pontuacaoTotal);
                                   });
@@ -338,7 +351,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                     ),
                                   ).then((value) {
                                     //Pontuação esta sendo para cada peça
-                                    pontuacaoTotal += value;
+                                    pontuacaoTotal =
+                                        (pontuacaoTotal + value).toInt();
                                     print(value);
                                     print(pontuacaoTotal);
                                   });
@@ -354,7 +368,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                           pergunta, alternativas, resposta),
                                     ),
                                   ).then((value) {
-                                    pontuacaoTotal += value;
+                                    pontuacaoTotal =
+                                        (pontuacaoTotal + value).toInt();
                                     print(value);
                                     print(pontuacaoTotal);
                                   });
@@ -370,7 +385,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                           pergunta, alternativas, resposta),
                                     ),
                                   ).then((value) {
-                                    pontuacaoTotal += value;
+                                    pontuacaoTotal =
+                                        (pontuacaoTotal + value).toInt();
                                     print(value);
                                     print(pontuacaoTotal);
                                   });
@@ -386,7 +402,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                           pergunta, alternativas, resposta),
                                     ),
                                   ).then((value) {
-                                    pontuacaoTotal += value;
+                                    pontuacaoTotal =
+                                        (pontuacaoTotal + value).toInt();
                                     print(value);
                                     print(pontuacaoTotal);
                                   });
