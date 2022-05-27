@@ -23,9 +23,33 @@ class EscolherGrupoPage extends StatefulWidget {
 class _EscolherGrupoPageState extends State<EscolherGrupoPage> {
   List<String> listaEmails = [];
 
+  CadastroService cadastro = CadastroService();
+
+  cadastrarRelatorioEDesafio(
+      String nomeGrupo, String email, List<String> listaEmails) {
+    cadastro.cadastrarRelatorio(nomeGrupo, email).then((value) {
+      cadastro.cadastrarDesafio(
+          listaEmails,
+          widget.listaPerguntas,
+          widget.listaAlternativas,
+          widget.listaRespostas,
+          widget.dificuldade,
+          widget.titulo,
+          value);
+    });
+    Navigator.of(context).pushNamedAndRemoveUntil(
+        '/authCheck',
+        //Não funcionou ModalRoute withName
+        ModalRoute.withName('/authCheck'));
+    Fluttertoast.showToast(
+      msg: 'Desafio criado com sucesso!',
+      toastLength: Toast.LENGTH_LONG,
+      backgroundColor: const Color.fromARGB(255, 0, 180, 216),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    CadastroService cadastro = CadastroService();
     String uid = context.read<AuthService>().usuario!.uid;
     String email = context.read<AuthService>().usuario!.email.toString();
     return Scaffold(
@@ -70,25 +94,8 @@ class _EscolherGrupoPageState extends State<EscolherGrupoPage> {
                                 .map((doc) => doc['emails'])
                                 .single);
                             if (listaEmails.isNotEmpty) {
-                              cadastro.cadastrarDesafio(
-                                  listaEmails,
-                                  widget.listaPerguntas,
-                                  widget.listaAlternativas,
-                                  widget.listaRespostas,
-                                  widget.dificuldade,
-                                  widget.titulo,
-                                  doc.id,
-                                  email);
-                              Navigator.of(context).pushNamedAndRemoveUntil(
-                                  '/authCheck',
-                                  //Não funcionou ModalRoute withName
-                                  ModalRoute.withName('/authCheck'));
-                              Fluttertoast.showToast(
-                                msg: 'Desafio criado com sucesso!',
-                                toastLength: Toast.LENGTH_LONG,
-                                backgroundColor:
-                                    const Color.fromARGB(255, 0, 180, 216),
-                              );
+                              cadastrarRelatorioEDesafio(
+                                  doc.id, email, listaEmails);
                             } else {
                               showDialog(
                                 context: context,

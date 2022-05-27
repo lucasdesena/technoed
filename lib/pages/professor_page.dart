@@ -263,7 +263,7 @@ class _ProfessorPageState extends State<ProfessorPage> {
                       child: SizedBox(
                         height: 100,
                         child: ElevatedButton(
-                          onPressed: null,
+                          onPressed: () {},
                           style: ElevatedButton.styleFrom(
                             primary: const Color.fromARGB(255, 202, 240, 248),
                             elevation: 6,

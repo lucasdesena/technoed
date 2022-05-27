@@ -24,29 +24,6 @@ class CadastroService extends ChangeNotifier {
         .set({'elo': 'nenhum', 'pontos': 0});
   }
 
-  adicionarPontuacao(String uid, int pontosObtidos) async {
-    QuerySnapshot resultado = await db.collection('usuarios/$uid/dados').get();
-
-    int pontosDaConta = resultado.docs
-        .firstWhere((documento) => documento.id == 'pontuação')['pontos'];
-
-    int calculo = pontosDaConta + pontosObtidos;
-    String elo = 'nenhum';
-
-    if (calculo > 0 && calculo < 360) {
-      elo = 'bronze';
-    } else if (calculo >= 360 && calculo < 720) {
-      elo = 'prata';
-    } else if (calculo >= 720) {
-      elo = 'ouro';
-    }
-
-    await db
-        .collection('usuarios/$uid/dados')
-        .doc('pontuação')
-        .update({'elo': elo, 'pontos': calculo});
-  }
-
   cadastrarGrupo(String uid, String nomeGrupo, List<String> listaEmails) async {
     await db
         .collection('usuarios/$uid/grupos')
@@ -69,8 +46,7 @@ class CadastroService extends ChangeNotifier {
       List<String> listaRespostas,
       String dificuldade,
       String titulo,
-      String nomeGrupo,
-      String emailProfessor) async {
+      String idRelatorio) async {
     await db.collection('desafios').doc().set({
       'emails': listaEmails,
       'perguntas': listaPerguntas,
@@ -78,9 +54,20 @@ class CadastroService extends ChangeNotifier {
       'respostas': listaRespostas,
       'dificuldade': dificuldade,
       'titulo': titulo,
-      'grupo': nomeGrupo,
-      'professor': emailProfessor
+      'idRelatorio': idRelatorio
     });
+  }
+
+  cadastrarRelatorio(String nomeGrupo, String emailProfessor) async {
+    String idRelatorio = '';
+
+    await db
+        .collection('relatorios')
+        .add({'grupo': nomeGrupo, 'professor': emailProfessor}).then((value) {
+      idRelatorio = value.id;
+    });
+
+    return idRelatorio;
   }
 
   obterEmail(String uid) async {
@@ -95,6 +82,29 @@ class CadastroService extends ChangeNotifier {
 
     return resultado.docs
         .firstWhere((documento) => documento.id == 'cadastro')['tipo'];
+  }
+
+  adicionarPontuacao(String uid, int pontosObtidos) async {
+    QuerySnapshot resultado = await db.collection('usuarios/$uid/dados').get();
+
+    int pontosDaConta = resultado.docs
+        .firstWhere((documento) => documento.id == 'pontuação')['pontos'];
+
+    int calculo = pontosDaConta + pontosObtidos;
+    String elo = 'nenhum';
+
+    if (calculo > 0 && calculo < 360) {
+      elo = 'bronze';
+    } else if (calculo >= 360 && calculo < 720) {
+      elo = 'prata';
+    } else if (calculo >= 720) {
+      elo = 'ouro';
+    }
+
+    await db
+        .collection('usuarios/$uid/dados')
+        .doc('pontuação')
+        .update({'elo': elo, 'pontos': calculo});
   }
 
   editarNome(String uid, String nome) async {
