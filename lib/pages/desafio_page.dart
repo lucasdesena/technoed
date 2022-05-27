@@ -10,10 +10,10 @@ import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/services/cadastro_service.dart';
 
 class DesafioPage extends StatefulWidget {
-  final String nomeDesafio;
+  final String idDesafio;
   final String dificuldade;
   final String emailAluno;
-  const DesafioPage(this.nomeDesafio, this.dificuldade, this.emailAluno,
+  const DesafioPage(this.idDesafio, this.dificuldade, this.emailAluno,
       {Key? key})
       : super(key: key);
 
@@ -28,6 +28,8 @@ class _DesafioPageState extends State<DesafioPage> {
   int shapeCount = 0;
   int pontuacaoTotal = 0;
 
+  CadastroService cadastro = CadastroService();
+
   @override
   void initState() {
     super.initState();
@@ -40,6 +42,7 @@ class _DesafioPageState extends State<DesafioPage> {
         shapeOfCount = Dificuldades().niveis[7].shapeOfCount;
       }
     });
+    cadastro.acessarDesafio(widget.idDesafio, widget.emailAluno);
   }
 
   bool tangramFinalizado() {
@@ -51,7 +54,6 @@ class _DesafioPageState extends State<DesafioPage> {
 
   @override
   Widget build(BuildContext context) {
-    CadastroService cadastro = CadastroService();
     String uid = context.read<AuthService>().usuario!.uid;
     return WillPopScope(
       onWillPop: () async {
@@ -163,21 +165,21 @@ class _DesafioPageState extends State<DesafioPage> {
                               data.targetColor = data.color;
                               shapeCount++;
                               if (tangramFinalizado()) {
-                                cadastro.concluirDesafio(
-                                    widget.nomeDesafio, widget.emailAluno);
+                                //Fazer a lógica de registrar os pontos quando o aluno finalizar o desafio
+                                //cadastro.adicionarDesafioRealizado();
                                 if (pontuacaoTotal > 0) {
                                   cadastro.adicionarPontuacao(
                                       uid, pontuacaoTotal);
                                 }
                                 List<String> listaEmails = List<String>.from(
                                     snapshot.data!.docs
-                                        .where((grupo) =>
-                                            grupo.id == widget.nomeDesafio)
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
                                         .map((doc) => doc['emails'])
                                         .single);
                                 if (listaEmails.isEmpty) {
                                   cadastro.excluirDesafio(
-                                      widget.nomeDesafio, listaEmails);
+                                      widget.idDesafio, listaEmails);
                                 }
                                 showDialog(
                                   context: context,
@@ -280,15 +282,15 @@ class _DesafioPageState extends State<DesafioPage> {
                               int numeroDaPergunta = shapeModel.id - 1;
 
                               String pergunta = snapshot.data!.docs
-                                  .where(
-                                      (grupo) => grupo.id == widget.nomeDesafio)
+                                  .where((desafio) =>
+                                      desafio.id == widget.idDesafio)
                                   .map((doc) =>
                                       doc['perguntas'][numeroDaPergunta])
                                   .single;
 
                               String resposta = snapshot.data!.docs
-                                  .where(
-                                      (grupo) => grupo.id == widget.nomeDesafio)
+                                  .where((desafio) =>
+                                      desafio.id == widget.idDesafio)
                                   .map((doc) =>
                                       doc['respostas'][numeroDaPergunta])
                                   .single;
@@ -299,8 +301,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                 case 0:
                                   for (var i = 0; i < 3; i++) {
                                     alternativas.add(snapshot.data!.docs
-                                        .where((grupo) =>
-                                            grupo.id == widget.nomeDesafio)
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
                                         .map((doc) => doc['alternativas'][i])
                                         .single);
                                   }
@@ -308,8 +310,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                 case 1:
                                   for (var i = 3; i < 6; i++) {
                                     alternativas.add(snapshot.data!.docs
-                                        .where((grupo) =>
-                                            grupo.id == widget.nomeDesafio)
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
                                         .map((doc) => doc['alternativas'][i])
                                         .single);
                                   }
@@ -317,8 +319,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                 case 2:
                                   for (var i = 6; i < 9; i++) {
                                     alternativas.add(snapshot.data!.docs
-                                        .where((grupo) =>
-                                            grupo.id == widget.nomeDesafio)
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
                                         .map((doc) => doc['alternativas'][i])
                                         .single);
                                   }
@@ -326,8 +328,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                 case 3:
                                   for (var i = 9; i < 12; i++) {
                                     alternativas.add(snapshot.data!.docs
-                                        .where((grupo) =>
-                                            grupo.id == widget.nomeDesafio)
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
                                         .map((doc) => doc['alternativas'][i])
                                         .single);
                                   }
@@ -335,8 +337,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                 case 4:
                                   for (var i = 12; i < 15; i++) {
                                     alternativas.add(snapshot.data!.docs
-                                        .where((grupo) =>
-                                            grupo.id == widget.nomeDesafio)
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
                                         .map((doc) => doc['alternativas'][i])
                                         .single);
                                   }
@@ -344,8 +346,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                 case 5:
                                   for (var i = 15; i < 18; i++) {
                                     alternativas.add(snapshot.data!.docs
-                                        .where((grupo) =>
-                                            grupo.id == widget.nomeDesafio)
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
                                         .map((doc) => doc['alternativas'][i])
                                         .single);
                                   }
@@ -353,8 +355,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                 case 6:
                                   for (var i = 18; i < 21; i++) {
                                     alternativas.add(snapshot.data!.docs
-                                        .where((grupo) =>
-                                            grupo.id == widget.nomeDesafio)
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
                                         .map((doc) => doc['alternativas'][i])
                                         .single);
                                   }
@@ -362,8 +364,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                 case 7:
                                   for (var i = 21; i < 24; i++) {
                                     alternativas.add(snapshot.data!.docs
-                                        .where((grupo) =>
-                                            grupo.id == widget.nomeDesafio)
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
                                         .map((doc) => doc['alternativas'][i])
                                         .single);
                                   }
@@ -371,8 +373,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                 case 8:
                                   for (var i = 24; i < 27; i++) {
                                     alternativas.add(snapshot.data!.docs
-                                        .where((grupo) =>
-                                            grupo.id == widget.nomeDesafio)
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
                                         .map((doc) => doc['alternativas'][i])
                                         .single);
                                   }

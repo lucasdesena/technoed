@@ -114,6 +114,13 @@ class CadastroService extends ChangeNotifier {
         .update({'nome': nome});
   }
 
+  adicionarDesafioRealizado(String idRelatorio, int pontuacao) async {
+    await db
+        .collection('relatorios')
+        .doc(idRelatorio)
+        .set({'email': pontuacao});
+  }
+
   excluirEmails(String uid, String nomeGrupo, String email) async {
     await db.collection('usuarios/$uid/grupos').doc(nomeGrupo).update({
       'emails': FieldValue.arrayRemove([email])
@@ -124,7 +131,7 @@ class CadastroService extends ChangeNotifier {
     await db.collection('usuarios/$uid/grupos').doc(nomeGrupo).delete();
   }
 
-  concluirDesafio(String nomeDesafio, String email) async {
+  acessarDesafio(String nomeDesafio, String email) async {
     await db.collection('desafios').doc(nomeDesafio).update({
       'emails': FieldValue.arrayRemove([email])
     });
