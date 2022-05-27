@@ -27,6 +27,7 @@ class _EscolherGrupoPageState extends State<EscolherGrupoPage> {
   Widget build(BuildContext context) {
     CadastroService cadastro = CadastroService();
     String uid = context.read<AuthService>().usuario!.uid;
+    String email = context.read<AuthService>().usuario!.email.toString();
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -65,7 +66,7 @@ class _EscolherGrupoPageState extends State<EscolherGrupoPage> {
                         child: GestureDetector(
                           onTap: () {
                             listaEmails = List<String>.from(snapshot.data!.docs
-                                .where((grupo) => grupo.id.toString() == doc.id)
+                                .where((grupo) => grupo.id == doc.id)
                                 .map((doc) => doc['emails'])
                                 .single);
                             if (listaEmails.isNotEmpty) {
@@ -75,7 +76,9 @@ class _EscolherGrupoPageState extends State<EscolherGrupoPage> {
                                   widget.listaAlternativas,
                                   widget.listaRespostas,
                                   widget.dificuldade,
-                                  widget.titulo);
+                                  widget.titulo,
+                                  doc.id,
+                                  email);
                               Navigator.of(context).pushNamedAndRemoveUntil(
                                   '/authCheck',
                                   //Não funcionou ModalRoute withName
