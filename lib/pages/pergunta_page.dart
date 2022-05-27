@@ -133,7 +133,7 @@ class _PerguntaPageState extends State<PerguntaPage> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 48, 20, 0.0),
+                padding: const EdgeInsets.fromLTRB(20, 48, 20, 10.0),
                 child: ElevatedButton(
                   onPressed: () {
                     if (widget.alternativas[2] == widget.resposta) {

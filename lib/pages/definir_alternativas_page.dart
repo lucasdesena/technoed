@@ -1661,7 +1661,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                             padding: EdgeInsets.all(0.0),
                           )
                         : Padding(
-                            padding: const EdgeInsets.fromLTRB(12, 0, 12, 0.0),
+                            padding: const EdgeInsets.fromLTRB(12, 0, 12, 10.0),
                             child: ElevatedButton(
                               onPressed: () {
                                 setState(() {
