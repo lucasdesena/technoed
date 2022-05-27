@@ -39,6 +39,22 @@ dependencies:
   cloud_firestore:
   fluttertoast:
   animated_text_kit:
+  flutter_native_splash: ^1.2.0
+  flutter_launcher_icons: ^0.9.1
+
+flutter_native_splash:
+  color: "#00B4D8"
+  image: "assets/images/splash.png"
+  android: true
+  ios: true
+
+flutter_icons:
+  image_path: "assets/images/icon.png"
+  ios: true
+  remove_alpha_ios: true
+  android: "launcher_icon"
+  adaptive_icon_background: "#00B4D8"
+  adaptive_icon_foreground: "assets/images/icon-android.png"
 
 dev_dependencies:
   flutter_test:
