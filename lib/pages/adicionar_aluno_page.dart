@@ -105,7 +105,7 @@ class _AdicionarAlunoPageState extends State<AdicionarAlunoPage> {
             child: ElevatedButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {
-                  cadastro.cadastrarEmail(uid, widget.nomeGrupo, email.text);
+                  cadastro.adicionarEmail(uid, widget.nomeGrupo, email.text);
                   Navigator.pop(context);
                 }
               },

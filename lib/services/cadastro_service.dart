@@ -31,14 +31,6 @@ class CadastroService extends ChangeNotifier {
         .set({'emails': listaEmails});
   }
 
-  cadastrarEmail(String uid, String nomeGrupo, String email) async {
-    List<String> lista = [email];
-    await db
-        .collection('usuarios/$uid/grupos')
-        .doc(nomeGrupo)
-        .update({'emails': FieldValue.arrayUnion(lista)});
-  }
-
   cadastrarDesafio(
       List<String> listaEmails,
       List<String> listaPerguntas,
@@ -58,12 +50,28 @@ class CadastroService extends ChangeNotifier {
     });
   }
 
-  cadastrarRelatorio(String nomeGrupo, String emailProfessor) async {
+  cadastrarRelatorio(String nomeGrupo, String emailProfessor,
+      String tituloDesafio, String dataDesafio) async {
     String idRelatorio = '';
+    List<String> listaNome = [];
+    List<String> listaEmail = [];
+    List<int> listaErrosTangram = [];
+    List<int> listaErrosPerguntas = [];
+    List<String> perguntasErradas = [];
+    List<String> listaData = [];
 
-    await db
-        .collection('relatorios')
-        .add({'grupo': nomeGrupo, 'professor': emailProfessor}).then((value) {
+    await db.collection('relatorios').add({
+      'grupo': nomeGrupo,
+      'professor': emailProfessor,
+      'titulo': tituloDesafio,
+      'nomes': listaNome,
+      'emails': listaEmail,
+      'errosTangram': listaErrosTangram,
+      'errosPerguntas': listaErrosPerguntas,
+      'perguntasErradas': perguntasErradas,
+      'dataDesafio': dataDesafio,
+      'dataRealizada': listaData
+    }).then((value) {
       idRelatorio = value.id;
     });
 
@@ -82,6 +90,14 @@ class CadastroService extends ChangeNotifier {
 
     return resultado.docs
         .firstWhere((documento) => documento.id == 'cadastro')['tipo'];
+  }
+
+  adicionarEmail(String uid, String nomeGrupo, String email) async {
+    List<String> lista = [email];
+    await db
+        .collection('usuarios/$uid/grupos')
+        .doc(nomeGrupo)
+        .update({'emails': FieldValue.arrayUnion(lista)});
   }
 
   adicionarPontuacao(String uid, int pontosObtidos) async {
@@ -114,11 +130,28 @@ class CadastroService extends ChangeNotifier {
         .update({'nome': nome});
   }
 
-  adicionarDesafioRealizado(String idRelatorio, int pontuacao) async {
-    await db
-        .collection('relatorios')
-        .doc(idRelatorio)
-        .set({'email': pontuacao});
+  adicionarDesafioRealizado(
+      String idRelatorio,
+      String nomeAluno,
+      String emailAluno,
+      int qtdErrosTangram,
+      int qtdErrosPerguntas,
+      List<String> perguntasErradas,
+      String data) async {
+    List<String> listaNome = [nomeAluno];
+    List<String> listaEmail = [emailAluno];
+    List<int> listaErrosTangram = [qtdErrosTangram];
+    List<int> listaErrosPerguntas = [qtdErrosPerguntas];
+    List<String> listaData = [data];
+
+    await db.collection('relatorios').doc(idRelatorio).update({
+      'nomes': FieldValue.arrayUnion(listaNome),
+      'emails': FieldValue.arrayUnion(listaEmail),
+      'errosTangram': FieldValue.arrayUnion(listaErrosTangram),
+      'errosPerguntas': FieldValue.arrayUnion(listaErrosPerguntas),
+      'perguntasErradas': FieldValue.arrayUnion(perguntasErradas),
+      'dataRealizada': FieldValue.arrayUnion(listaData)
+    });
   }
 
   excluirEmails(String uid, String nomeGrupo, String email) async {

@@ -26,7 +26,12 @@ class _DesafioPageState extends State<DesafioPage> {
   List<Forma> pecas = Dificuldades().niveis[0].shapes;
   int shapeOfCount = 0;
   int shapeCount = 0;
+
   int pontuacaoTotal = 0;
+  int qtdErrosTangram = 0;
+  int qtdErrosPerguntas = 0;
+
+  List<String> perguntasErradas = [];
 
   CadastroService cadastro = CadastroService();
 
@@ -236,6 +241,7 @@ class _DesafioPageState extends State<DesafioPage> {
                             });
                           } else {
                             pontuacaoTotal -= 1;
+                            qtdErrosTangram += 1;
                           }
                         },
                       ),

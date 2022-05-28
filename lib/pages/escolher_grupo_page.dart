@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/services/cadastro_service.dart';
@@ -22,12 +23,16 @@ class EscolherGrupoPage extends StatefulWidget {
 
 class _EscolherGrupoPageState extends State<EscolherGrupoPage> {
   List<String> listaEmails = [];
+  DateTime data = DateTime.now();
 
   CadastroService cadastro = CadastroService();
 
   cadastrarRelatorioEDesafio(
       String nomeGrupo, String email, List<String> listaEmails) {
-    cadastro.cadastrarRelatorio(nomeGrupo, email).then((value) {
+    cadastro
+        .cadastrarRelatorio(nomeGrupo, email, widget.titulo,
+            DateFormat('dd/MM/yyyy').format(data))
+        .then((value) {
       cadastro.cadastrarDesafio(
           listaEmails,
           widget.listaPerguntas,
