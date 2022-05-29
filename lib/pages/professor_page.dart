@@ -6,6 +6,7 @@ import 'package:technoed/pages/perfil_page_professor.dart';
 import 'package:technoed/pages/sobre_page.dart';
 import 'package:technoed/pages/escolher_desafio_page.dart';
 import 'package:technoed/pages/gerenciar_grupos_page.dart';
+import 'package:technoed/pages/ver_relatorio_page.dart';
 import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/services/cadastro_service.dart';
 
@@ -263,7 +264,14 @@ class _ProfessorPageState extends State<ProfessorPage> {
                       child: SizedBox(
                         height: 100,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const VerRelatorioPage(),
+                              ),
+                            );
+                          },
                           style: ElevatedButton.styleFrom(
                             primary: const Color.fromARGB(255, 202, 240, 248),
                             elevation: 6,
