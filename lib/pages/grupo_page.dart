@@ -58,8 +58,7 @@ class _GrupoPageState extends State<GrupoPage> {
                         .single,
                     itemBuilder: (BuildContext context, int index) {
                       email = snapshot.data!.docs
-                          .where((grupo) =>
-                              grupo.id.toString() == widget.nomeGrupo)
+                          .where((grupo) => grupo.id == widget.nomeGrupo)
                           .map((doc) => doc['emails'][index])
                           .single;
                       return Card(

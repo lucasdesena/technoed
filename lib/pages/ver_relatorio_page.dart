@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/widgets/lista_relatorios.dart';
 
 class VerRelatorioPage extends StatefulWidget {
@@ -11,6 +13,7 @@ class VerRelatorioPage extends StatefulWidget {
 class _VerRelatorioPageState extends State<VerRelatorioPage> {
   @override
   Widget build(BuildContext context) {
+    String email = context.read<AuthService>().usuario!.email.toString();
     return Scaffold(
       body: Column(
         children: <Widget>[
@@ -38,7 +41,7 @@ class _VerRelatorioPageState extends State<VerRelatorioPage> {
               ),
             ],
           ),
-          const Expanded(child: ListaRelatorios()),
+          Expanded(child: ListaRelatorios(email)),
         ],
       ),
     );
