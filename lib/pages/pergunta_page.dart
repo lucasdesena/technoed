@@ -16,6 +16,7 @@ class _PerguntaPageState extends State<PerguntaPage> {
   bool voltar = false;
   int pontos = 0;
   int tentativa = 1;
+  int qtdErrosPerguntas = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -59,9 +60,11 @@ class _PerguntaPageState extends State<PerguntaPage> {
                           pontos += 0;
                           break;
                       }
-                      Navigator.pop(context, pontos);
+                      Navigator.pop(context,
+                          [pontos, qtdErrosPerguntas, widget.pergunta]);
                     } else {
                       tentativa++;
+                      qtdErrosPerguntas++;
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -104,9 +107,11 @@ class _PerguntaPageState extends State<PerguntaPage> {
                           pontos += 0;
                           break;
                       }
-                      Navigator.pop(context, pontos);
+                      Navigator.pop(context,
+                          [pontos, qtdErrosPerguntas, widget.pergunta]);
                     } else {
                       tentativa++;
+                      qtdErrosPerguntas++;
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -148,9 +153,11 @@ class _PerguntaPageState extends State<PerguntaPage> {
                           pontos += 0;
                           break;
                       }
-                      Navigator.pop(context, pontos);
+                      Navigator.pop(context,
+                          [pontos, qtdErrosPerguntas, widget.pergunta]);
                     } else {
                       tentativa++;
+                      qtdErrosPerguntas++;
                     }
                   },
                   style: ElevatedButton.styleFrom(

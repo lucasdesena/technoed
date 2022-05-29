@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:technoed/models/dificuldade.dart';
@@ -29,11 +30,28 @@ class _DesafioPageState extends State<DesafioPage> {
 
   int pontuacaoTotal = 0;
   int qtdErrosTangram = 0;
-  int qtdErrosPerguntas = 0;
+
+  List<int> qtdErrosPerguntas = [];
 
   List<String> perguntasErradas = [];
 
+  DateTime dataRealizada = DateTime.now();
+
   CadastroService cadastro = CadastroService();
+
+  obterNomeEAdicionarDesafioConcluido(
+      String uid,
+      String idRelatorio,
+      String emailAluno,
+      int qtdErrosTangram,
+      List<int> qtdErrosPerguntas,
+      List<String> perguntasErradas,
+      String data) {
+    cadastro.obterNome(uid).then((value) {
+      cadastro.adicionarDesafioRealizado(idRelatorio, value, emailAluno,
+          qtdErrosTangram, qtdErrosPerguntas, perguntasErradas, data);
+    });
+  }
 
   @override
   void initState() {
@@ -60,6 +78,7 @@ class _DesafioPageState extends State<DesafioPage> {
   @override
   Widget build(BuildContext context) {
     String uid = context.read<AuthService>().usuario!.uid;
+    String email = context.read<AuthService>().usuario!.email.toString();
     return WillPopScope(
       onWillPop: () async {
         return voltar;
@@ -169,9 +188,24 @@ class _DesafioPageState extends State<DesafioPage> {
                               data.isPlaced = true;
                               data.targetColor = data.color;
                               shapeCount++;
+
                               if (tangramFinalizado()) {
-                                //Fazer a lógica de registrar os pontos quando o aluno finalizar o desafio
-                                //cadastro.adicionarDesafioRealizado();
+                                String idRelatorio = snapshot.data!.docs
+                                    .where((desafio) =>
+                                        desafio.id == widget.idDesafio)
+                                    .map((doc) => doc['idRelatorio'])
+                                    .single;
+
+                                obterNomeEAdicionarDesafioConcluido(
+                                    uid,
+                                    idRelatorio,
+                                    email,
+                                    qtdErrosTangram,
+                                    qtdErrosPerguntas,
+                                    perguntasErradas,
+                                    DateFormat('dd/MM/yyyy')
+                                        .format(dataRealizada));
+
                                 if (pontuacaoTotal > 0) {
                                   cadastro.adicionarPontuacao(
                                       uid, pontuacaoTotal);
@@ -398,7 +432,11 @@ class _DesafioPageState extends State<DesafioPage> {
                                       ),
                                     ).then((value) {
                                       pontuacaoTotal =
-                                          (pontuacaoTotal + value).toInt();
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
                                     });
                                     shapeModel.firstInteraction = false;
                                   }
@@ -413,7 +451,11 @@ class _DesafioPageState extends State<DesafioPage> {
                                       ),
                                     ).then((value) {
                                       pontuacaoTotal =
-                                          (pontuacaoTotal + value).toInt();
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
                                     });
                                     shapeModel.firstInteraction = false;
                                   }
@@ -428,7 +470,11 @@ class _DesafioPageState extends State<DesafioPage> {
                                       ),
                                     ).then((value) {
                                       pontuacaoTotal =
-                                          (pontuacaoTotal + value).toInt();
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
                                     });
                                     shapeModel.firstInteraction = false;
                                   }
@@ -443,7 +489,11 @@ class _DesafioPageState extends State<DesafioPage> {
                                       ),
                                     ).then((value) {
                                       pontuacaoTotal =
-                                          (pontuacaoTotal + value).toInt();
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
                                     });
                                     shapeModel.firstInteraction = false;
                                   }
@@ -458,7 +508,11 @@ class _DesafioPageState extends State<DesafioPage> {
                                       ),
                                     ).then((value) {
                                       pontuacaoTotal =
-                                          (pontuacaoTotal + value).toInt();
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
                                     });
                                     shapeModel.firstInteraction = false;
                                   }
@@ -474,7 +528,11 @@ class _DesafioPageState extends State<DesafioPage> {
                                     ).then((value) {
                                       //Pontuação esta sendo para cada peça
                                       pontuacaoTotal =
-                                          (pontuacaoTotal + value).toInt();
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
                                     });
                                     shapeModel.firstInteraction = false;
                                   }
@@ -489,7 +547,11 @@ class _DesafioPageState extends State<DesafioPage> {
                                       ),
                                     ).then((value) {
                                       pontuacaoTotal =
-                                          (pontuacaoTotal + value).toInt();
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
                                     });
                                     shapeModel.firstInteraction = false;
                                   }
@@ -504,7 +566,11 @@ class _DesafioPageState extends State<DesafioPage> {
                                       ),
                                     ).then((value) {
                                       pontuacaoTotal =
-                                          (pontuacaoTotal + value).toInt();
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
                                     });
                                     shapeModel.firstInteraction = false;
                                   }
@@ -519,7 +585,11 @@ class _DesafioPageState extends State<DesafioPage> {
                                       ),
                                     ).then((value) {
                                       pontuacaoTotal =
-                                          (pontuacaoTotal + value).toInt();
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
                                     });
                                     shapeModel.firstInteraction = false;
                                   }

@@ -92,6 +92,13 @@ class CadastroService extends ChangeNotifier {
         .firstWhere((documento) => documento.id == 'cadastro')['tipo'];
   }
 
+  obterNome(String uid) async {
+    QuerySnapshot resultado = await db.collection('usuarios/$uid/dados').get();
+
+    return resultado.docs
+        .firstWhere((documento) => documento.id == 'cadastro')['nome'];
+  }
+
   adicionarEmail(String uid, String nomeGrupo, String email) async {
     List<String> lista = [email];
     await db
@@ -135,20 +142,19 @@ class CadastroService extends ChangeNotifier {
       String nomeAluno,
       String emailAluno,
       int qtdErrosTangram,
-      int qtdErrosPerguntas,
+      List<int> qtdErrosPerguntas,
       List<String> perguntasErradas,
       String data) async {
     List<String> listaNome = [nomeAluno];
     List<String> listaEmail = [emailAluno];
     List<int> listaErrosTangram = [qtdErrosTangram];
-    List<int> listaErrosPerguntas = [qtdErrosPerguntas];
     List<String> listaData = [data];
 
     await db.collection('relatorios').doc(idRelatorio).update({
       'nomes': FieldValue.arrayUnion(listaNome),
       'emails': FieldValue.arrayUnion(listaEmail),
       'errosTangram': FieldValue.arrayUnion(listaErrosTangram),
-      'errosPerguntas': FieldValue.arrayUnion(listaErrosPerguntas),
+      'errosPerguntas': FieldValue.arrayUnion(qtdErrosPerguntas),
       'perguntasErradas': FieldValue.arrayUnion(perguntasErradas),
       'dataRealizada': FieldValue.arrayUnion(listaData)
     });
