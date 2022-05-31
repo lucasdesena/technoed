@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:technoed/pages/relatorio_page.dart';
 import 'package:technoed/services/cadastro_service.dart';
 
@@ -33,21 +34,26 @@ class ListaRelatorios extends StatelessWidget {
                     },
                     child: ListTile(
                       tileColor: const Color.fromARGB(255, 202, 240, 248),
-                      title: Column(
-                        children: <Widget>[
-                          Text(
-                            'Relatório do desafio: \n${doc['titulo']}',
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          Text(
-                            'Grupo: ${doc['grupo']}',
-                            style: const TextStyle(
-                                color: Color.fromARGB(255, 109, 110, 110),
-                                fontSize: 14,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
+                      title: Text(
+                        'Relatório do desafio: \n${doc['titulo']}',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      leading: const Icon(
+                        MdiIcons.fileChartOutline,
+                        size: 35,
+                        color: Color.fromARGB(255, 143, 146, 148),
+                      ),
+                      subtitle: Text(
+                        'Grupo: ${doc['grupo']}',
+                        style: const TextStyle(
+                            color: Color.fromARGB(255, 109, 110, 110),
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.center,
+                      ),
+                      trailing: Text(
+                        doc['dataDesafio'],
+                        style: const TextStyle(fontSize: 12),
                       ),
                     ),
                   ),
