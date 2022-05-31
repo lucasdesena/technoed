@@ -5,15 +5,15 @@ import 'package:provider/provider.dart';
 import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/services/cadastro_service.dart';
 
-class PerfilPageProfessor extends StatefulWidget {
+class PerfilProfessorPage extends StatefulWidget {
   final String nome;
-  const PerfilPageProfessor(this.nome, {Key? key}) : super(key: key);
+  const PerfilProfessorPage(this.nome, {Key? key}) : super(key: key);
 
   @override
-  State<PerfilPageProfessor> createState() => _PerfilPageProfessorState();
+  State<PerfilProfessorPage> createState() => _PerfilProfessorPageState();
 }
 
-class _PerfilPageProfessorState extends State<PerfilPageProfessor> {
+class _PerfilProfessorPageState extends State<PerfilProfessorPage> {
   final formKey = GlobalKey<FormState>();
   final nome = TextEditingController();
   CadastroService cadastro = CadastroService();

@@ -5,18 +5,18 @@ import 'package:provider/provider.dart';
 import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/services/cadastro_service.dart';
 
-class PerfilPageAluno extends StatefulWidget {
+class PerfilAlunoPage extends StatefulWidget {
   final String nome;
   final String elo;
   final int pontos;
-  const PerfilPageAluno(this.nome, this.elo, this.pontos, {Key? key})
+  const PerfilAlunoPage(this.nome, this.elo, this.pontos, {Key? key})
       : super(key: key);
 
   @override
-  State<PerfilPageAluno> createState() => _PerfilPageAlunoState();
+  State<PerfilAlunoPage> createState() => _PerfilAlunoPageState();
 }
 
-class _PerfilPageAlunoState extends State<PerfilPageAluno> {
+class _PerfilAlunoPageState extends State<PerfilAlunoPage> {
   String tipo = '';
   final formKey = GlobalKey<FormState>();
   final nome = TextEditingController();
@@ -67,7 +67,7 @@ class _PerfilPageAlunoState extends State<PerfilPageAluno> {
                   icon: const Icon(
                     MdiIcons.check,
                     color: Colors.white,
-                    size: 40,
+                    size: 25,
                   ),
                   onPressed: () {
                     if (formKey.currentState!.validate()) {

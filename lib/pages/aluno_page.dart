@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:technoed/pages/lista_desafios_page.dart';
-import 'package:technoed/pages/perfil_page_aluno.dart';
+import 'package:technoed/pages/perfil_aluno_page.dart';
 import 'package:technoed/pages/sobre_page.dart';
 import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/services/cadastro_service.dart';
@@ -39,7 +39,7 @@ class _AlunoPageState extends State<AlunoPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => PerfilPageAluno(nome, elo, pontos),
+        builder: (_) => PerfilAlunoPage(nome, elo, pontos),
       ),
     );
   }
@@ -94,7 +94,7 @@ class _AlunoPageState extends State<AlunoPage> {
                       elo == 'nenhum'
                           ? const Padding(padding: EdgeInsets.all(0.0))
                           : SizedBox(
-                              height: 100,
+                              height: 70,
                               child: Image(image: retornarElo(elo)),
                             ),
                       Text(

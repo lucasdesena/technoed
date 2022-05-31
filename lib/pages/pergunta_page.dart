@@ -17,6 +17,9 @@ class _PerguntaPageState extends State<PerguntaPage> {
   int pontos = 0;
   int tentativa = 1;
   int qtdErrosPerguntas = 0;
+  bool cliqueAltErrada1 = false;
+  bool cliqueAltErrada2 = false;
+  bool cliqueAltErrada3 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -44,145 +47,319 @@ class _PerguntaPageState extends State<PerguntaPage> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 48, 20, 0.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (widget.alternativas[0] == widget.resposta) {
-                      switch (tentativa) {
-                        case 1:
-                          pontos += 4;
-                          break;
-                        case 2:
-                          pontos += 2;
-                          break;
-                        case 3:
-                          pontos += 0;
-                          break;
-                      }
-                      Navigator.pop(context,
-                          [pontos, qtdErrosPerguntas, widget.pergunta]);
-                    } else {
-                      tentativa++;
-                      qtdErrosPerguntas++;
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(255, 0, 180, 216),
-                  ),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+              cliqueAltErrada1 == false
+                  ? Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 48, 20, 0.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (widget.alternativas[0] == widget.resposta) {
+                            switch (tentativa) {
+                              case 1:
+                                pontos += 4;
+                                break;
+                              case 2:
+                                pontos += 2;
+                                break;
+                              case 3:
+                                pontos += 0;
+                                break;
+                              default:
+                                pontos += 0;
+                                break;
+                            }
+                            Navigator.pop(context,
+                                [pontos, qtdErrosPerguntas, widget.pergunta]);
+                          } else {
+                            setState(() {
+                              cliqueAltErrada1 = true;
+                            });
+
+                            tentativa++;
+                            qtdErrosPerguntas++;
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color.fromARGB(255, 0, 180, 216),
+                        ),
+                        child: Row(
                           children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.all(25.0),
-                              child: Text(
-                                widget.alternativas[0],
-                                overflow: TextOverflow.clip,
-                                style: const TextStyle(fontSize: 20),
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.all(25.0),
+                                    child: Text(
+                                      widget.alternativas[0],
+                                      overflow: TextOverflow.clip,
+                                      style: const TextStyle(fontSize: 20),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 48, 20, 0.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (widget.alternativas[1] == widget.resposta) {
-                      switch (tentativa) {
-                        case 1:
-                          pontos += 4;
-                          break;
-                        case 2:
-                          pontos += 2;
-                          break;
-                        case 3:
-                          pontos += 0;
-                          break;
-                      }
-                      Navigator.pop(context,
-                          [pontos, qtdErrosPerguntas, widget.pergunta]);
-                    } else {
-                      tentativa++;
-                      qtdErrosPerguntas++;
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(255, 0, 180, 216),
-                  ),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 48, 20, 0.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (widget.alternativas[0] == widget.resposta) {
+                            switch (tentativa) {
+                              case 1:
+                                pontos += 4;
+                                break;
+                              case 2:
+                                pontos += 2;
+                                break;
+                              case 3:
+                                pontos += 0;
+                                break;
+                              default:
+                                pontos += 0;
+                                break;
+                            }
+                            Navigator.pop(context,
+                                [pontos, qtdErrosPerguntas, widget.pergunta]);
+                          } else {
+                            tentativa++;
+                            qtdErrosPerguntas++;
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.red,
+                        ),
+                        child: Row(
                           children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.all(28.0),
-                              child: Text(
-                                widget.alternativas[1],
-                                style: const TextStyle(fontSize: 20),
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.all(25.0),
+                                    child: Text(
+                                      widget.alternativas[0],
+                                      overflow: TextOverflow.clip,
+                                      style: const TextStyle(fontSize: 20),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 48, 20, 10.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if (widget.alternativas[2] == widget.resposta) {
-                      switch (tentativa) {
-                        case 1:
-                          pontos += 4;
-                          break;
-                        case 2:
-                          pontos += 2;
-                          break;
-                        case 3:
-                          pontos += 0;
-                          break;
-                      }
-                      Navigator.pop(context,
-                          [pontos, qtdErrosPerguntas, widget.pergunta]);
-                    } else {
-                      tentativa++;
-                      qtdErrosPerguntas++;
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    primary: const Color.fromARGB(255, 0, 180, 216),
-                  ),
-                  child: Row(
-                    children: <Widget>[
-                      Expanded(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                    ),
+              cliqueAltErrada2 == false
+                  ? Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 48, 20, 0.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (widget.alternativas[1] == widget.resposta) {
+                            switch (tentativa) {
+                              case 1:
+                                pontos += 4;
+                                break;
+                              case 2:
+                                pontos += 2;
+                                break;
+                              case 3:
+                                pontos += 0;
+                                break;
+                              default:
+                                pontos += 0;
+                                break;
+                            }
+                            Navigator.pop(context,
+                                [pontos, qtdErrosPerguntas, widget.pergunta]);
+                          } else {
+                            setState(() {
+                              cliqueAltErrada2 = true;
+                            });
+                            tentativa++;
+                            qtdErrosPerguntas++;
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color.fromARGB(255, 0, 180, 216),
+                        ),
+                        child: Row(
                           children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.all(28.0),
-                              child: Text(
-                                widget.alternativas[2],
-                                style: const TextStyle(fontSize: 20),
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.all(25.0),
+                                    child: Text(
+                                      widget.alternativas[1],
+                                      overflow: TextOverflow.clip,
+                                      style: const TextStyle(fontSize: 20),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                ),
-              ),
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 48, 20, 0.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (widget.alternativas[1] == widget.resposta) {
+                            switch (tentativa) {
+                              case 1:
+                                pontos += 4;
+                                break;
+                              case 2:
+                                pontos += 2;
+                                break;
+                              case 3:
+                                pontos += 0;
+                                break;
+                              default:
+                                pontos += 0;
+                                break;
+                            }
+                            Navigator.pop(context,
+                                [pontos, qtdErrosPerguntas, widget.pergunta]);
+                          } else {
+                            tentativa++;
+                            qtdErrosPerguntas++;
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.red,
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.all(25.0),
+                                    child: Text(
+                                      widget.alternativas[1],
+                                      overflow: TextOverflow.clip,
+                                      style: const TextStyle(fontSize: 20),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+              cliqueAltErrada3 == false
+                  ? Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 48, 20, 0.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (widget.alternativas[2] == widget.resposta) {
+                            switch (tentativa) {
+                              case 1:
+                                pontos += 4;
+                                break;
+                              case 2:
+                                pontos += 2;
+                                break;
+                              case 3:
+                                pontos += 0;
+                                break;
+                              default:
+                                pontos += 0;
+                                break;
+                            }
+                            Navigator.pop(context,
+                                [pontos, qtdErrosPerguntas, widget.pergunta]);
+                          } else {
+                            setState(() {
+                              cliqueAltErrada3 = true;
+                            });
+                            tentativa++;
+                            qtdErrosPerguntas++;
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color.fromARGB(255, 0, 180, 216),
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.all(25.0),
+                                    child: Text(
+                                      widget.alternativas[2],
+                                      overflow: TextOverflow.clip,
+                                      style: const TextStyle(fontSize: 20),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    )
+                  : Padding(
+                      padding: const EdgeInsets.fromLTRB(20, 48, 20, 0.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (widget.alternativas[2] == widget.resposta) {
+                            switch (tentativa) {
+                              case 1:
+                                pontos += 4;
+                                break;
+                              case 2:
+                                pontos += 2;
+                                break;
+                              case 3:
+                                pontos += 0;
+                                break;
+                              default:
+                                pontos += 0;
+                                break;
+                            }
+                            Navigator.pop(context,
+                                [pontos, qtdErrosPerguntas, widget.pergunta]);
+                          } else {
+                            tentativa++;
+                            qtdErrosPerguntas++;
+                          }
+                        },
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.red,
+                        ),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.all(25.0),
+                                    child: Text(
+                                      widget.alternativas[2],
+                                      overflow: TextOverflow.clip,
+                                      style: const TextStyle(fontSize: 20),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
             ],
           ),
         ),
