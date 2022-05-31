@@ -27,11 +27,11 @@ class _VerRelatorioPageState extends State<VerRelatorioPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     Text(
-                      'Ver Relatórios',
+                      'Relatórios',
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     Text(
-                      'Veja seus relatórios com dados dos desafios',
+                      'Veja relatórios com dados dos desafios',
                       style: TextStyle(
                           color: Color.fromARGB(255, 208, 211, 214),
                           fontSize: 15),

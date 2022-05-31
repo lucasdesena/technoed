@@ -33,7 +33,7 @@ class _GrupoPageState extends State<GrupoPage> {
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
                 Text(
-                  'Gerencie os alunos',
+                  'Adicione e remova alunos',
                   style: TextStyle(
                       color: Color.fromARGB(255, 208, 211, 214), fontSize: 15),
                 ),
@@ -63,7 +63,11 @@ class _GrupoPageState extends State<GrupoPage> {
                           .single;
                       return Card(
                         child: ListTile(
-                          leading: const Icon(Icons.email_outlined),
+                          tileColor: const Color.fromARGB(255, 202, 240, 248),
+                          leading: const Icon(
+                            Icons.email_outlined,
+                            color: Color.fromARGB(255, 143, 146, 148),
+                          ),
                           trailing: GestureDetector(
                             onTap: () {
                               showDialog(
@@ -101,7 +105,13 @@ class _GrupoPageState extends State<GrupoPage> {
                               color: Colors.red,
                             ),
                           ),
-                          title: Text(email),
+                          title: Text(
+                            email,
+                            style: const TextStyle(
+                              color: Color.fromARGB(255, 143, 146, 148),
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                         ),
                       );
                     },

@@ -24,11 +24,11 @@ class _VerGrupoPageState extends State<VerGrupoPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     Text(
-                      'Ver grupos',
+                      'Grupos',
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     Text(
-                      'Veja seus grupos criados',
+                      'Acesse ou remova seus grupos',
                       style: TextStyle(
                           color: Color.fromARGB(255, 208, 211, 214),
                           fontSize: 15),

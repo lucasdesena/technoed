@@ -32,19 +32,20 @@ class ListaRelatorios extends StatelessWidget {
                       );
                     },
                     child: ListTile(
-                      //tileColor: const Color.fromARGB(255, 202, 240, 248),
+                      tileColor: const Color.fromARGB(255, 202, 240, 248),
                       title: Column(
                         children: <Widget>[
                           Text(
-                            'Relatório do Desafio: \n${doc['titulo']}',
+                            'Relatório do desafio: \n${doc['titulo']}',
                             textAlign: TextAlign.center,
-                            //style: const TextStyle(fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            doc['grupo'],
+                            'Grupo: ${doc['grupo']}',
                             style: const TextStyle(
                                 color: Color.fromARGB(255, 109, 110, 110),
-                                fontSize: 15),
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),

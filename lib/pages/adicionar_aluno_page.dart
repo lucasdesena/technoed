@@ -37,7 +37,7 @@ class _AdicionarAlunoPageState extends State<AdicionarAlunoPage> {
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
                 Text(
-                  'Adicione novos alunos ao grupo',
+                  'Adicione alunos ao grupo',
                   style: TextStyle(
                       color: Color.fromARGB(255, 208, 211, 214), fontSize: 15),
                 ),

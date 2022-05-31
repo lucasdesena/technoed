@@ -124,7 +124,10 @@ class _AlunoPageState extends State<AlunoPage> {
                               ),
                               Text(
                                 pontos.toString(),
-                                style: const TextStyle(fontSize: 15),
+                                style: const TextStyle(
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.yellow),
                               ),
                             ],
                           ),

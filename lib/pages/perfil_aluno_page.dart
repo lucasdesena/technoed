@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -138,7 +139,7 @@ class _PerfilAlunoPageState extends State<PerfilAlunoPage> {
                                 Text(
                                   widget.elo,
                                   style: const TextStyle(
-                                    color: Colors.grey,
+                                    color: Colors.blueGrey,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 20,
                                   ),
@@ -163,13 +164,31 @@ class _PerfilAlunoPageState extends State<PerfilAlunoPage> {
                     children: <Widget>[
                       const Icon(
                         MdiIcons.star,
-                        color: Colors.yellow,
-                        size: 20,
+                        color: Colors.amber,
+                        size: 25,
                       ),
-                      Text(
+                      AnimatedTextKit(
+                        animatedTexts: [
+                          ColorizeAnimatedText(
+                            widget.pontos.toString(),
+                            colors: [
+                              Colors.amber,
+                              Colors.amber,
+                              const Color.fromARGB(255, 231, 235, 6),
+                              const Color.fromARGB(255, 6, 236, 56),
+                              const Color.fromARGB(255, 48, 6, 236),
+                            ],
+                            speed: const Duration(milliseconds: 800),
+                            textAlign: TextAlign.center,
+                            textStyle: const TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.bold),
+                          )
+                        ],
+                      ),
+                      /*Text(
                         widget.pontos.toString(),
                         style: const TextStyle(fontSize: 15),
-                      ),
+                      ),*/
                     ],
                   ),
                 ),
@@ -228,10 +247,10 @@ class _PerfilAlunoPageState extends State<PerfilAlunoPage> {
                     ),
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return 'Informe o nome corretamente!';
+                        return 'O campo não pode estar vazio.';
                       }
                       if (value == widget.nome) {
-                        return 'O nome já está cadastrado';
+                        return 'O nome já está cadastrado.';
                       }
                       return null;
                     },

@@ -97,17 +97,47 @@ class _RelatorioPageState extends State<RelatorioPage> {
                       }
                       return Card(
                         child: ListTile(
+                          tileColor: const Color.fromARGB(255, 202, 240, 248),
                           title: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Text('Nome: $nome'),
-                              Text('Email: $email'),
                               Text(
-                                  'Quantidade de erros no Tangram: ${errosTangram.toString()}'),
+                                'Nome: $nome',
+                                style: const TextStyle(
+                                  color: Color.fromARGB(255, 143, 146, 148),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                               Text(
-                                  'Quantidade de erros nas Perguntas: ${errosPerguntas.toString()}'),
+                                'Email: $email',
+                                style: const TextStyle(
+                                  color: Color.fromARGB(255, 143, 146, 148),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                'Quantidade de erros no Tangram: ${errosTangram.toString()}',
+                                style: const TextStyle(
+                                  color: Color.fromARGB(255, 143, 146, 148),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                'Quantidade de erros nas perguntas: ${errosPerguntas.toString()}',
+                                style: const TextStyle(
+                                  color: Color.fromARGB(255, 143, 146, 148),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
                               perguntasErradas.isNotEmpty
-                                  ? const Text('Perguntas que errou:')
+                                  ? const Text(
+                                      'Perguntas que errou:',
+                                      style: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 143, 146, 148),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
                                   : const Padding(padding: EdgeInsets.all(0.0)),
                               perguntasErradas.isNotEmpty
                                   ? ListView.builder(
@@ -115,9 +145,23 @@ class _RelatorioPageState extends State<RelatorioPage> {
                                       itemCount: perguntasErradas.length,
                                       itemBuilder:
                                           (BuildContext context, int index) {
-                                        return Text(perguntasErradas[index]);
+                                        return Text(
+                                          perguntasErradas[index],
+                                          style: const TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 143, 146, 148),
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        );
                                       })
-                                  : const Text('Acertou todas as perguntas')
+                                  : const Text(
+                                      'Acertou todas as perguntas',
+                                      style: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 143, 146, 148),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    )
                             ],
                           ),
                         ),

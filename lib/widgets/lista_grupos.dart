@@ -33,6 +33,7 @@ class ListaGrupos extends StatelessWidget {
                     );
                   },
                   child: ListTile(
+                    tileColor: const Color.fromARGB(255, 202, 240, 248),
                     trailing: GestureDetector(
                       onTap: () {
                         showDialog(
@@ -69,9 +70,17 @@ class ListaGrupos extends StatelessWidget {
                         color: Colors.red,
                       ),
                     ),
+                    leading: const Icon(
+                      Icons.groups_outlined,
+                      color: Color.fromARGB(255, 143, 146, 148),
+                    ),
                     title: Text(
                       doc.id,
-                      textAlign: TextAlign.center,
+                      // textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 143, 146, 148),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
