@@ -29,8 +29,11 @@ class AuthService extends ChangeNotifier {
   }
 
   registrar(String email, String senha) async {
+    String uid = '';
     try {
-      await _auth.createUserWithEmailAndPassword(email: email, password: senha);
+      await _auth
+          .createUserWithEmailAndPassword(email: email, password: senha)
+          .then((value) => uid = value.user!.uid);
       _getUser();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
@@ -39,6 +42,7 @@ class AuthService extends ChangeNotifier {
         throw AuthException('Este email já está cadastrado');
       }
     }
+    return uid;
   }
 
   login(String email, String senha) async {

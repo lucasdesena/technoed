@@ -69,15 +69,19 @@ class _LoginPageState extends State<LoginPage> {
   registrar() async {
     setState(() => loading = true);
     try {
-      await context.read<AuthService>().registrar(email.text, senha.text);
-      String uid = context.read<AuthService>().usuario!.uid;
-      if (uid.isNotEmpty) {
-        await CadastroService()
-            .cadastrarDados(uid, nome.text, email.text, dropdownValue);
-        if (dropdownValue == 'Aluno') {
-          await CadastroService().cadastrarPontuacao(uid);
+      await context
+          .read<AuthService>()
+          .registrar(email.text, senha.text)
+          .then((value) {
+        String uid = value;
+        if (uid.isNotEmpty) {
+          CadastroService()
+              .cadastrarDados(uid, nome.text, email.text, dropdownValue);
+          if (dropdownValue == 'Aluno') {
+            CadastroService().cadastrarPontuacao(uid);
+          }
         }
-      }
+      });
     } on AuthException catch (e) {
       setState(() => loading = false);
       ScaffoldMessenger.of(context)
