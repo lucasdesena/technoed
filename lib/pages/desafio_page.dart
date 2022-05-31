@@ -217,8 +217,7 @@ class _DesafioPageState extends State<DesafioPage> {
                                         .map((doc) => doc['emails'])
                                         .single);
                                 if (listaEmails.isEmpty) {
-                                  cadastro.excluirDesafio(
-                                      widget.idDesafio, listaEmails);
+                                  cadastro.excluirDesafio(widget.idDesafio);
                                 }
                                 showDialog(
                                   context: context,

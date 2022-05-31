@@ -176,7 +176,7 @@ class CadastroService extends ChangeNotifier {
     });
   }
 
-  excluirDesafio(String nomeDesafio, List<String> listaEmails) async {
+  excluirDesafio(String nomeDesafio) async {
     await db.collection('desafios').doc(nomeDesafio).delete();
   }
 }
