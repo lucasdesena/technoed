@@ -113,7 +113,7 @@ class _DesafioPageState extends State<DesafioPage> {
                   Container(
                     alignment: Alignment.centerRight,
                     child: IconButton(
-                        tooltip: 'Sair da Conta',
+                        tooltip: 'Sair do Desafio',
                         padding: const EdgeInsets.only(right: 5, bottom: 5),
                         icon: const Icon(
                           MdiIcons.close,
