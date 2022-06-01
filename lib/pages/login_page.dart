@@ -116,6 +116,8 @@ class _LoginPageState extends State<LoginPage> {
                           child: TextFormField(
                             maxLength: 14,
                             controller: nome,
+                            showCursor: true,
+                            cursorColor: Colors.white,
                             decoration: const InputDecoration(
                               prefixIcon: Icon(
                                 MdiIcons.accountOutline,
@@ -153,6 +155,8 @@ class _LoginPageState extends State<LoginPage> {
                         : const EdgeInsets.fromLTRB(24, 96, 24, 12),
                     child: TextFormField(
                       controller: email,
+                      showCursor: true,
+                      cursorColor: Colors.white,
                       decoration: const InputDecoration(
                         prefixIcon: Icon(
                           Icons.email_outlined,
@@ -187,6 +191,8 @@ class _LoginPageState extends State<LoginPage> {
                     child: TextFormField(
                       controller: senha,
                       obscureText: true,
+                      showCursor: true,
+                      cursorColor: Colors.white,
                       decoration: const InputDecoration(
                         prefixIcon: Icon(
                           Icons.lock_outline,
@@ -223,6 +229,8 @@ class _LoginPageState extends State<LoginPage> {
                           child: TextFormField(
                             controller: repetirSenha,
                             obscureText: true,
+                            showCursor: true,
+                            cursorColor: Colors.white,
                             decoration: const InputDecoration(
                               prefixIcon: Icon(
                                 Icons.lock_outline,
@@ -255,48 +263,43 @@ class _LoginPageState extends State<LoginPage> {
                       : const Padding(padding: EdgeInsets.all(0)),
                   !isLogin
                       ? Padding(
-                          padding: const EdgeInsets.all(12.0),
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: const Color.fromARGB(255, 0, 180, 216),
-                                borderRadius: BorderRadius.circular(5)),
-                            child: DropdownButtonFormField<String>(
-                                decoration: const InputDecoration(
-                                  enabledBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.white)),
-                                  border: OutlineInputBorder(),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide:
-                                          BorderSide(color: Colors.white)),
-                                ),
-                                isExpanded: true,
-                                value: dropdownValue,
-                                icon: const Icon(
-                                  MdiIcons.chevronDown,
-                                  color: Colors.white,
-                                ),
-                                iconSize: 20,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                ),
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    dropdownValue = newValue!;
-                                  });
-                                },
-                                items: <String>[
-                                  'Aluno',
-                                  'Professor'
-                                ].map<DropdownMenuItem<String>>((String value) {
-                                  return DropdownMenuItem<String>(
-                                    value: value,
-                                    child: Center(
-                                      child: Text(value),
-                                    ),
-                                  );
-                                }).toList()),
-                          ),
+                          padding: const EdgeInsets.fromLTRB(22, 6, 22, 0),
+                          child: DropdownButtonFormField<String>(
+                              decoration: const InputDecoration(
+                                enabledBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.white)),
+                                border: OutlineInputBorder(),
+                                focusedBorder: OutlineInputBorder(
+                                    borderSide:
+                                        BorderSide(color: Colors.white)),
+                              ),
+                              isExpanded: true,
+                              value: dropdownValue,
+                              icon: const Icon(
+                                MdiIcons.chevronDown,
+                                color: Colors.white,
+                              ),
+                              iconSize: 20,
+                              style: const TextStyle(
+                                color: Colors.white,
+                              ),
+                              onChanged: (newValue) {
+                                setState(() {
+                                  dropdownValue = newValue!;
+                                });
+                              },
+                              items: <String>[
+                                'Aluno',
+                                'Professor'
+                              ].map<DropdownMenuItem<String>>((String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Center(
+                                    child: Text(value),
+                                  ),
+                                );
+                              }).toList()),
                         )
                       : const Padding(padding: EdgeInsets.all(0)),
                   Padding(
