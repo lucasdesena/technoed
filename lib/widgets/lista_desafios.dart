@@ -63,7 +63,7 @@ class ListaDesafios extends StatelessWidget {
                   ),
                 );
               } else {
-                return Card();
+                return const Card();
               }
             }).toList(),
           );

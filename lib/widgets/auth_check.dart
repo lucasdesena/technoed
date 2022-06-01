@@ -5,7 +5,7 @@ import 'package:technoed/pages/login_page.dart';
 import 'package:technoed/services/auth_service.dart';
 
 class AuthCheck extends StatefulWidget {
-  AuthCheck({Key? key}) : super(key: key);
+  const AuthCheck({Key? key}) : super(key: key);
 
   @override
   _AuthCheckState createState() => _AuthCheckState();
@@ -16,12 +16,13 @@ class _AuthCheckState extends State<AuthCheck> {
   Widget build(BuildContext context) {
     AuthService auth = Provider.of<AuthService>(context);
 
-    if (auth.isLoading)
+    if (auth.isLoading) {
       return loading();
-    else if (auth.usuario == null)
-      return LoginPage();
-    else
+    } else if (auth.usuario == null) {
+      return const LoginPage();
+    } else {
       return HomePage(auth);
+    }
   }
 
   loading() {

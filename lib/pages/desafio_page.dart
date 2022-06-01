@@ -179,7 +179,6 @@ class _DesafioPageState extends State<DesafioPage> {
                           ),
                         ),
                         onWillAccept: (data) {
-                          print(data);
                           return true;
                         },
                         onAccept: (data) {

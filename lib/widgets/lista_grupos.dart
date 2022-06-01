@@ -76,7 +76,7 @@ class ListaGrupos extends StatelessWidget {
                     ),
                     title: Text(
                       doc.id,
-                      // textAlign: TextAlign.center,
+                      textAlign: TextAlign.center,
                       style: const TextStyle(
                         color: Color.fromARGB(255, 143, 146, 148),
                         fontWeight: FontWeight.bold,

@@ -2,16 +2,16 @@ class Posicao {
   Posicao(this._x, this._y);
 
   setPosition(double x, double y) {
-    this._x = x;
-    this._y = y - 80;
+    _x = x;
+    _y = y - 80;
   }
 
   double get x {
-    return this._x;
+    return _x;
   }
 
   double get y {
-    return this._y;
+    return _y;
   }
 
   double _x;

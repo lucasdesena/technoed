@@ -34,22 +34,26 @@ class ListaRelatorios extends StatelessWidget {
                     },
                     child: ListTile(
                       tileColor: const Color.fromARGB(255, 202, 240, 248),
-                      title: Text(
-                        'Relatório do desafio: \n${doc['titulo']}',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(fontWeight: FontWeight.bold),
-                      ),
                       leading: const Icon(
                         MdiIcons.fileChartOutline,
                         size: 35,
                         color: Color.fromARGB(255, 143, 146, 148),
                       ),
-                      subtitle: Text(
-                        'Grupo: ${doc['grupo']}',
-                        style: const TextStyle(
-                            color: Color.fromARGB(255, 109, 110, 110),
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.center,
+                      title: Center(
+                        child: Text(
+                          'Relatório do desafio: \n${doc['titulo']}',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      subtitle: Center(
+                        child: Text(
+                          'Grupo: ${doc['grupo']}',
+                          style: const TextStyle(
+                              color: Color.fromARGB(255, 109, 110, 110),
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                       trailing: Text(
                         doc['dataDesafio'],
@@ -59,7 +63,7 @@ class ListaRelatorios extends StatelessWidget {
                   ),
                 );
               } else {
-                return Card();
+                return const Card();
               }
             }).toList(),
           );

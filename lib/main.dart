@@ -13,7 +13,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (context) => AuthService()),
       ],
-      child: MeuAplicativo(),
+      child: const MeuAplicativo(),
     ),
   );
 }
