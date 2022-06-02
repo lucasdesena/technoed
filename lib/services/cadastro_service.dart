@@ -117,11 +117,11 @@ class CadastroService extends ChangeNotifier {
     String elo = 'nenhum';
 
     if (calculo > 0 && calculo < 360) {
-      elo = 'bronze';
+      elo = 'Bronze';
     } else if (calculo >= 360 && calculo < 720) {
-      elo = 'prata';
+      elo = 'Prata';
     } else if (calculo >= 720) {
-      elo = 'ouro';
+      elo = 'Ouro';
     }
 
     await db

@@ -43,7 +43,7 @@ class _ListaDesafiosPageState extends State<ListaDesafiosPage> {
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     Text(
-                      'Escolha um desafio e... divirta-se!',
+                      'Escolha um desafio e divirta-se!',
                       style: TextStyle(
                           color: Color.fromARGB(255, 208, 211, 214),
                           fontSize: 15),
