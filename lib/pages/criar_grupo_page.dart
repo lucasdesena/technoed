@@ -97,7 +97,7 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                                 return 'O campo não pode estar vazio.';
                               }
                               if (resultado == true) {
-                                return 'Você já tem um grupo criado com esse nome.';
+                                return 'Já existe um grupo com esse nome.';
                               }
                               return null;
                             },
@@ -216,7 +216,7 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                               style: TextStyle(fontSize: 16),
                             )
                           : const Text(
-                              'Lista de Alunos:',
+                              'Lista de alunos:',
                               style: TextStyle(fontSize: 16),
                             ),
                     ],
@@ -234,7 +234,8 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                                         color: Colors.white),
                                     child: Text(element,
                                         style: const TextStyle(
-                                            color: Colors.black)),
+                                            color: Colors.black,
+                                            fontWeight: FontWeight.bold)),
                                   ),
                                 ))
                             .toList()),

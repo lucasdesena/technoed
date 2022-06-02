@@ -33,7 +33,7 @@ class _GrupoPageState extends State<GrupoPage> {
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
                 Text(
-                  'Adicione e remova alunos',
+                  'Adicione e remova os alunos',
                   style: TextStyle(
                       color: Color.fromARGB(255, 208, 211, 214), fontSize: 15),
                 ),
@@ -79,7 +79,7 @@ class _GrupoPageState extends State<GrupoPage> {
                                     textAlign: TextAlign.center,
                                   ),
                                   content: const Text(
-                                    'Deseja excluir esse email?',
+                                    'Deseja remover este aluno?',
                                     textAlign: TextAlign.center,
                                   ),
                                   actions: <Widget>[
@@ -87,9 +87,9 @@ class _GrupoPageState extends State<GrupoPage> {
                                       onPressed: () {
                                         cadastro.excluirEmails(widget.uid,
                                             widget.nomeGrupo, email);
-                                        Navigator.pop(context, 'Confirmar');
+                                        Navigator.pop(context, 'Sim');
                                       },
-                                      child: const Text('Confirmar'),
+                                      child: const Text('Sim'),
                                     ),
                                     TextButton(
                                       onPressed: () =>

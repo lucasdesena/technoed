@@ -299,6 +299,13 @@ class _ProfessorPageState extends State<ProfessorPage> {
                 ],
               ),
             ),
+            Container(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: SizedBox(
+                height: 90,
+                child: Image.asset('assets/images/logo-alt.png'),
+              ),
+            ),
           ],
         ),
       ),

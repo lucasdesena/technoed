@@ -227,20 +227,20 @@ class _DesafioPageState extends State<DesafioPage> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: const <Widget>[
-                                        Text(
-                                          'Parabéns',
-                                        ),
+                                        // Text(
+                                        //   'Parabéns!',
+                                        // ),
                                         Icon(
                                           MdiIcons.star,
-                                          color: Colors.yellow,
-                                          size: 20,
+                                          color: Colors.amber,
+                                          size: 40,
                                         ),
                                       ],
                                     ),
                                     content: AnimatedTextKit(
                                       animatedTexts: [
                                         ColorizeAnimatedText(
-                                          'Você ganhou $pontuacaoTotal ponto(s) no desafio',
+                                          'Parabéns!\n\nVocê ganhou $pontuacaoTotal ponto(s) no desafio!',
                                           colors: [
                                             Colors.black,
                                             const Color.fromARGB(
@@ -256,7 +256,7 @@ class _DesafioPageState extends State<DesafioPage> {
                                               const Duration(milliseconds: 400),
                                           textAlign: TextAlign.center,
                                           textStyle:
-                                              const TextStyle(fontSize: 16),
+                                              const TextStyle(fontSize: 20),
                                         )
                                       ],
                                     ),

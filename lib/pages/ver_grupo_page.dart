@@ -28,7 +28,7 @@ class _VerGrupoPageState extends State<VerGrupoPage> {
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     Text(
-                      'Acesse ou remova seus grupos',
+                      'Acesse e remova seus grupos',
                       style: TextStyle(
                           color: Color.fromARGB(255, 208, 211, 214),
                           fontSize: 15),

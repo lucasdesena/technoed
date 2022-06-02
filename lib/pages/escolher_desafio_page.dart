@@ -38,7 +38,7 @@ class _EscolherDesafioState extends State<EscolherDesafioPage> {
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                   Text(
-                    'Escolha a dificuldade do Tangram',
+                    'Escolha a dificuldade do desafio',
                     style: TextStyle(
                         color: Color.fromARGB(255, 208, 211, 214),
                         fontSize: 15),
@@ -101,7 +101,7 @@ class _EscolherDesafioState extends State<EscolherDesafioPage> {
             const Padding(
               padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
               child: Text(
-                'Descrição: Tangram com 7 peças e 7 perguntas.',
+                'Tangram com 7 peças e 7 perguntas',
                 style: TextStyle(
                     fontSize: 15, color: Color.fromARGB(255, 143, 146, 148)),
               ),
@@ -161,7 +161,7 @@ class _EscolherDesafioState extends State<EscolherDesafioPage> {
             const Padding(
               padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
               child: Text(
-                'Descrição: Tangram com 9 peças e 9 perguntas.',
+                'Tangram com 9 peças e 9 perguntas',
                 style: TextStyle(
                     fontSize: 15, color: Color.fromARGB(255, 143, 146, 148)),
               ),

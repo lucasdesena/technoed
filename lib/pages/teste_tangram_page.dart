@@ -45,11 +45,11 @@ class _TesteTangramPageState extends State<TesteTangramPage> {
               foregroundColor: const Color.fromARGB(255, 143, 146, 148),
               toolbarHeight: 60,
               title: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: const <Widget>[
                   Text(
                     'Clique nas peças e use-as para \nmontar a figura',
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.left,
                     style: TextStyle(
                         color: Color.fromARGB(255, 143, 146, 148),
                         fontSize: 15),

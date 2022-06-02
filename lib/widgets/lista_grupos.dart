@@ -45,16 +45,16 @@ class ListaGrupos extends StatelessWidget {
                               textAlign: TextAlign.center,
                             ),
                             content: const Text(
-                              'Deseja excluir esse grupo?',
+                              'Deseja remover este grupo?',
                               textAlign: TextAlign.center,
                             ),
                             actions: <Widget>[
                               TextButton(
                                 onPressed: () {
                                   cadastro.excluirGrupo(uid, doc.id);
-                                  Navigator.pop(context, 'Confirmar');
+                                  Navigator.pop(context, 'Sim');
                                 },
-                                child: const Text('Confirmar'),
+                                child: const Text('Sim'),
                               ),
                               TextButton(
                                 onPressed: () =>

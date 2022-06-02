@@ -118,9 +118,10 @@ class _PerfilAlunoPageState extends State<PerfilAlunoPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Container(
-                            padding: const EdgeInsets.only(right: 10.0),
+                            padding:
+                                const EdgeInsets.only(right: 10.0, top: 10.0),
                             child: SizedBox(
-                              height: 100,
+                              height: 90,
                               child: Image(image: retornarElo(widget.elo)),
                             ),
                           ),
@@ -218,44 +219,55 @@ class _PerfilAlunoPageState extends State<PerfilAlunoPage> {
           ),
           Expanded(
             child: SingleChildScrollView(
-              child: Form(
-                key: formKey,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 6, 24, 6),
-                  child: TextFormField(
-                    maxLength: 14,
-                    controller: nome,
-                    decoration: const InputDecoration(
-                      prefixIcon: Icon(
-                        MdiIcons.accountOutline,
-                        color: Colors.black,
-                      ),
-                      labelText: 'Nome',
-                      labelStyle: TextStyle(
-                        color: Colors.black,
-                      ),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black),
+              child: Column(
+                children: [
+                  Form(
+                    key: formKey,
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(24, 6, 24, 6),
+                      child: TextFormField(
+                        maxLength: 14,
+                        controller: nome,
+                        decoration: const InputDecoration(
+                          prefixIcon: Icon(
+                            MdiIcons.accountOutline,
+                            color: Colors.black,
+                          ),
+                          labelText: 'Nome',
+                          labelStyle: TextStyle(
+                            color: Colors.black,
+                          ),
+                          enabledBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                          focusedBorder: UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.black),
+                          ),
+                        ),
+                        keyboardType: TextInputType.name,
+                        style: const TextStyle(
+                          color: Colors.black,
+                        ),
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'O campo não pode estar vazio.';
+                          }
+                          if (value == widget.nome) {
+                            return 'O nome já está cadastrado.';
+                          }
+                          return null;
+                        },
                       ),
                     ),
-                    keyboardType: TextInputType.name,
-                    style: const TextStyle(
-                      color: Colors.black,
-                    ),
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return 'O campo não pode estar vazio.';
-                      }
-                      if (value == widget.nome) {
-                        return 'O nome já está cadastrado.';
-                      }
-                      return null;
-                    },
                   ),
-                ),
+                  Container(
+                    padding: const EdgeInsets.only(top: 221.0),
+                    child: SizedBox(
+                      height: 90,
+                      child: Image.asset('assets/images/logo-alt.png'),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

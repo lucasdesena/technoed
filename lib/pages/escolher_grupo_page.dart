@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:technoed/services/auth_service.dart';
 import 'package:technoed/services/cadastro_service.dart';
@@ -127,9 +128,22 @@ class _EscolherGrupoPageState extends State<EscolherGrupoPage> {
                             }
                           },
                           child: ListTile(
+                            tileColor: const Color.fromARGB(255, 202, 240, 248),
+                            leading: const Icon(
+                              Icons.groups_outlined,
+                              color: Color.fromARGB(255, 143, 146, 148),
+                            ),
                             title: Text(
                               doc.id,
                               textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                color: Color.fromARGB(255, 143, 146, 148),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            trailing: const Icon(
+                              MdiIcons.listStatus,
+                              color: Color.fromARGB(255, 143, 146, 148),
                             ),
                           ),
                         ),

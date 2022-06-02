@@ -45,7 +45,7 @@ class _GerenciarGruposState extends State<GerenciarGruposPage> {
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
                 Text(
-                  'Crie e veja seus grupos de alunos',
+                  'Crie e veja os grupos de alunos',
                   style: TextStyle(
                       color: Color.fromARGB(255, 208, 211, 214), fontSize: 15),
                 )
