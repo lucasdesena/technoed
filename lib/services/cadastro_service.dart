@@ -99,6 +99,34 @@ class CadastroService extends ChangeNotifier {
         .firstWhere((documento) => documento.id == 'cadastro')['nome'];
   }
 
+  obterPerguntas(String idDesafio) async {
+    DocumentSnapshot resultado =
+        await db.collection('desafios').doc(idDesafio).get();
+
+    return List<String>.from(resultado['perguntas']);
+  }
+
+  obterAlternativas(String idDesafio) async {
+    DocumentSnapshot resultado =
+        await db.collection('desafios').doc(idDesafio).get();
+
+    return List<String>.from(resultado['alternativas']);
+  }
+
+  obterRespostas(String idDesafio) async {
+    DocumentSnapshot resultado =
+        await db.collection('desafios').doc(idDesafio).get();
+
+    return List<String>.from(resultado['respostas']);
+  }
+
+  obterIdRelatorio(String idDesafio) async {
+    DocumentSnapshot resultado =
+        await db.collection('desafios').doc(idDesafio).get();
+
+    return resultado['idRelatorio'];
+  }
+
   adicionarEmail(String uid, String nomeGrupo, String email) async {
     List<String> lista = [email];
     await db
