@@ -28,16 +28,11 @@ class _DesafioPageState extends State<DesafioPage> {
   int shapeOfCount = 0;
   int shapeCount = 0;
 
-  List<String> perguntas = [];
-  List<String> alternativas = [];
-  List<String> respostas = [];
-
-  String idRelatorio = '';
-
   int pontuacaoTotal = 0;
   int qtdErrosTangram = 0;
 
   List<int> qtdErrosPerguntas = [];
+
   List<String> perguntasErradas = [];
 
   DateTime dataRealizada = DateTime.now();
@@ -56,31 +51,7 @@ class _DesafioPageState extends State<DesafioPage> {
         shapeOfCount = Dificuldades().niveis[7].shapeOfCount;
       }
     });
-    obterDados(widget.idDesafio);
-    Future.delayed(const Duration(seconds: 20), () {
-      cadastro.acessarDesafio(widget.idDesafio, widget.emailAluno);
-    });
-  }
-
-  obterDados(String idDesafio) {
-    cadastro.obterPerguntas(idDesafio).then((value) => setState(() {
-          for (var pergunta in value) {
-            perguntas.add(pergunta);
-          }
-        }));
-    cadastro.obterAlternativas(idDesafio).then((value) => setState(() {
-          for (var alternativa in value) {
-            alternativas.add(alternativa);
-          }
-        }));
-    cadastro.obterRespostas(idDesafio).then((value) => setState(() {
-          for (var pergunta in value) {
-            respostas.add(pergunta);
-          }
-        }));
-    cadastro.obterIdRelatorio(idDesafio).then((value) => setState(() {
-          idRelatorio = value;
-        }));
+    cadastro.acessarDesafio(widget.idDesafio, widget.emailAluno);
   }
 
   bool tangramFinalizado() {
@@ -187,370 +158,440 @@ class _DesafioPageState extends State<DesafioPage> {
               ),
             ),
             ...pecas.map(
-              (shapeModel) => Positioned(
-                top: shapeModel.targetPosition.x,
-                left: shapeModel.targetPosition.y,
-                child: DragTarget<Forma>(
-                  builder: (context, candidateData, rejectedData) =>
-                      RotationTransition(
-                    turns: AlwaysStoppedAnimation(shapeModel.rotationAngle),
-                    child: ClipPath(
-                      child: Container(
-                        color: shapeModel.targetColor,
-                        width: shapeModel.width,
-                        height: shapeModel.height,
-                      ),
-                      clipper: shapeModel.shape,
-                    ),
-                  ),
-                  onWillAccept: (data) {
-                    return true;
-                  },
-                  onAccept: (data) {
-                    if (data.id == shapeModel.id) {
-                      setState(() {
-                        data.isPlaced = true;
-                        data.targetColor = data.color;
-                        shapeCount++;
-
-                        if (tangramFinalizado()) {
-                          obterNomeEAdicionarDesafioConcluido(
-                              uid,
-                              idRelatorio,
-                              email,
-                              qtdErrosTangram,
-                              qtdErrosPerguntas,
-                              perguntasErradas,
-                              DateFormat('dd/MM/yyyy').format(dataRealizada));
-
-                          if (pontuacaoTotal > 0) {
-                            cadastro.adicionarPontuacao(uid, pontuacaoTotal);
-                          }
-
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) => AlertDialog(
-                              actionsAlignment: MainAxisAlignment.center,
-                              title: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: const <Widget>[
-                                  // Text(
-                                  //   'Parabéns!',
-                                  // ),
-                                  Icon(
-                                    MdiIcons.star,
-                                    color: Colors.amber,
-                                    size: 40,
-                                  ),
-                                ],
-                              ),
-                              content: AnimatedTextKit(
-                                animatedTexts: [
-                                  ColorizeAnimatedText(
-                                    'Parabéns!\n\nVocê ganhou $pontuacaoTotal ponto(s) no desafio!',
-                                    colors: [
-                                      Colors.black,
-                                      const Color.fromARGB(255, 0, 180, 216),
-                                      const Color.fromARGB(255, 231, 235, 6),
-                                      const Color.fromARGB(255, 6, 236, 56),
-                                      const Color.fromARGB(255, 48, 6, 236),
-                                    ],
-                                    speed: const Duration(milliseconds: 400),
-                                    textAlign: TextAlign.center,
-                                    textStyle: const TextStyle(fontSize: 20),
-                                  )
-                                ],
-                              ),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context, 'Ok'),
-                                  child: const Text('Ok'),
-                                ),
-                              ],
+              (shapeModel) => StreamBuilder<QuerySnapshot>(
+                  stream: cadastro.db.collection('desafios').snapshots(),
+                  builder: (context, snapshot) {
+                    return Positioned(
+                      top: shapeModel.targetPosition.x,
+                      left: shapeModel.targetPosition.y,
+                      child: DragTarget<Forma>(
+                        builder: (context, candidateData, rejectedData) =>
+                            RotationTransition(
+                          turns:
+                              AlwaysStoppedAnimation(shapeModel.rotationAngle),
+                          child: ClipPath(
+                            child: Container(
+                              color: shapeModel.targetColor,
+                              width: shapeModel.width,
+                              height: shapeModel.height,
                             ),
-                          ).then((value) => Navigator.pop(context));
-                        }
-                      });
-                    } else {
-                      pontuacaoTotal -= 1;
-                      qtdErrosTangram += 1;
-                    }
-                  },
-                ),
-              ),
+                            clipper: shapeModel.shape,
+                          ),
+                        ),
+                        onWillAccept: (data) {
+                          return true;
+                        },
+                        onAccept: (data) {
+                          if (data.id == shapeModel.id) {
+                            setState(() {
+                              data.isPlaced = true;
+                              data.targetColor = data.color;
+                              shapeCount++;
+
+                              if (tangramFinalizado()) {
+                                String idRelatorio = snapshot.data!.docs
+                                    .where((desafio) =>
+                                        desafio.id == widget.idDesafio)
+                                    .map((doc) => doc['idRelatorio'])
+                                    .single;
+
+                                obterNomeEAdicionarDesafioConcluido(
+                                    uid,
+                                    idRelatorio,
+                                    email,
+                                    qtdErrosTangram,
+                                    qtdErrosPerguntas,
+                                    perguntasErradas,
+                                    DateFormat('dd/MM/yyyy')
+                                        .format(dataRealizada));
+
+                                if (pontuacaoTotal > 0) {
+                                  cadastro.adicionarPontuacao(
+                                      uid, pontuacaoTotal);
+                                }
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      AlertDialog(
+                                    actionsAlignment: MainAxisAlignment.center,
+                                    title: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: const <Widget>[
+                                        Icon(
+                                          MdiIcons.star,
+                                          color: Colors.amber,
+                                          size: 40,
+                                        ),
+                                      ],
+                                    ),
+                                    content: AnimatedTextKit(
+                                      animatedTexts: [
+                                        ColorizeAnimatedText(
+                                          'Parabéns!\n\nVocê ganhou $pontuacaoTotal ponto(s) no desafio!',
+                                          colors: [
+                                            Colors.black,
+                                            const Color.fromARGB(
+                                                255, 0, 180, 216),
+                                            const Color.fromARGB(
+                                                255, 231, 235, 6),
+                                            const Color.fromARGB(
+                                                255, 6, 236, 56),
+                                            const Color.fromARGB(
+                                                255, 48, 6, 236),
+                                          ],
+                                          speed:
+                                              const Duration(milliseconds: 400),
+                                          textAlign: TextAlign.center,
+                                          textStyle:
+                                              const TextStyle(fontSize: 20),
+                                        )
+                                      ],
+                                    ),
+                                    actions: <Widget>[
+                                      TextButton(
+                                        onPressed: () =>
+                                            Navigator.pop(context, 'Ok'),
+                                        child: const Text('Ok'),
+                                      ),
+                                    ],
+                                  ),
+                                ).then((value) => Navigator.pop(context));
+                              }
+                            });
+                          } else {
+                            pontuacaoTotal -= 1;
+                            qtdErrosTangram += 1;
+                          }
+                        },
+                      ),
+                    );
+                  }),
             ),
             ...pecas.map(
               (shapeModel) => (shapeModel.isPlaced)
                   ? Container()
-                  : Positioned(
-                      top: shapeModel.position.y,
-                      left: shapeModel.position.x,
-                      child: Draggable(
-                        feedback: RotationTransition(
-                          turns:
-                              AlwaysStoppedAnimation(shapeModel.rotationAngle),
-                          child: ClipPath(
-                            child: Container(
-                              color: shapeModel.color,
-                              width: shapeModel.width,
-                              height: shapeModel.height,
+                  : StreamBuilder<QuerySnapshot>(
+                      stream: cadastro.db.collection('desafios').snapshots(),
+                      builder: (context, snapshot) {
+                        return Positioned(
+                          top: shapeModel.position.y,
+                          left: shapeModel.position.x,
+                          child: Draggable(
+                            feedback: RotationTransition(
+                              turns: AlwaysStoppedAnimation(
+                                  shapeModel.rotationAngle),
+                              child: ClipPath(
+                                child: Container(
+                                  color: shapeModel.color,
+                                  width: shapeModel.width,
+                                  height: shapeModel.height,
+                                ),
+                                clipper: shapeModel.shape,
+                              ),
                             ),
-                            clipper: shapeModel.shape,
-                          ),
-                        ),
-                        data: shapeModel,
-                        child: RotationTransition(
-                          turns:
-                              AlwaysStoppedAnimation(shapeModel.rotationAngle),
-                          child: ClipPath(
-                            child: Container(
-                              color: shapeModel.color,
-                              width: shapeModel.width,
-                              height: shapeModel.height,
+                            data: shapeModel,
+                            child: RotationTransition(
+                              turns: AlwaysStoppedAnimation(
+                                  shapeModel.rotationAngle),
+                              child: ClipPath(
+                                child: Container(
+                                  color: shapeModel.color,
+                                  width: shapeModel.width,
+                                  height: shapeModel.height,
+                                ),
+                                clipper: shapeModel.shape,
+                              ),
                             ),
-                            clipper: shapeModel.shape,
-                          ),
-                        ),
-                        childWhenDragging: Container(),
-                        onDragStarted: () {
-                          int indice = shapeModel.id - 1;
+                            childWhenDragging: Container(),
+                            onDragStarted: () {
+                              int numeroDaPergunta = shapeModel.id - 1;
 
-                          String pergunta = perguntas[indice];
+                              String pergunta = snapshot.data!.docs
+                                  .where((desafio) =>
+                                      desafio.id == widget.idDesafio)
+                                  .map((doc) =>
+                                      doc['perguntas'][numeroDaPergunta])
+                                  .single;
 
-                          String resposta = respostas[indice];
+                              String resposta = snapshot.data!.docs
+                                  .where((desafio) =>
+                                      desafio.id == widget.idDesafio)
+                                  .map((doc) =>
+                                      doc['respostas'][numeroDaPergunta])
+                                  .single;
 
-                          List<String> alternativasDaPergunta = [];
+                              List<String> alternativas = [];
 
-                          switch (indice) {
-                            case 0:
-                              for (var i = 0; i < 3; i++) {
-                                alternativasDaPergunta.add(alternativas[i]);
+                              switch (numeroDaPergunta) {
+                                case 0:
+                                  for (var i = 0; i < 3; i++) {
+                                    alternativas.add(snapshot.data!.docs
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
+                                        .map((doc) => doc['alternativas'][i])
+                                        .single);
+                                  }
+                                  break;
+                                case 1:
+                                  for (var i = 3; i < 6; i++) {
+                                    alternativas.add(snapshot.data!.docs
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
+                                        .map((doc) => doc['alternativas'][i])
+                                        .single);
+                                  }
+                                  break;
+                                case 2:
+                                  for (var i = 6; i < 9; i++) {
+                                    alternativas.add(snapshot.data!.docs
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
+                                        .map((doc) => doc['alternativas'][i])
+                                        .single);
+                                  }
+                                  break;
+                                case 3:
+                                  for (var i = 9; i < 12; i++) {
+                                    alternativas.add(snapshot.data!.docs
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
+                                        .map((doc) => doc['alternativas'][i])
+                                        .single);
+                                  }
+                                  break;
+                                case 4:
+                                  for (var i = 12; i < 15; i++) {
+                                    alternativas.add(snapshot.data!.docs
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
+                                        .map((doc) => doc['alternativas'][i])
+                                        .single);
+                                  }
+                                  break;
+                                case 5:
+                                  for (var i = 15; i < 18; i++) {
+                                    alternativas.add(snapshot.data!.docs
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
+                                        .map((doc) => doc['alternativas'][i])
+                                        .single);
+                                  }
+                                  break;
+                                case 6:
+                                  for (var i = 18; i < 21; i++) {
+                                    alternativas.add(snapshot.data!.docs
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
+                                        .map((doc) => doc['alternativas'][i])
+                                        .single);
+                                  }
+                                  break;
+                                case 7:
+                                  for (var i = 21; i < 24; i++) {
+                                    alternativas.add(snapshot.data!.docs
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
+                                        .map((doc) => doc['alternativas'][i])
+                                        .single);
+                                  }
+                                  break;
+                                case 8:
+                                  for (var i = 24; i < 27; i++) {
+                                    alternativas.add(snapshot.data!.docs
+                                        .where((desafio) =>
+                                            desafio.id == widget.idDesafio)
+                                        .map((doc) => doc['alternativas'][i])
+                                        .single);
+                                  }
+                                  break;
                               }
-                              break;
-                            case 1:
-                              for (var i = 3; i < 6; i++) {
-                                alternativasDaPergunta.add(alternativas[i]);
-                              }
-                              break;
-                            case 2:
-                              for (var i = 6; i < 9; i++) {
-                                alternativasDaPergunta.add(alternativas[i]);
-                              }
-                              break;
-                            case 3:
-                              for (var i = 9; i < 12; i++) {
-                                alternativasDaPergunta.add(alternativas[i]);
-                              }
-                              break;
-                            case 4:
-                              for (var i = 12; i < 15; i++) {
-                                alternativasDaPergunta.add(alternativas[i]);
-                              }
-                              break;
-                            case 5:
-                              for (var i = 15; i < 18; i++) {
-                                alternativasDaPergunta.add(alternativas[i]);
-                              }
-                              break;
-                            case 6:
-                              for (var i = 18; i < 21; i++) {
-                                alternativasDaPergunta.add(alternativas[i]);
-                              }
-                              break;
-                            case 7:
-                              for (var i = 21; i < 24; i++) {
-                                alternativasDaPergunta.add(alternativas[i]);
-                              }
-                              break;
-                            case 8:
-                              for (var i = 24; i < 27; i++) {
-                                alternativasDaPergunta.add(alternativas[i]);
-                              }
-                              break;
-                          }
 
-                          switch (shapeModel.id) {
-                            case 1:
-                              if (shapeModel.firstInteraction) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => PerguntaPage(
-                                        pergunta, alternativas, resposta),
-                                  ),
-                                ).then((value) {
-                                  pontuacaoTotal =
-                                      (pontuacaoTotal + value[0]).toInt();
-                                  qtdErrosPerguntas.add(value[1]);
-                                  if (value[1] > 0) {
-                                    perguntasErradas.add(value[2]);
+                              switch (shapeModel.id) {
+                                case 1:
+                                  if (shapeModel.firstInteraction) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => PerguntaPage(
+                                            pergunta, alternativas, resposta),
+                                      ),
+                                    ).then((value) {
+                                      pontuacaoTotal =
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
+                                    });
+                                    shapeModel.firstInteraction = false;
                                   }
-                                });
-                                shapeModel.firstInteraction = false;
-                              }
-                              break;
-                            case 2:
-                              if (shapeModel.firstInteraction) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => PerguntaPage(
-                                        pergunta, alternativas, resposta),
-                                  ),
-                                ).then((value) {
-                                  pontuacaoTotal =
-                                      (pontuacaoTotal + value[0]).toInt();
-                                  qtdErrosPerguntas.add(value[1]);
-                                  if (value[1] > 0) {
-                                    perguntasErradas.add(value[2]);
+                                  break;
+                                case 2:
+                                  if (shapeModel.firstInteraction) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => PerguntaPage(
+                                            pergunta, alternativas, resposta),
+                                      ),
+                                    ).then((value) {
+                                      pontuacaoTotal =
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
+                                    });
+                                    shapeModel.firstInteraction = false;
                                   }
-                                });
-                                shapeModel.firstInteraction = false;
-                              }
-                              break;
-                            case 3:
-                              if (shapeModel.firstInteraction) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => PerguntaPage(pergunta,
-                                        alternativasDaPergunta, resposta),
-                                  ),
-                                ).then((value) {
-                                  pontuacaoTotal =
-                                      (pontuacaoTotal + value[0]).toInt();
-                                  qtdErrosPerguntas.add(value[1]);
-                                  if (value[1] > 0) {
-                                    perguntasErradas.add(value[2]);
+                                  break;
+                                case 3:
+                                  if (shapeModel.firstInteraction) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => PerguntaPage(
+                                            pergunta, alternativas, resposta),
+                                      ),
+                                    ).then((value) {
+                                      pontuacaoTotal =
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
+                                    });
+                                    shapeModel.firstInteraction = false;
                                   }
-                                });
-                                shapeModel.firstInteraction = false;
-                              }
-                              break;
-                            case 4:
-                              if (shapeModel.firstInteraction) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => PerguntaPage(
-                                        pergunta, alternativas, resposta),
-                                  ),
-                                ).then((value) {
-                                  pontuacaoTotal =
-                                      (pontuacaoTotal + value[0]).toInt();
-                                  qtdErrosPerguntas.add(value[1]);
-                                  if (value[1] > 0) {
-                                    perguntasErradas.add(value[2]);
+                                  break;
+                                case 4:
+                                  if (shapeModel.firstInteraction) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => PerguntaPage(
+                                            pergunta, alternativas, resposta),
+                                      ),
+                                    ).then((value) {
+                                      pontuacaoTotal =
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
+                                    });
+                                    shapeModel.firstInteraction = false;
                                   }
-                                });
-                                shapeModel.firstInteraction = false;
-                              }
-                              break;
-                            case 5:
-                              if (shapeModel.firstInteraction) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => PerguntaPage(
-                                        pergunta, alternativas, resposta),
-                                  ),
-                                ).then((value) {
-                                  pontuacaoTotal =
-                                      (pontuacaoTotal + value[0]).toInt();
-                                  qtdErrosPerguntas.add(value[1]);
-                                  if (value[1] > 0) {
-                                    perguntasErradas.add(value[2]);
+                                  break;
+                                case 5:
+                                  if (shapeModel.firstInteraction) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => PerguntaPage(
+                                            pergunta, alternativas, resposta),
+                                      ),
+                                    ).then((value) {
+                                      pontuacaoTotal =
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
+                                    });
+                                    shapeModel.firstInteraction = false;
                                   }
-                                });
-                                shapeModel.firstInteraction = false;
-                              }
-                              break;
-                            case 6:
-                              if (shapeModel.firstInteraction) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => PerguntaPage(
-                                        pergunta, alternativas, resposta),
-                                  ),
-                                ).then((value) {
-                                  pontuacaoTotal =
-                                      (pontuacaoTotal + value[0]).toInt();
-                                  qtdErrosPerguntas.add(value[1]);
-                                  if (value[1] > 0) {
-                                    perguntasErradas.add(value[2]);
+                                  break;
+                                case 6:
+                                  if (shapeModel.firstInteraction) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => PerguntaPage(
+                                            pergunta, alternativas, resposta),
+                                      ),
+                                    ).then((value) {
+                                      //Pontuação esta sendo para cada peça
+                                      pontuacaoTotal =
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
+                                    });
+                                    shapeModel.firstInteraction = false;
                                   }
-                                });
-                                shapeModel.firstInteraction = false;
-                              }
-                              break;
-                            case 7:
-                              if (shapeModel.firstInteraction) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => PerguntaPage(
-                                        pergunta, alternativas, resposta),
-                                  ),
-                                ).then((value) {
-                                  pontuacaoTotal =
-                                      (pontuacaoTotal + value[0]).toInt();
-                                  qtdErrosPerguntas.add(value[1]);
-                                  if (value[1] > 0) {
-                                    perguntasErradas.add(value[2]);
+                                  break;
+                                case 7:
+                                  if (shapeModel.firstInteraction) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => PerguntaPage(
+                                            pergunta, alternativas, resposta),
+                                      ),
+                                    ).then((value) {
+                                      pontuacaoTotal =
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
+                                    });
+                                    shapeModel.firstInteraction = false;
                                   }
-                                });
-                                shapeModel.firstInteraction = false;
-                              }
-                              break;
-                            case 8:
-                              if (shapeModel.firstInteraction) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => PerguntaPage(
-                                        pergunta, alternativas, resposta),
-                                  ),
-                                ).then((value) {
-                                  pontuacaoTotal =
-                                      (pontuacaoTotal + value[0]).toInt();
-                                  qtdErrosPerguntas.add(value[1]);
-                                  if (value[1] > 0) {
-                                    perguntasErradas.add(value[2]);
+                                  break;
+                                case 8:
+                                  if (shapeModel.firstInteraction) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => PerguntaPage(
+                                            pergunta, alternativas, resposta),
+                                      ),
+                                    ).then((value) {
+                                      pontuacaoTotal =
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
+                                    });
+                                    shapeModel.firstInteraction = false;
                                   }
-                                });
-                                shapeModel.firstInteraction = false;
-                              }
-                              break;
-                            case 9:
-                              if (shapeModel.firstInteraction) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => PerguntaPage(
-                                        pergunta, alternativas, resposta),
-                                  ),
-                                ).then((value) {
-                                  pontuacaoTotal =
-                                      (pontuacaoTotal + value[0]).toInt();
-                                  qtdErrosPerguntas.add(value[1]);
-                                  if (value[1] > 0) {
-                                    perguntasErradas.add(value[2]);
+                                  break;
+                                case 9:
+                                  if (shapeModel.firstInteraction) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (_) => PerguntaPage(
+                                            pergunta, alternativas, resposta),
+                                      ),
+                                    ).then((value) {
+                                      pontuacaoTotal =
+                                          (pontuacaoTotal + value[0]).toInt();
+                                      qtdErrosPerguntas.add(value[1]);
+                                      if (value[1] > 0) {
+                                        perguntasErradas.add(value[2]);
+                                      }
+                                    });
+                                    shapeModel.firstInteraction = false;
                                   }
-                                });
-                                shapeModel.firstInteraction = false;
+                                  break;
                               }
-                              break;
-                          }
-                        },
-                        onDragEnd: (DraggableDetails d) {
-                          //Faz mover forma pra cima
-                          setState(() {
-                            /*widget.shapeModel.position
+                            },
+                            onDragEnd: (DraggableDetails d) {
+                              //Faz mover forma pra cima
+                              setState(() {
+                                /*widget.shapeModel.position
                           .setPosition(d.offset.dx, d.offset.dy);*/
-                          });
-                        },
-                      ),
+                              });
+                            },
+                          ),
+                        );
+                      },
                     ),
             ),
           ],

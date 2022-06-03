@@ -21,9 +21,6 @@ class ListaDesafios extends StatelessWidget {
         } else {
           return ListView(
             children: snapshot.data!.docs.map((doc) {
-              if (List<String>.from(doc['emails']).isEmpty) {
-                cadastro.excluirDesafio(doc.id);
-              }
               bool emailNaLista = false;
               for (var email in doc['emails']) {
                 if (email == emailAluno) {
