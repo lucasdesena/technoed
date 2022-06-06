@@ -18,8 +18,8 @@ class _TesteTangramPageState extends State<TesteTangramPage> {
   void initState() {
     super.initState();
     setState(() {
-      pecas = Dificuldades().niveis[3].shapes;
-      shapeOfCount = Dificuldades().niveis[3].shapeOfCount;
+      pecas = Dificuldades().niveis[9].shapes;
+      shapeOfCount = Dificuldades().niveis[9].shapeOfCount;
     });
   }
 
