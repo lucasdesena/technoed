@@ -305,25 +305,23 @@ class _DesafioPageState extends State<DesafioPage> {
                             ),
                             childWhenDragging: Container(),
                             onDragStarted: () {
-                              int numeroDaPergunta = shapeModel.id - 1;
+                              int index = shapeModel.id - 1;
 
                               String pergunta = snapshot.data!.docs
                                   .where((desafio) =>
                                       desafio.id == widget.idDesafio)
-                                  .map((doc) =>
-                                      doc['perguntas'][numeroDaPergunta])
+                                  .map((doc) => doc['perguntas'][index])
                                   .single;
 
                               String resposta = snapshot.data!.docs
                                   .where((desafio) =>
                                       desafio.id == widget.idDesafio)
-                                  .map((doc) =>
-                                      doc['respostas'][numeroDaPergunta])
+                                  .map((doc) => doc['respostas'][index])
                                   .single;
 
                               List<String> alternativas = [];
 
-                              switch (numeroDaPergunta) {
+                              switch (index) {
                                 case 0:
                                   for (var i = 0; i < 3; i++) {
                                     alternativas.add(snapshot.data!.docs
@@ -512,7 +510,6 @@ class _DesafioPageState extends State<DesafioPage> {
                                             pergunta, alternativas, resposta),
                                       ),
                                     ).then((value) {
-                                      //Pontuação esta sendo para cada peça
                                       pontuacaoTotal =
                                           (pontuacaoTotal + value[0]).toInt();
                                       qtdErrosPerguntas.add(value[1]);

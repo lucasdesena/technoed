@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:technoed/models/dificuldade.dart';
 import 'package:technoed/models/forma.dart';
+import 'package:technoed/pages/pergunta_page.dart';
 
 class TesteTangramPage extends StatefulWidget {
   const TesteTangramPage({Key? key}) : super(key: key);
@@ -14,6 +15,49 @@ class _TesteTangramPageState extends State<TesteTangramPage> {
   int shapeOfCount = 0;
   int shapeCount = 0;
 
+  List<String> listaPerguntas = [
+    'Quantas letras tem a palavra Paralelepípedo?',
+    'Qual é o resultado da soma: 2 + 5?',
+    'O Brasil foi colônia de qual país?',
+    'Qual destes países não se localiza na América do sul?',
+    '"Comer" é um:',
+    'A palavra "Angry" em português equivale à?',
+    'Que país tem o formato de uma bota?',
+  ];
+
+  List<String> listaAlternativas = [
+    '13',
+    '14',
+    '12',
+    '6',
+    '9',
+    '7',
+    'Portugal',
+    'Espanha',
+    'Inglaterra',
+    'Bolívia',
+    'Suriname',
+    'Angola',
+    'Adjetivo',
+    'Verbo',
+    'Pronome',
+    'Medo',
+    'Raiva',
+    'Fome',
+    'Brasil',
+    'Itália',
+    'México',
+  ];
+
+  List<String> listaRespostas = [
+    '14',
+    '7',
+    'Portugal',
+    'Angola',
+    'Verbo',
+    'Raiva',
+    'Itália',
+  ];
   @override
   void initState() {
     super.initState();
@@ -48,8 +92,8 @@ class _TesteTangramPageState extends State<TesteTangramPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: const <Widget>[
                   Text(
-                    'Clique nas peças e use-as para \nmontar a figura',
-                    textAlign: TextAlign.left,
+                    'Clique nas peças para responder as\nperguntas, e use-as para montar a figura',
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Color.fromARGB(255, 143, 146, 148),
                         fontSize: 15),
@@ -125,6 +169,245 @@ class _TesteTangramPageState extends State<TesteTangramPage> {
                         ),
                       ),
                       childWhenDragging: Container(),
+                      onDragStarted: () {
+                        int index = shapeModel.id - 1;
+
+                        String pergunta = listaPerguntas[index];
+                        String resposta = listaRespostas[index];
+
+                        List<String> alternativas = [];
+
+                        switch (index) {
+                          case 0:
+                            for (var i = 0; i < 3; i++) {
+                              alternativas.add(listaAlternativas[i]);
+                            }
+                            break;
+                          case 1:
+                            for (var i = 3; i < 6; i++) {
+                              alternativas.add(listaAlternativas[i]);
+                            }
+                            break;
+                          case 2:
+                            for (var i = 6; i < 9; i++) {
+                              alternativas.add(listaAlternativas[i]);
+                            }
+                            break;
+                          case 3:
+                            for (var i = 9; i < 12; i++) {
+                              alternativas.add(listaAlternativas[i]);
+                            }
+                            break;
+                          case 4:
+                            for (var i = 12; i < 15; i++) {
+                              alternativas.add(listaAlternativas[i]);
+                            }
+                            break;
+                          case 5:
+                            for (var i = 15; i < 18; i++) {
+                              alternativas.add(listaAlternativas[i]);
+                            }
+                            break;
+                          case 6:
+                            for (var i = 18; i < 21; i++) {
+                              alternativas.add(listaAlternativas[i]);
+                            }
+                            break;
+                          case 7:
+                            for (var i = 21; i < 24; i++) {
+                              alternativas.add(listaAlternativas[i]);
+                            }
+                            break;
+                          case 8:
+                            for (var i = 24; i < 27; i++) {
+                              alternativas.add(listaAlternativas[i]);
+                            }
+                            break;
+                        }
+
+                        switch (shapeModel.id) {
+                          case 1:
+                            if (shapeModel.firstInteraction) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => PerguntaPage(
+                                      pergunta, alternativas, resposta),
+                                ),
+                              ) /*.then((value) {
+                                pontuacaoTotal =
+                                    (pontuacaoTotal + value[0]).toInt();
+                                qtdErrosPerguntas.add(value[1]);
+                                if (value[1] > 0) {
+                                  perguntasErradas.add(value[2]);
+                                }
+                              })*/
+                                  ;
+                              shapeModel.firstInteraction = false;
+                            }
+                            break;
+                          case 2:
+                            if (shapeModel.firstInteraction) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => PerguntaPage(
+                                      pergunta, alternativas, resposta),
+                                ),
+                              ) /*.then((value) {
+                                pontuacaoTotal =
+                                    (pontuacaoTotal + value[0]).toInt();
+                                qtdErrosPerguntas.add(value[1]);
+                                if (value[1] > 0) {
+                                  perguntasErradas.add(value[2]);
+                                }
+                              })*/
+                                  ;
+                              shapeModel.firstInteraction = false;
+                            }
+                            break;
+                          case 3:
+                            if (shapeModel.firstInteraction) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => PerguntaPage(
+                                      pergunta, alternativas, resposta),
+                                ),
+                              ) /*.then((value) {
+                                pontuacaoTotal =
+                                    (pontuacaoTotal + value[0]).toInt();
+                                qtdErrosPerguntas.add(value[1]);
+                                if (value[1] > 0) {
+                                  perguntasErradas.add(value[2]);
+                                }
+                              })*/
+                                  ;
+                              shapeModel.firstInteraction = false;
+                            }
+                            break;
+                          case 4:
+                            if (shapeModel.firstInteraction) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => PerguntaPage(
+                                      pergunta, alternativas, resposta),
+                                ),
+                              ) /*.then((value) {
+                                pontuacaoTotal =
+                                    (pontuacaoTotal + value[0]).toInt();
+                                qtdErrosPerguntas.add(value[1]);
+                                if (value[1] > 0) {
+                                  perguntasErradas.add(value[2]);
+                                }
+                              })*/
+                                  ;
+                              shapeModel.firstInteraction = false;
+                            }
+                            break;
+                          case 5:
+                            if (shapeModel.firstInteraction) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => PerguntaPage(
+                                      pergunta, alternativas, resposta),
+                                ),
+                              ) /*.then((value) {
+                                pontuacaoTotal =
+                                    (pontuacaoTotal + value[0]).toInt();
+                                qtdErrosPerguntas.add(value[1]);
+                                if (value[1] > 0) {
+                                  perguntasErradas.add(value[2]);
+                                }
+                              })*/
+                                  ;
+                              shapeModel.firstInteraction = false;
+                            }
+                            break;
+                          case 6:
+                            if (shapeModel.firstInteraction) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => PerguntaPage(
+                                      pergunta, alternativas, resposta),
+                                ),
+                              ) /*.then((value) {
+                                pontuacaoTotal =
+                                    (pontuacaoTotal + value[0]).toInt();
+                                qtdErrosPerguntas.add(value[1]);
+                                if (value[1] > 0) {
+                                  perguntasErradas.add(value[2]);
+                                }
+                              })*/
+                                  ;
+                              shapeModel.firstInteraction = false;
+                            }
+                            break;
+                          case 7:
+                            if (shapeModel.firstInteraction) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => PerguntaPage(
+                                      pergunta, alternativas, resposta),
+                                ),
+                              ) /*.then((value) {
+                                pontuacaoTotal =
+                                    (pontuacaoTotal + value[0]).toInt();
+                                qtdErrosPerguntas.add(value[1]);
+                                if (value[1] > 0) {
+                                  perguntasErradas.add(value[2]);
+                                }
+                              })*/
+                                  ;
+                              shapeModel.firstInteraction = false;
+                            }
+                            break;
+                          case 8:
+                            if (shapeModel.firstInteraction) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => PerguntaPage(
+                                      pergunta, alternativas, resposta),
+                                ),
+                              ) /*.then((value) {
+                                pontuacaoTotal =
+                                    (pontuacaoTotal + value[0]).toInt();
+                                qtdErrosPerguntas.add(value[1]);
+                                if (value[1] > 0) {
+                                  perguntasErradas.add(value[2]);
+                                }
+                              })*/
+                                  ;
+                              shapeModel.firstInteraction = false;
+                            }
+                            break;
+                          case 9:
+                            if (shapeModel.firstInteraction) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => PerguntaPage(
+                                      pergunta, alternativas, resposta),
+                                ),
+                              ) /*.then((value) {
+                                pontuacaoTotal =
+                                    (pontuacaoTotal + value[0]).toInt();
+                                qtdErrosPerguntas.add(value[1]);
+                                if (value[1] > 0) {
+                                  perguntasErradas.add(value[2]);
+                                }
+                              })*/
+                                  ;
+                              shapeModel.firstInteraction = false;
+                            }
+                            break;
+                        }
+                      },
                       onDragEnd: (DraggableDetails d) {
                         //Faz mover forma pra cima
                         setState(() {
