@@ -810,7 +810,7 @@ class Dificuldades {
         rotationAngle: 45 / 360,
       ),
       Forma(
-        id: 2,
+        id: 7,
         height: 70,
         width: 140,
         targetPosition: Posicao(206, 208),
