@@ -44,7 +44,7 @@ class _SobrePageState extends State<SobrePage> {
                   "O principal objetivo do aplicativo é auxiliar os professores e alunos a desenvolver o processo de ensino e aprendizagem de maneira interativa, com a realização de desafios com Tangram e perguntas.\n\n"
                   "O Technoed permite ao professor criar grupos de alunos, com base na sua disciplina ou curso. Ele deve criar desafios com figuras do Tangram, sendo que para usar cada peça geométrica, é necessário ao aluno responder uma pergunta.\n\n"
                   "Ao professor ainda são disponibilizados relatórios de desempenho dos alunos.\n\n"
-                  "O aluno recebe pontuação a cada desafio, a depender de seu desempenho nas perguntas, bem como na montagem do Tangram e pode subir de elo.\n",
+                  "O aluno recebe pontuação a cada desafio, a depender de seu desempenho nas perguntas, bem como na montagem do Tangram e pode evoluir seu elo.\n",
                   textAlign: TextAlign.justify,
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
