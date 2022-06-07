@@ -34,11 +34,11 @@ class _RelatorioPageState extends State<RelatorioPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const [
                 Text(
-                  'Relatório',
+                  'Relatórios',
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
                 Text(
-                  'Veja os dados e os resultados dos alunos',
+                  'Veja os resultados dos alunos',
                   style: TextStyle(
                       color: Color.fromARGB(255, 208, 211, 214), fontSize: 15),
                 ),
@@ -116,6 +116,13 @@ class _RelatorioPageState extends State<RelatorioPage> {
                                 ),
                               ),
                               Text(
+                                'Data da realização: $data',
+                                style: const TextStyle(
+                                  color: Color.fromARGB(255, 143, 146, 148),
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
                                 'Quantidade de erros no Tangram: ${errosTangram.toString()}',
                                 style: const TextStyle(
                                   color: Color.fromARGB(255, 143, 146, 148),
@@ -124,13 +131,6 @@ class _RelatorioPageState extends State<RelatorioPage> {
                               ),
                               Text(
                                 'Quantidade de erros nas perguntas: ${errosPerguntas.toString()}',
-                                style: const TextStyle(
-                                  color: Color.fromARGB(255, 143, 146, 148),
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Text(
-                                'Data da realização: $data',
                                 style: const TextStyle(
                                   color: Color.fromARGB(255, 143, 146, 148),
                                   fontWeight: FontWeight.bold,

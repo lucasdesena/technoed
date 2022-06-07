@@ -99,7 +99,7 @@ class _DesafioPageState extends State<DesafioPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const <Widget>[
                     Text(
-                      'Clique nas peças para responder as\nperguntas, e use-as para montar a figura',
+                      'Clique nas peças para responder as\nperguntas e use-as para montar a figura',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Color.fromARGB(255, 143, 146, 148),
@@ -130,15 +130,15 @@ class _DesafioPageState extends State<DesafioPage> {
                                 textAlign: TextAlign.center,
                               ),
                               content: const Text(
-                                'Se você deixar o desafio não receberá pontos e não poderá realizar novamente!\n\nDeseja mesmo deixar o desafio?',
+                                'Se você deixar o desafio, não receberá pontos e não poderá realizá-lo novamente.\n\nDeseja mesmo sair?',
                                 textAlign: TextAlign.center,
                               ),
                               actions: <Widget>[
                                 TextButton(
                                   onPressed: () {
-                                    Navigator.pop(context, 'Confirmar');
+                                    Navigator.pop(context, 'Sim');
                                   },
-                                  child: const Text('Confirmar'),
+                                  child: const Text('Sim'),
                                 ),
                                 TextButton(
                                   onPressed: () =>

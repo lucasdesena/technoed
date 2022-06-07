@@ -92,7 +92,7 @@ class _TesteTangramPageState extends State<TesteTangramPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: const <Widget>[
                   Text(
-                    'Clique nas peças para responder as\nperguntas, e use-as para montar a figura',
+                    'Clique nas peças para responder as\nperguntas e use-as para montar a figura',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                         color: Color.fromARGB(255, 143, 146, 148),

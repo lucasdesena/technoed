@@ -110,7 +110,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
                 Text(
-                  'Defina as alternativas para cada pergunta',
+                  'Defina as alternativas e a resposta',
                   style: TextStyle(
                       color: Color.fromARGB(255, 208, 211, 214), fontSize: 15),
                 ),
