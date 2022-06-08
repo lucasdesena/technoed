@@ -143,20 +143,21 @@ class CadastroService extends ChangeNotifier {
       String idRelatorio,
       String nomeAluno,
       String emailAluno,
-      int qtdErrosTangram,
-      List<int> qtdErrosPerguntas,
+      String qtdErrosTangram,
+      String qtdErrosPerguntas,
       List<String> perguntasErradas,
       String data) async {
     List<String> listaNome = [nomeAluno];
     List<String> listaEmail = [emailAluno];
-    List<int> listaErrosTangram = [qtdErrosTangram];
+    List<String> listaErrosTangram = [qtdErrosTangram];
+    List<String> listaErrosPerguntas = [qtdErrosPerguntas];
     List<String> listaData = [data];
 
     await db.collection('relatorios').doc(idRelatorio).update({
       'nomes': FieldValue.arrayUnion(listaNome),
       'emails': FieldValue.arrayUnion(listaEmail),
       'errosTangram': FieldValue.arrayUnion(listaErrosTangram),
-      'errosPerguntas': FieldValue.arrayUnion(qtdErrosPerguntas),
+      'errosPerguntas': FieldValue.arrayUnion(listaErrosPerguntas),
       'perguntasErradas': FieldValue.arrayUnion(perguntasErradas),
       'dataRealizada': FieldValue.arrayUnion(listaData)
     });

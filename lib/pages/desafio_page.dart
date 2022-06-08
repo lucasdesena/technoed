@@ -30,8 +30,7 @@ class _DesafioPageState extends State<DesafioPage> {
 
   int pontuacaoTotal = 0;
   int qtdErrosTangram = 0;
-
-  List<int> qtdErrosPerguntas = [];
+  int qtdErrosPerguntas = 0;
 
   List<String> perguntasErradas = [];
 
@@ -65,12 +64,13 @@ class _DesafioPageState extends State<DesafioPage> {
       String uid,
       String idRelatorio,
       String emailAluno,
-      int qtdErrosTangram,
-      List<int> qtdErrosPerguntas,
+      String qtdErrosTangram,
+      String qtdErrosPerguntas,
       List<String> perguntasErradas,
       String data) {
     cadastro.obterNome(uid).then((value) {
-      cadastro.adicionarDesafioRealizado(idRelatorio, value, emailAluno,
+      String nome = '$emailAluno -' + value;
+      cadastro.adicionarDesafioRealizado(idRelatorio, nome, emailAluno,
           qtdErrosTangram, qtdErrosPerguntas, perguntasErradas, data);
     });
   }
@@ -195,15 +195,23 @@ class _DesafioPageState extends State<DesafioPage> {
                                     .map((doc) => doc['idRelatorio'])
                                     .single;
 
+                                String dataFormatada = "$email -" +
+                                    DateFormat('dd/MM/yyyy')
+                                        .format(dataRealizada);
+
+                                String errosTangram =
+                                    '$email -$qtdErrosTangram';
+                                String errosPerguntas =
+                                    '$email -$qtdErrosPerguntas';
+
                                 obterNomeEAdicionarDesafioConcluido(
                                     uid,
                                     idRelatorio,
                                     email,
-                                    qtdErrosTangram,
-                                    qtdErrosPerguntas,
+                                    errosTangram,
+                                    errosPerguntas,
                                     perguntasErradas,
-                                    DateFormat('dd/MM/yyyy')
-                                        .format(dataRealizada));
+                                    dataFormatada);
 
                                 if (pontuacaoTotal > 0) {
                                   cadastro.adicionarPontuacao(
@@ -417,9 +425,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                     ).then((value) {
                                       pontuacaoTotal =
                                           (pontuacaoTotal + value[0]).toInt();
-                                      qtdErrosPerguntas.add(value[1]);
+                                      qtdErrosPerguntas =
+                                          (qtdErrosPerguntas + value[1])
+                                              .toInt();
                                       if (value[1] > 0) {
-                                        perguntasErradas.add(value[2]);
+                                        perguntasErradas
+                                            .add('$email -' + value[2]);
                                       }
                                     });
                                     shapeModel.firstInteraction = false;
@@ -436,9 +447,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                     ).then((value) {
                                       pontuacaoTotal =
                                           (pontuacaoTotal + value[0]).toInt();
-                                      qtdErrosPerguntas.add(value[1]);
+                                      qtdErrosPerguntas =
+                                          (qtdErrosPerguntas + value[1])
+                                              .toInt();
                                       if (value[1] > 0) {
-                                        perguntasErradas.add(value[2]);
+                                        perguntasErradas
+                                            .add('$email -' + value[2]);
                                       }
                                     });
                                     shapeModel.firstInteraction = false;
@@ -455,9 +469,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                     ).then((value) {
                                       pontuacaoTotal =
                                           (pontuacaoTotal + value[0]).toInt();
-                                      qtdErrosPerguntas.add(value[1]);
+                                      qtdErrosPerguntas =
+                                          (qtdErrosPerguntas + value[1])
+                                              .toInt();
                                       if (value[1] > 0) {
-                                        perguntasErradas.add(value[2]);
+                                        perguntasErradas
+                                            .add('$email -' + value[2]);
                                       }
                                     });
                                     shapeModel.firstInteraction = false;
@@ -474,9 +491,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                     ).then((value) {
                                       pontuacaoTotal =
                                           (pontuacaoTotal + value[0]).toInt();
-                                      qtdErrosPerguntas.add(value[1]);
+                                      qtdErrosPerguntas =
+                                          (qtdErrosPerguntas + value[1])
+                                              .toInt();
                                       if (value[1] > 0) {
-                                        perguntasErradas.add(value[2]);
+                                        perguntasErradas
+                                            .add('$email -' + value[2]);
                                       }
                                     });
                                     shapeModel.firstInteraction = false;
@@ -493,9 +513,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                     ).then((value) {
                                       pontuacaoTotal =
                                           (pontuacaoTotal + value[0]).toInt();
-                                      qtdErrosPerguntas.add(value[1]);
+                                      qtdErrosPerguntas =
+                                          (qtdErrosPerguntas + value[1])
+                                              .toInt();
                                       if (value[1] > 0) {
-                                        perguntasErradas.add(value[2]);
+                                        perguntasErradas
+                                            .add('$email -' + value[2]);
                                       }
                                     });
                                     shapeModel.firstInteraction = false;
@@ -512,9 +535,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                     ).then((value) {
                                       pontuacaoTotal =
                                           (pontuacaoTotal + value[0]).toInt();
-                                      qtdErrosPerguntas.add(value[1]);
+                                      qtdErrosPerguntas =
+                                          (qtdErrosPerguntas + value[1])
+                                              .toInt();
                                       if (value[1] > 0) {
-                                        perguntasErradas.add(value[2]);
+                                        perguntasErradas
+                                            .add('$email -' + value[2]);
                                       }
                                     });
                                     shapeModel.firstInteraction = false;
@@ -531,9 +557,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                     ).then((value) {
                                       pontuacaoTotal =
                                           (pontuacaoTotal + value[0]).toInt();
-                                      qtdErrosPerguntas.add(value[1]);
+                                      qtdErrosPerguntas =
+                                          (qtdErrosPerguntas + value[1])
+                                              .toInt();
                                       if (value[1] > 0) {
-                                        perguntasErradas.add(value[2]);
+                                        perguntasErradas
+                                            .add('$email -' + value[2]);
                                       }
                                     });
                                     shapeModel.firstInteraction = false;
@@ -550,9 +579,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                     ).then((value) {
                                       pontuacaoTotal =
                                           (pontuacaoTotal + value[0]).toInt();
-                                      qtdErrosPerguntas.add(value[1]);
+                                      qtdErrosPerguntas =
+                                          (qtdErrosPerguntas + value[1])
+                                              .toInt();
                                       if (value[1] > 0) {
-                                        perguntasErradas.add(value[2]);
+                                        perguntasErradas
+                                            .add('$email -' + value[2]);
                                       }
                                     });
                                     shapeModel.firstInteraction = false;
@@ -569,9 +601,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                     ).then((value) {
                                       pontuacaoTotal =
                                           (pontuacaoTotal + value[0]).toInt();
-                                      qtdErrosPerguntas.add(value[1]);
+                                      qtdErrosPerguntas =
+                                          (qtdErrosPerguntas + value[1])
+                                              .toInt();
                                       if (value[1] > 0) {
-                                        perguntasErradas.add(value[2]);
+                                        perguntasErradas
+                                            .add('$email -' + value[2]);
                                       }
                                     });
                                     shapeModel.firstInteraction = false;

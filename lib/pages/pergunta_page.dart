@@ -75,7 +75,9 @@ class _PerguntaPageState extends State<PerguntaPage> {
                             });
 
                             tentativa++;
-                            qtdErrosPerguntas++;
+                            if (cliqueAltErrada1 == true) {
+                              qtdErrosPerguntas = 1;
+                            }
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -105,29 +107,7 @@ class _PerguntaPageState extends State<PerguntaPage> {
                   : Padding(
                       padding: const EdgeInsets.fromLTRB(20, 48, 20, 0.0),
                       child: ElevatedButton(
-                        onPressed: () {
-                          if (widget.alternativas[0] == widget.resposta) {
-                            switch (tentativa) {
-                              case 1:
-                                pontos += 4;
-                                break;
-                              case 2:
-                                pontos += 2;
-                                break;
-                              case 3:
-                                pontos += 0;
-                                break;
-                              default:
-                                pontos += 0;
-                                break;
-                            }
-                            Navigator.pop(context,
-                                [pontos, qtdErrosPerguntas, widget.pergunta]);
-                          } else {
-                            tentativa++;
-                            qtdErrosPerguntas++;
-                          }
-                        },
+                        onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           primary: Colors.red,
                         ),
@@ -179,7 +159,9 @@ class _PerguntaPageState extends State<PerguntaPage> {
                               cliqueAltErrada2 = true;
                             });
                             tentativa++;
-                            qtdErrosPerguntas++;
+                            if (cliqueAltErrada2 == true) {
+                              qtdErrosPerguntas = 1;
+                            }
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -209,29 +191,7 @@ class _PerguntaPageState extends State<PerguntaPage> {
                   : Padding(
                       padding: const EdgeInsets.fromLTRB(20, 48, 20, 0.0),
                       child: ElevatedButton(
-                        onPressed: () {
-                          if (widget.alternativas[1] == widget.resposta) {
-                            switch (tentativa) {
-                              case 1:
-                                pontos += 4;
-                                break;
-                              case 2:
-                                pontos += 2;
-                                break;
-                              case 3:
-                                pontos += 0;
-                                break;
-                              default:
-                                pontos += 0;
-                                break;
-                            }
-                            Navigator.pop(context,
-                                [pontos, qtdErrosPerguntas, widget.pergunta]);
-                          } else {
-                            tentativa++;
-                            qtdErrosPerguntas++;
-                          }
-                        },
+                        onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           primary: Colors.red,
                         ),
@@ -283,7 +243,9 @@ class _PerguntaPageState extends State<PerguntaPage> {
                               cliqueAltErrada3 = true;
                             });
                             tentativa++;
-                            qtdErrosPerguntas++;
+                            if (cliqueAltErrada3 == true) {
+                              qtdErrosPerguntas = 1;
+                            }
                           }
                         },
                         style: ElevatedButton.styleFrom(
@@ -313,29 +275,7 @@ class _PerguntaPageState extends State<PerguntaPage> {
                   : Padding(
                       padding: const EdgeInsets.fromLTRB(20, 48, 20, 0.0),
                       child: ElevatedButton(
-                        onPressed: () {
-                          if (widget.alternativas[2] == widget.resposta) {
-                            switch (tentativa) {
-                              case 1:
-                                pontos += 4;
-                                break;
-                              case 2:
-                                pontos += 2;
-                                break;
-                              case 3:
-                                pontos += 0;
-                                break;
-                              default:
-                                pontos += 0;
-                                break;
-                            }
-                            Navigator.pop(context,
-                                [pontos, qtdErrosPerguntas, widget.pergunta]);
-                          } else {
-                            tentativa++;
-                            qtdErrosPerguntas++;
-                          }
-                        },
+                        onPressed: () {},
                         style: ElevatedButton.styleFrom(
                           primary: Colors.red,
                         ),
