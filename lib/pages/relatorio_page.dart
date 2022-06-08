@@ -130,43 +130,55 @@ class _RelatorioPageState extends State<RelatorioPage> {
                           child: ListTile(
                             tileColor: const Color.fromARGB(255, 202, 240, 248),
                             title: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: <Widget>[
-                                const Padding(
-                                  padding: EdgeInsets.only(bottom: 2),
-                                  child: Text(
-                                    'Dados do aluno',
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 18,
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        border: Border.all(color: Colors.black),
+                                        borderRadius:
+                                            BorderRadius.circular(6.0)),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Column(
+                                          children: <Widget>[
+                                            Text(
+                                              'Nome: $nome',
+                                              style: const TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 143, 146, 148),
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Text(
+                                              'Email: $email',
+                                              style: const TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 143, 146, 148),
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Text(
+                                              'Data da realização: $data',
+                                              style: const TextStyle(
+                                                color: Color.fromARGB(
+                                                    255, 143, 146, 148),
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                                Text(
-                                  'Nome: $nome',
-                                  style: const TextStyle(
-                                    color: Color.fromARGB(255, 143, 146, 148),
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'Email: $email',
-                                  style: const TextStyle(
-                                    color: Color.fromARGB(255, 143, 146, 148),
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  'Data da realização: $data \n',
-                                  style: const TextStyle(
-                                    color: Color.fromARGB(255, 143, 146, 148),
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
                                 const Padding(
                                   padding: EdgeInsets.only(bottom: 2),
                                   child: Text(
-                                    'Desempenho no desafio',
+                                    ' \nDesempenho no desafio',
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 18,
@@ -199,28 +211,37 @@ class _RelatorioPageState extends State<RelatorioPage> {
                                     : const Padding(
                                         padding: EdgeInsets.all(0.0)),
                                 perguntasErradasAluno.isNotEmpty
-                                    ? ListView.builder(
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        shrinkWrap: true,
-                                        itemCount: perguntasErradasAluno.length,
-                                        itemBuilder:
-                                            (BuildContext context, int index) {
-                                          return Text(
-                                            perguntasErradasAluno[index],
-                                            style: const TextStyle(
-                                              color: Color.fromARGB(
-                                                  255, 143, 146, 148),
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          );
-                                        })
-                                    : const Text(
-                                        'Acertou todas as perguntas',
-                                        style: TextStyle(
-                                          color: Color.fromARGB(
-                                              255, 143, 146, 148),
-                                          fontWeight: FontWeight.bold,
+                                    ? Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 8.0),
+                                        child: ListView.builder(
+                                            physics:
+                                                const NeverScrollableScrollPhysics(),
+                                            shrinkWrap: true,
+                                            itemCount:
+                                                perguntasErradasAluno.length,
+                                            itemBuilder: (BuildContext context,
+                                                int index) {
+                                              return Text(
+                                                perguntasErradasAluno[index],
+                                                style: const TextStyle(
+                                                  color: Color.fromARGB(
+                                                      255, 143, 146, 148),
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              );
+                                            }),
+                                      )
+                                    : const Padding(
+                                        padding: EdgeInsets.only(bottom: 8.0),
+                                        child: Text(
+                                          'Acertou todas as perguntas',
+                                          style: TextStyle(
+                                            color: Color.fromARGB(
+                                                255, 143, 146, 148),
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                       ),
                               ],
