@@ -1,4 +1,3 @@
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -26,6 +25,8 @@ class _AlunoPageState extends State<AlunoPage> {
 
   ImageProvider retornarElo(elo) {
     switch (elo) {
+      case 'Ferro':
+        return const AssetImage('assets/images/rank-ferro.png');
       case 'Bronze':
         return const AssetImage('assets/images/rank-bronze.png');
       case 'Prata':
@@ -33,7 +34,7 @@ class _AlunoPageState extends State<AlunoPage> {
       case 'Ouro':
         return const AssetImage('assets/images/rank-ouro.png');
       default:
-        return const AssetImage('assets/images/rank-bronze.png');
+        return const AssetImage('assets/images/rank-ferro.png');
     }
   }
 

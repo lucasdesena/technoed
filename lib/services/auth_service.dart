@@ -37,9 +37,9 @@ class AuthService extends ChangeNotifier {
       _getUser();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        throw AuthException('A senha é muito fraca!');
+        throw AuthException('A senha é muito fraca.');
       } else if (e.code == 'email-already-in-use') {
-        throw AuthException('Este email já está cadastrado');
+        throw AuthException('Este email já está cadastrado.');
       }
     }
     return uid;
@@ -51,9 +51,9 @@ class AuthService extends ChangeNotifier {
       _getUser();
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        throw AuthException('Email não encontrado. Cadastre-se.');
+        throw AuthException('Email não encontrado. Cadastre-se!');
       } else if (e.code == 'wrong-password') {
-        throw AuthException('Senha incorreta. Tente novamente');
+        throw AuthException('Senha incorreta. Tente novamente!');
       }
     }
   }

@@ -21,7 +21,7 @@ class CadastroService extends ChangeNotifier {
     await db
         .collection('usuarios/$uid/dados')
         .doc('pontuação')
-        .set({'elo': 'nenhum', 'pontos': 0});
+        .set({'elo': 'Ferro', 'pontos': 0});
   }
 
   cadastrarGrupo(String uid, String nomeGrupo, List<String> listaEmails) async {
@@ -114,13 +114,15 @@ class CadastroService extends ChangeNotifier {
         .firstWhere((documento) => documento.id == 'pontuação')['pontos'];
 
     int calculo = pontosDaConta + pontosObtidos;
-    String elo = 'nenhum';
+    String elo = 'Ferro';
 
-    if (calculo > 0 && calculo < 360) {
+    if (calculo >= 0 && calculo < 180) {
+      elo = 'Ferro';
+    } else if (calculo >= 180 && calculo < 540) {
       elo = 'Bronze';
-    } else if (calculo >= 360 && calculo < 720) {
+    } else if (calculo >= 540 && calculo < 900) {
       elo = 'Prata';
-    } else if (calculo >= 720) {
+    } else if (calculo >= 900) {
       elo = 'Ouro';
     }
 

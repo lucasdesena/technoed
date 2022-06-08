@@ -25,6 +25,8 @@ class _PerfilAlunoPageState extends State<PerfilAlunoPage> {
 
   ImageProvider retornarElo(elo) {
     switch (elo) {
+      case 'Ferro':
+        return const AssetImage('assets/images/rank-ferro.png');
       case 'Bronze':
         return const AssetImage('assets/images/rank-bronze.png');
       case 'Prata':
@@ -32,7 +34,7 @@ class _PerfilAlunoPageState extends State<PerfilAlunoPage> {
       case 'Ouro':
         return const AssetImage('assets/images/rank-ouro.png');
       default:
-        return const AssetImage('assets/images/rank-bronze.png');
+        return const AssetImage('assets/images/rank-ferro.png');
     }
   }
 
