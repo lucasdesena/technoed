@@ -16,10 +16,10 @@ class _TesteTangramPageState extends State<TesteTangramPage> {
   int shapeCount = 0;
 
   List<String> listaPerguntas = [
-    'Quantas letras tem a palavra Paralelepípedo?',
+    'Quantas letras tem a palavra "paralelepípedo"?',
     'Qual é o resultado da soma: 2 + 5?',
     'O Brasil foi colônia de qual país?',
-    'Qual destes países não se localiza na América do sul?',
+    'Qual destes países não se localiza na América do Sul?',
     '"Comer" é um:',
     'A palavra "Angry" em português equivale à?',
     'Que país tem o formato de uma bota?',
