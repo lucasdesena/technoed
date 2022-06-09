@@ -39,7 +39,7 @@ class _ListaDesafiosPageState extends State<ListaDesafiosPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     Text(
-                      'Vamos jogar?',
+                      'Jogar',
                       style: TextStyle(color: Colors.white, fontSize: 20),
                     ),
                     Text(

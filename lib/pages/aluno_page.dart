@@ -250,7 +250,7 @@ class _AlunoPageState extends State<AlunoPage> {
                                 size: 60,
                               ),
                               Text(
-                                'Vamos jogar?',
+                                'Jogar',
                                 style: TextStyle(
                                     fontSize: 20,
                                     color: Color.fromARGB(255, 143, 146, 148)),
@@ -296,7 +296,7 @@ class _AlunoPageState extends State<AlunoPage> {
                                 size: 60,
                               ),
                               Text(
-                                'Treinamento',
+                                'Treinar',
                                 style: TextStyle(
                                     fontSize: 20,
                                     color: Color.fromARGB(255, 143, 146, 148)),
