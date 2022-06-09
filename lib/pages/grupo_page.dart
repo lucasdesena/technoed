@@ -79,7 +79,7 @@ class _GrupoPageState extends State<GrupoPage> {
                                     textAlign: TextAlign.center,
                                   ),
                                   content: const Text(
-                                    'Deseja remover este aluno?',
+                                    'Deseja remover esse aluno?',
                                     textAlign: TextAlign.center,
                                   ),
                                   actions: <Widget>[
@@ -141,7 +141,7 @@ class _GrupoPageState extends State<GrupoPage> {
                   Padding(
                     padding: EdgeInsets.all(10.0),
                     child: Text(
-                      'Adicionar alunos',
+                      'Adicionar aluno',
                       style: TextStyle(fontSize: 20),
                     ),
                   ),

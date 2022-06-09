@@ -41,7 +41,7 @@ class _SobrePageState extends State<SobrePage> {
                 decoration: BoxDecoration(color: Colors.black.withOpacity(0.7)),
                 child: const Text(
                   "O aplicativo Technoed foi desenvolvido pelos alunos Lucas de Sena e Marco Antonio Gonçalves no Trabalho de Conclusão de Curso.\n\n"
-                  "O principal objetivo do aplicativo é contribuir com os professores e os alunos na realização do processo de ensino e aprendizagem de maneira interativa, com a aplicação de desafios com Tangram e perguntas.\n\n"
+                  "O objetivo do aplicativo é contribuir com os professores e os alunos na realização do processo de ensino e aprendizagem por meio da gamificação, com a aplicação de desafios com Tangram e perguntas.\n\n"
                   "O Technoed permite ao professor criar grupos de alunos, com base na sua disciplina ou curso. Ele deve criar desafios com figuras do Tangram, sendo que para usar cada peça geométrica, é necessário ao aluno responder uma pergunta.\n\n"
                   "Ao professor ainda são disponibilizados relatórios de desempenho dos alunos.\n\n"
                   "O aluno recebe pontuação a cada desafio, a depender de seu desempenho nas perguntas, bem como na montagem do Tangram e pode evoluir seu elo.\n",

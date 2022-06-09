@@ -203,8 +203,7 @@ class _RelatorioPageState extends State<RelatorioPage> {
                                     ? const Text(
                                         'Perguntas que errou:',
                                         style: TextStyle(
-                                          color: Color.fromARGB(
-                                              255, 143, 146, 148),
+                                          color: Colors.red,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       )
@@ -236,10 +235,9 @@ class _RelatorioPageState extends State<RelatorioPage> {
                                     : const Padding(
                                         padding: EdgeInsets.only(bottom: 8.0),
                                         child: Text(
-                                          'Acertou todas as perguntas',
+                                          'Acertou todas as perguntas!',
                                           style: TextStyle(
-                                            color: Color.fromARGB(
-                                                255, 143, 146, 148),
+                                            color: Colors.green,
                                             fontWeight: FontWeight.bold,
                                           ),
                                         ),

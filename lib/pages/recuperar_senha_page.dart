@@ -108,7 +108,7 @@ class _RecuperarSenhaPageState extends State<RecuperarSenhaPage> {
                       Navigator.pop(context);
                     },
                     child: const Text(
-                      'Voltar ao Login.',
+                      'Voltar ao Login',
                       style: TextStyle(color: Colors.white, fontSize: 16),
                     ),
                   ),

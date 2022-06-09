@@ -252,7 +252,7 @@ class _PerfilAlunoPageState extends State<PerfilAlunoPage> {
                         ),
                         validator: (value) {
                           if (value!.isEmpty) {
-                            return 'O campo não pode estar vazio.';
+                            return 'Informe o nome corretamente!';
                           }
                           if (value == widget.nome) {
                             return 'O nome já está cadastrado.';

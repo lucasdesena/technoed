@@ -33,11 +33,11 @@ class _AdicionarAlunoPageState extends State<AdicionarAlunoPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: const <Widget>[
                 Text(
-                  'Adicionar alunos',
+                  'Adicionar aluno',
                   style: TextStyle(color: Colors.white, fontSize: 20),
                 ),
                 Text(
-                  'Adicione alunos ao grupo',
+                  'Adicione um aluno ao grupo',
                   style: TextStyle(
                       color: Color.fromARGB(255, 208, 211, 214), fontSize: 15),
                 ),
@@ -118,7 +118,7 @@ class _AdicionarAlunoPageState extends State<AdicionarAlunoPage> {
                   Padding(
                     padding: EdgeInsets.all(10.0),
                     child: Text(
-                      'Confirmar',
+                      'Adicionar',
                       style: TextStyle(fontSize: 20),
                     ),
                   ),

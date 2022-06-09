@@ -112,7 +112,7 @@ class _EscolherGrupoPageState extends State<EscolherGrupoPage> {
                                     textAlign: TextAlign.center,
                                   ),
                                   content: const Text(
-                                    'Esse grupo não pode ser escolhido pois não há nenhum aluno nele.',
+                                    'Esse grupo não pode ser escolhido, pois não há alunos nele.',
                                     textAlign: TextAlign.center,
                                   ),
                                   actions: <Widget>[

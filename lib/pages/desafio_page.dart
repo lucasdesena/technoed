@@ -130,7 +130,7 @@ class _DesafioPageState extends State<DesafioPage> {
                                 textAlign: TextAlign.center,
                               ),
                               content: const Text(
-                                'Se você deixar o desafio, não receberá pontos e não poderá realizá-lo novamente.\n\nDeseja mesmo sair?',
+                                'Se você sair do desafio, não receberá pontos e não poderá realizá-lo novamente.\n\nDeseja mesmo sair?',
                                 textAlign: TextAlign.center,
                               ),
                               actions: <Widget>[
@@ -148,7 +148,7 @@ class _DesafioPageState extends State<DesafioPage> {
                               ],
                             ),
                           ).then((value) {
-                            if (value == 'Confirmar') {
+                            if (value == 'Sim') {
                               Navigator.pop(context);
                             }
                           });

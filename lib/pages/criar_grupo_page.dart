@@ -212,7 +212,7 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                     children: <Widget>[
                       listaEmails.isEmpty
                           ? const Text(
-                              'Nenhum aluno foi inserido no grupo',
+                              'Nenhum aluno foi adicionado ao grupo',
                               style: TextStyle(fontSize: 16),
                             )
                           : const Text(

@@ -43,12 +43,12 @@ class _LoginPageState extends State<LoginPage> {
       isLogin = acao;
       if (isLogin) {
         actionButton = 'Login';
-        toggleButton = 'Não possui cadastro? Cadastre-se agora.';
+        toggleButton = 'Não possui cadastro? Cadastre-se agora';
         email.clear();
         senha.clear();
       } else {
         actionButton = 'Cadastrar';
-        toggleButton = 'Voltar ao Login.';
+        toggleButton = 'Voltar ao Login';
         nome.clear();
         repetirSenha.clear();
       }
@@ -216,7 +216,7 @@ class _LoginPageState extends State<LoginPage> {
                         if (value!.isEmpty) {
                           return 'Informe a sua senha!';
                         } else if (value.length < 6) {
-                          return 'Sua senha deve ter no mínimo 6 caracteres';
+                          return 'Sua senha deve ter no mínimo 6 caracteres.';
                         }
                         return null;
                       },
@@ -254,7 +254,7 @@ class _LoginPageState extends State<LoginPage> {
                               if (value!.isEmpty) {
                                 return 'Repita a senha!';
                               } else if (value != senha.text) {
-                                return 'A senha digitada não é igual';
+                                return 'A senha digitada não é igual.';
                               }
                               return null;
                             },

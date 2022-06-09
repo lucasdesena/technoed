@@ -45,7 +45,7 @@ class ListaGrupos extends StatelessWidget {
                               textAlign: TextAlign.center,
                             ),
                             content: const Text(
-                              'Deseja remover este grupo?',
+                              'Deseja remover esse grupo?',
                               textAlign: TextAlign.center,
                             ),
                             actions: <Widget>[
