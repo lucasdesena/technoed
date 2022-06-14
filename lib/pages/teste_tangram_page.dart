@@ -149,19 +149,14 @@ class _TesteTangramPageState extends State<TesteTangramPage> {
                                   ),
                                 ],
                               ),
-                              content: SizedBox(
-                                width: 320,
-                                height: 80,
-                                child: AnimatedTextKit(
-                                  animatedTexts: [
-                                    TyperAnimatedText(
-                                      'Parabéns!\n\nVocê concluiu o treinamento!',
-                                      //speed: const Duration(milliseconds: 400),
-                                      textAlign: TextAlign.center,
-                                      textStyle: const TextStyle(fontSize: 20),
-                                    )
-                                  ],
-                                ),
+                              content: AnimatedTextKit(
+                                animatedTexts: [
+                                  TyperAnimatedText(
+                                    'Parabéns!\n\nVocê concluiu o treinamento!',
+                                    textAlign: TextAlign.center,
+                                    textStyle: const TextStyle(fontSize: 20),
+                                  )
+                                ],
                               ),
                               actions: <Widget>[
                                 TextButton(
