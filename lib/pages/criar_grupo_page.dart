@@ -224,21 +224,75 @@ class _CriarGrupoPageState extends State<CriarGrupoPage> {
                 ),
                 Expanded(
                   child: SingleChildScrollView(
-                    child: Column(
-                        children: listaEmails
-                            .map((element) => Card(
-                                  child: Container(
-                                    padding: const EdgeInsets.all(10.0),
-                                    margin: const EdgeInsets.all(10.0),
-                                    decoration: const BoxDecoration(
-                                        color: Colors.white),
-                                    child: Text(element,
-                                        style: const TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold)),
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 6.0),
+                      child: Column(
+                          children: listaEmails
+                              .map(
+                                (email) => Card(
+                                  child: ListTile(
+                                    tileColor: const Color.fromARGB(
+                                        255, 202, 240, 248),
+                                    leading: const Icon(
+                                      Icons.email_outlined,
+                                      color: Color.fromARGB(255, 143, 146, 148),
+                                    ),
+                                    trailing: GestureDetector(
+                                      onTap: () {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              AlertDialog(
+                                            actionsAlignment:
+                                                MainAxisAlignment.center,
+                                            title: const Text(
+                                              'Confirmação',
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            content: const Text(
+                                              'Deseja remover esse aluno?',
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                onPressed: () {
+                                                  setState(() {
+                                                    listaEmails.removeWhere(
+                                                        (element) =>
+                                                            element == email);
+                                                  });
+                                                  Navigator.pop(context, 'Sim');
+                                                },
+                                                child: const Text('Sim'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    context, 'Cancelar'),
+                                                child: const Text('Cancelar'),
+                                              ),
+                                            ],
+                                          ),
+                                        );
+                                      },
+                                      child: const Icon(
+                                        Icons.delete_outline,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                    title: Text(
+                                      email,
+                                      textAlign: TextAlign.center,
+                                      style: const TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 143, 146, 148),
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
-                                ))
-                            .toList()),
+                                ),
+                              )
+                              .toList()),
+                    ),
                   ),
                 ),
               ],
