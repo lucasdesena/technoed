@@ -150,7 +150,7 @@ class _TesteTangramPageState extends State<TesteTangramPage> {
                                 ],
                               ),
                               content: SizedBox(
-                                width: 310,
+                                width: 320,
                                 height: 80,
                                 child: AnimatedTextKit(
                                   animatedTexts: [
