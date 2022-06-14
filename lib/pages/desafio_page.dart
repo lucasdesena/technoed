@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
@@ -183,93 +184,102 @@ class _DesafioPageState extends State<DesafioPage> {
                         },
                         onAccept: (data) {
                           if (data.id == shapeModel.id) {
-                            setState(() {
-                              data.isPlaced = true;
-                              data.targetColor = data.color;
-                              shapeCount++;
+                            setState(
+                              () {
+                                data.isPlaced = true;
+                                data.targetColor = data.color;
+                                shapeCount++;
 
-                              if (tangramFinalizado()) {
-                                String idRelatorio = snapshot.data!.docs
-                                    .where((desafio) =>
-                                        desafio.id == widget.idDesafio)
-                                    .map((doc) => doc['idRelatorio'])
-                                    .single;
+                                if (tangramFinalizado()) {
+                                  String idRelatorio = snapshot.data!.docs
+                                      .where((desafio) =>
+                                          desafio.id == widget.idDesafio)
+                                      .map((doc) => doc['idRelatorio'])
+                                      .single;
 
-                                String dataFormatada = "$email -" +
-                                    DateFormat('dd/MM/yyyy')
-                                        .format(dataRealizada);
+                                  String dataFormatada = "$email -" +
+                                      DateFormat('dd/MM/yyyy')
+                                          .format(dataRealizada);
 
-                                String errosTangram =
-                                    '$email -$qtdErrosTangram';
-                                String errosPerguntas =
-                                    '$email -$qtdErrosPerguntas';
+                                  String errosTangram =
+                                      '$email -$qtdErrosTangram';
+                                  String errosPerguntas =
+                                      '$email -$qtdErrosPerguntas';
 
-                                obterNomeEAdicionarDesafioConcluido(
-                                    uid,
-                                    idRelatorio,
-                                    email,
-                                    errosTangram,
-                                    errosPerguntas,
-                                    perguntasErradas,
-                                    dataFormatada);
+                                  obterNomeEAdicionarDesafioConcluido(
+                                      uid,
+                                      idRelatorio,
+                                      email,
+                                      errosTangram,
+                                      errosPerguntas,
+                                      perguntasErradas,
+                                      dataFormatada);
 
-                                if (pontuacaoTotal > 0) {
-                                  cadastro.adicionarPontuacao(
-                                      uid, pontuacaoTotal);
-                                }
-                                showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) =>
-                                      AlertDialog(
-                                    actionsAlignment: MainAxisAlignment.center,
-                                    title: Row(
-                                      mainAxisAlignment:
+                                  if (pontuacaoTotal > 0) {
+                                    cadastro.adicionarPontuacao(
+                                        uid, pontuacaoTotal);
+                                  }
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) =>
+                                        AlertDialog(
+                                      actionsAlignment:
                                           MainAxisAlignment.center,
-                                      children: const <Widget>[
-                                        Icon(
-                                          MdiIcons.star,
-                                          color: Colors.amber,
-                                          size: 40,
+                                      title: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: const <Widget>[
+                                          Icon(
+                                            MdiIcons.star,
+                                            color: Colors.amber,
+                                            size: 40,
+                                          ),
+                                        ],
+                                      ),
+                                      content: AnimatedTextKit(
+                                        animatedTexts: [
+                                          ColorizeAnimatedText(
+                                            'Parabéns!\n\nVocê ganhou $pontuacaoTotal ponto(s) no desafio!',
+                                            colors: [
+                                              Colors.black,
+                                              const Color.fromARGB(
+                                                  255, 0, 180, 216),
+                                              const Color.fromARGB(
+                                                  255, 231, 235, 6),
+                                              const Color.fromARGB(
+                                                  255, 6, 236, 56),
+                                              const Color.fromARGB(
+                                                  255, 48, 6, 236),
+                                            ],
+                                            speed: const Duration(
+                                                milliseconds: 400),
+                                            textAlign: TextAlign.center,
+                                            textStyle:
+                                                const TextStyle(fontSize: 20),
+                                          )
+                                        ],
+                                      ),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context, 'Ok'),
+                                          child: const Text('Ok'),
                                         ),
                                       ],
                                     ),
-                                    content: AnimatedTextKit(
-                                      animatedTexts: [
-                                        ColorizeAnimatedText(
-                                          'Parabéns!\n\nVocê ganhou $pontuacaoTotal ponto(s) no desafio!',
-                                          colors: [
-                                            Colors.black,
-                                            const Color.fromARGB(
-                                                255, 0, 180, 216),
-                                            const Color.fromARGB(
-                                                255, 231, 235, 6),
-                                            const Color.fromARGB(
-                                                255, 6, 236, 56),
-                                            const Color.fromARGB(
-                                                255, 48, 6, 236),
-                                          ],
-                                          speed:
-                                              const Duration(milliseconds: 400),
-                                          textAlign: TextAlign.center,
-                                          textStyle:
-                                              const TextStyle(fontSize: 20),
-                                        )
-                                      ],
-                                    ),
-                                    actions: <Widget>[
-                                      TextButton(
-                                        onPressed: () =>
-                                            Navigator.pop(context, 'Ok'),
-                                        child: const Text('Ok'),
-                                      ),
-                                    ],
-                                  ),
-                                ).then((value) => Navigator.pop(context));
-                              }
-                            });
+                                  ).then((value) => Navigator.pop(context));
+                                }
+                              },
+                            );
                           } else {
                             pontuacaoTotal -= 1;
                             qtdErrosTangram += 1;
+                            Fluttertoast.showToast(
+                              msg: 'Você errou! Tente novamente!',
+                              toastLength: Toast.LENGTH_SHORT,
+                              backgroundColor:
+                                  const Color.fromARGB(255, 245, 81, 81),
+                            );
                           }
                         },
                       ),

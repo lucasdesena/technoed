@@ -1,7 +1,10 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:technoed/models/dificuldade.dart';
 import 'package:technoed/models/forma.dart';
 import 'package:technoed/pages/pergunta_page.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class TesteTangramPage extends StatefulWidget {
   const TesteTangramPage({Key? key}) : super(key: key);
@@ -126,13 +129,57 @@ class _TesteTangramPageState extends State<TesteTangramPage> {
                 },
                 onAccept: (data) {
                   if (data.id == shapeModel.id) {
-                    setState(() {
-                      data.isPlaced = true;
-                      data.targetColor = data.color;
-                      shapeCount++;
-                    });
+                    setState(
+                      () {
+                        data.isPlaced = true;
+                        data.targetColor = data.color;
+                        shapeCount++;
+                        if (tangramFinalizado()) {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              actionsAlignment: MainAxisAlignment.center,
+                              title: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const <Widget>[
+                                  Icon(
+                                    MdiIcons.trophyVariantOutline,
+                                    color: Colors.amber,
+                                    size: 40,
+                                  ),
+                                ],
+                              ),
+                              content: SizedBox(
+                                width: 300,
+                                height: 80,
+                                child: AnimatedTextKit(
+                                  animatedTexts: [
+                                    TyperAnimatedText(
+                                      'Parabéns!\n\nVocê concluiu o treinamento!',
+                                      //speed: const Duration(milliseconds: 400),
+                                      textAlign: TextAlign.center,
+                                      textStyle: const TextStyle(fontSize: 20),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context, 'Ok'),
+                                  child: const Text('Ok'),
+                                ),
+                              ],
+                            ),
+                          ).then((value) => Navigator.pop(context));
+                        }
+                      },
+                    );
                   } else {
-                    print("errou");
+                    Fluttertoast.showToast(
+                      msg: 'Você errou! Tente novamente!',
+                      toastLength: Toast.LENGTH_LONG,
+                      backgroundColor: const Color.fromARGB(255, 245, 81, 81),
+                    );
                   }
                 },
               ),
