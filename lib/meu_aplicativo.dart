@@ -25,13 +25,9 @@ class MeuAplicativo extends StatelessWidget {
             return null;
         }
       },
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        DefaultCupertinoLocalizations.delegate
-      ],
-      supportedLocales: [
-        const Locale('pt', 'BR'),
+      localizationsDelegates: GlobalMaterialLocalizations.delegates,
+      supportedLocales: const [
+        Locale('pt', 'BR'),
       ],
     );
   }
