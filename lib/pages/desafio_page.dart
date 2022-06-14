@@ -275,7 +275,7 @@ class _DesafioPageState extends State<DesafioPage> {
                             pontuacaoTotal -= 1;
                             qtdErrosTangram += 1;
                             Fluttertoast.showToast(
-                              msg: 'Você errou! Tente novamente!',
+                              msg: 'Você errou, tente novamente!',
                               toastLength: Toast.LENGTH_SHORT,
                               backgroundColor:
                                   const Color.fromARGB(255, 245, 81, 81),

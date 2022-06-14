@@ -150,7 +150,7 @@ class _TesteTangramPageState extends State<TesteTangramPage> {
                                 ],
                               ),
                               content: SizedBox(
-                                width: 300,
+                                width: 310,
                                 height: 80,
                                 child: AnimatedTextKit(
                                   animatedTexts: [
@@ -176,7 +176,7 @@ class _TesteTangramPageState extends State<TesteTangramPage> {
                     );
                   } else {
                     Fluttertoast.showToast(
-                      msg: 'Você errou! Tente novamente!',
+                      msg: 'Você errou, tente novamente!',
                       toastLength: Toast.LENGTH_LONG,
                       backgroundColor: const Color.fromARGB(255, 245, 81, 81),
                     );
