@@ -147,15 +147,11 @@ class _TesteTangramPageState extends State<TesteTangramPage> {
                                     color: Colors.amber,
                                     size: 40,
                                   ),
-                                ],
-                              ),
-                              content: AnimatedTextKit(
-                                animatedTexts: [
-                                  TyperAnimatedText(
+                                  Text(
                                     'Parabéns!\n\nVocê concluiu o treinamento!',
                                     textAlign: TextAlign.center,
-                                    textStyle: const TextStyle(fontSize: 20),
-                                  )
+                                    style: TextStyle(fontSize: 20),
+                                  ),
                                 ],
                               ),
                               actions: <Widget>[
