@@ -278,7 +278,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                     } else if (value != alternativa1.text &&
                                         value != alternativa2.text &&
                                         value != alternativa3.text) {
-                                      return 'O campo precisa ser igual a uma das alternativas';
+                                      return 'O campo precisa ser igual a uma das alternativas.';
                                     }
                                     return null;
                                   },
@@ -430,7 +430,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                     } else if (value != alternativa4.text &&
                                         value != alternativa5.text &&
                                         value != alternativa6.text) {
-                                      return 'O campo precisa ser igual a uma das alternativas';
+                                      return 'O campo precisa ser igual a uma das alternativas.';
                                     }
                                     return null;
                                   },
@@ -582,7 +582,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                     } else if (value != alternativa7.text &&
                                         value != alternativa8.text &&
                                         value != alternativa9.text) {
-                                      return 'O campo precisa ser igual a uma das alternativas';
+                                      return 'O campo precisa ser igual a uma das alternativas.';
                                     }
                                     return null;
                                   },
@@ -734,7 +734,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                     } else if (value != alternativa10.text &&
                                         value != alternativa11.text &&
                                         value != alternativa12.text) {
-                                      return 'O campo precisa ser igual a uma das alternativas';
+                                      return 'O campo precisa ser igual a uma das alternativas.';
                                     }
                                     return null;
                                   },
@@ -886,7 +886,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                     } else if (value != alternativa13.text &&
                                         value != alternativa14.text &&
                                         value != alternativa15.text) {
-                                      return 'O campo precisa ser igual a uma das alternativas';
+                                      return 'O campo precisa ser igual a uma das alternativas.';
                                     }
                                     return null;
                                   },
@@ -1038,7 +1038,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                     } else if (value != alternativa16.text &&
                                         value != alternativa17.text &&
                                         value != alternativa18.text) {
-                                      return 'O campo precisa ser igual a uma das alternativas';
+                                      return 'O campo precisa ser igual a uma das alternativas.';
                                     }
                                     return null;
                                   },
@@ -1190,7 +1190,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                     } else if (value != alternativa19.text &&
                                         value != alternativa20.text &&
                                         value != alternativa21.text) {
-                                      return 'O campo precisa ser igual a uma das alternativas';
+                                      return 'O campo precisa ser igual a uma das alternativas.';
                                     }
                                     return null;
                                   },
@@ -1344,7 +1344,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                                 alternativa22.text &&
                                             value != alternativa23.text &&
                                             value != alternativa24.text) {
-                                          return 'O campo precisa ser igual a uma das alternativas';
+                                          return 'O campo precisa ser igual a uma das alternativas.';
                                         }
                                         return null;
                                       },
@@ -1501,7 +1501,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                                 alternativa25.text &&
                                             value != alternativa26.text &&
                                             value != alternativa27.text) {
-                                          return 'O campo precisa ser igual a uma das alternativas';
+                                          return 'O campo precisa ser igual a uma das alternativas.';
                                         }
                                         return null;
                                       },
