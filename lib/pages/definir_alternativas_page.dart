@@ -19,6 +19,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
   final formKey = GlobalKey<FormState>();
 
   String pergunta = '';
+  int numeroPergunta = 1;
 
   List<String> listaAlternativas = [];
   List<String> listaRespostas = [];
@@ -137,7 +138,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         ),
                       ),
                     ),
-                    pergunta == widget.listaPerguntas[0]
+                    numeroPergunta == 1
                         ? Column(
                             children: <Widget>[
                               Padding(
@@ -289,7 +290,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         : const Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           ),
-                    pergunta == widget.listaPerguntas[1]
+                    numeroPergunta == 2
                         ? Column(
                             children: <Widget>[
                               Padding(
@@ -441,7 +442,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         : const Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           ),
-                    pergunta == widget.listaPerguntas[2]
+                    numeroPergunta == 3
                         ? Column(
                             children: <Widget>[
                               Padding(
@@ -593,7 +594,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         : const Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           ),
-                    pergunta == widget.listaPerguntas[3]
+                    numeroPergunta == 4
                         ? Column(
                             children: <Widget>[
                               Padding(
@@ -745,7 +746,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         : const Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           ),
-                    pergunta == widget.listaPerguntas[4]
+                    numeroPergunta == 5
                         ? Column(
                             children: <Widget>[
                               Padding(
@@ -897,7 +898,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         : const Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           ),
-                    pergunta == widget.listaPerguntas[5]
+                    numeroPergunta == 6
                         ? Column(
                             children: <Widget>[
                               Padding(
@@ -1049,7 +1050,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         : const Padding(
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           ),
-                    pergunta == widget.listaPerguntas[6]
+                    numeroPergunta == 7
                         ? Column(
                             children: <Widget>[
                               Padding(
@@ -1202,7 +1203,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           ),
                     widget.dificuldade == 'Difícil'
-                        ? pergunta == widget.listaPerguntas[7]
+                        ? numeroPergunta == 8
                             ? Column(
                                 children: <Widget>[
                                   Padding(
@@ -1359,7 +1360,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                             padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
                           ),
                     widget.dificuldade == 'Difícil'
-                        ? pergunta == widget.listaPerguntas[8]
+                        ? numeroPergunta == 9
                             ? Column(
                                 children: <Widget>[
                                   Padding(
@@ -1521,7 +1522,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         onPressed: () {
                           if (formKey.currentState!.validate()) {
                             setState(() {
-                              if (pergunta == widget.listaPerguntas[0]) {
+                              if (numeroPergunta == 1) {
                                 if (listaAlternativas.isNotEmpty) {
                                   listaAlternativas.clear();
                                 }
@@ -1534,7 +1535,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 listaRespostas.add(respostaPergunta1.text);
 
                                 pergunta = widget.listaPerguntas[1];
-                              } else if (pergunta == widget.listaPerguntas[1]) {
+                              } else if (numeroPergunta == 2) {
                                 if (listaAlternativas.length > 3) {
                                   for (var i = 5; i >= 3; i--) {
                                     listaAlternativas.removeAt(i);
@@ -1549,7 +1550,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 listaRespostas.add(respostaPergunta2.text);
 
                                 pergunta = widget.listaPerguntas[2];
-                              } else if (pergunta == widget.listaPerguntas[2]) {
+                              } else if (numeroPergunta == 3) {
                                 if (listaAlternativas.length > 6) {
                                   for (var i = 8; i >= 6; i--) {
                                     listaAlternativas.removeAt(i);
@@ -1564,7 +1565,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 listaRespostas.add(respostaPergunta3.text);
 
                                 pergunta = widget.listaPerguntas[3];
-                              } else if (pergunta == widget.listaPerguntas[3]) {
+                              } else if (numeroPergunta == 4) {
                                 if (listaAlternativas.length > 9) {
                                   for (var i = 11; i >= 9; i--) {
                                     listaAlternativas.removeAt(i);
@@ -1579,7 +1580,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 listaRespostas.add(respostaPergunta4.text);
 
                                 pergunta = widget.listaPerguntas[4];
-                              } else if (pergunta == widget.listaPerguntas[4]) {
+                              } else if (numeroPergunta == 5) {
                                 if (listaAlternativas.length > 12) {
                                   for (var i = 14; i >= 12; i--) {
                                     listaAlternativas.removeAt(i);
@@ -1594,7 +1595,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 listaRespostas.add(respostaPergunta5.text);
 
                                 pergunta = widget.listaPerguntas[5];
-                              } else if (pergunta == widget.listaPerguntas[5]) {
+                              } else if (numeroPergunta == 6) {
                                 if (listaAlternativas.length > 15) {
                                   for (var i = 17; i >= 15; i--) {
                                     listaAlternativas.removeAt(i);
@@ -1609,7 +1610,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 listaRespostas.add(respostaPergunta6.text);
 
                                 pergunta = widget.listaPerguntas[6];
-                              } else if (pergunta == widget.listaPerguntas[6]) {
+                              } else if (numeroPergunta == 7) {
                                 if (listaAlternativas.length > 18) {
                                   for (var i = 20; i >= 18; i--) {
                                     listaAlternativas.removeAt(i);
@@ -1627,7 +1628,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 } else {
                                   pergunta = widget.listaPerguntas[7];
                                 }
-                              } else if (pergunta == widget.listaPerguntas[7] &&
+                              } else if (numeroPergunta == 8 &&
                                   widget.dificuldade == 'Difícil') {
                                 if (listaAlternativas.length > 21) {
                                   for (var i = 23; i >= 21; i--) {
@@ -1643,7 +1644,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 listaRespostas.add(respostaPergunta8.text);
 
                                 pergunta = widget.listaPerguntas[8];
-                              } else if (pergunta == widget.listaPerguntas[8] &&
+                              } else if (numeroPergunta == 9 &&
                                   widget.dificuldade == 'Difícil') {
                                 if (listaAlternativas.length > 24) {
                                   for (var i = 26; i >= 24; i--) {
@@ -1659,6 +1660,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                 listaRespostas.add(respostaPergunta9.text);
                                 _telaEscolherGrupo();
                               }
+                              numeroPergunta++;
                             });
                           }
                         },
@@ -1671,7 +1673,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                             Padding(
                               padding: const EdgeInsets.all(10.0),
                               child: widget.dificuldade == 'Normal'
-                                  ? pergunta == widget.listaPerguntas[6]
+                                  ? numeroPergunta == 7
                                       ? const Text(
                                           'Escolher grupo',
                                           style: TextStyle(fontSize: 20),
@@ -1680,7 +1682,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                           'Avançar',
                                           style: TextStyle(fontSize: 20),
                                         )
-                                  : pergunta == widget.listaPerguntas[8]
+                                  : numeroPergunta == 9
                                       ? const Text(
                                           'Escolher grupo',
                                           style: TextStyle(fontSize: 20),
@@ -1694,7 +1696,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                         ),
                       ),
                     ),
-                    pergunta == widget.listaPerguntas[0]
+                    numeroPergunta == 1
                         ? const Padding(
                             padding: EdgeInsets.all(0.0),
                           )
@@ -1703,7 +1705,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                             child: ElevatedButton(
                               onPressed: () {
                                 setState(() {
-                                  if (pergunta == widget.listaPerguntas[1]) {
+                                  if (numeroPergunta == 2) {
                                     if (listaAlternativas.length > 3) {
                                       for (var i = 5; i >= 3; i--) {
                                         listaAlternativas.removeAt(i);
@@ -1713,8 +1715,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                       listaRespostas.removeAt(1);
                                     }
                                     pergunta = widget.listaPerguntas[0];
-                                  } else if (pergunta ==
-                                      widget.listaPerguntas[2]) {
+                                  } else if (numeroPergunta == 3) {
                                     if (listaAlternativas.length > 6) {
                                       for (var i = 8; i >= 6; i--) {
                                         listaAlternativas.removeAt(i);
@@ -1724,8 +1725,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                       listaRespostas.removeAt(2);
                                     }
                                     pergunta = widget.listaPerguntas[1];
-                                  } else if (pergunta ==
-                                      widget.listaPerguntas[3]) {
+                                  } else if (numeroPergunta == 4) {
                                     if (listaAlternativas.length > 9) {
                                       for (var i = 11; i >= 9; i--) {
                                         listaAlternativas.removeAt(i);
@@ -1735,8 +1735,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                       listaRespostas.removeAt(3);
                                     }
                                     pergunta = widget.listaPerguntas[2];
-                                  } else if (pergunta ==
-                                      widget.listaPerguntas[4]) {
+                                  } else if (numeroPergunta == 5) {
                                     if (listaAlternativas.length > 12) {
                                       for (var i = 14; i >= 12; i--) {
                                         listaAlternativas.removeAt(i);
@@ -1746,8 +1745,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                       listaRespostas.removeAt(4);
                                     }
                                     pergunta = widget.listaPerguntas[3];
-                                  } else if (pergunta ==
-                                      widget.listaPerguntas[5]) {
+                                  } else if (numeroPergunta == 6) {
                                     if (listaAlternativas.length > 15) {
                                       for (var i = 17; i >= 15; i--) {
                                         listaAlternativas.removeAt(i);
@@ -1757,8 +1755,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                       listaRespostas.removeAt(5);
                                     }
                                     pergunta = widget.listaPerguntas[4];
-                                  } else if (pergunta ==
-                                      widget.listaPerguntas[6]) {
+                                  } else if (numeroPergunta == 7) {
                                     if (listaAlternativas.length > 18) {
                                       for (var i = 20; i >= 18; i--) {
                                         listaAlternativas.removeAt(i);
@@ -1768,8 +1765,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                       listaRespostas.removeAt(6);
                                     }
                                     pergunta = widget.listaPerguntas[5];
-                                  } else if (pergunta ==
-                                      widget.listaPerguntas[7]) {
+                                  } else if (numeroPergunta == 8) {
                                     if (listaAlternativas.length > 21) {
                                       for (var i = 23; i >= 21; i--) {
                                         listaAlternativas.removeAt(i);
@@ -1779,8 +1775,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                       listaRespostas.removeAt(7);
                                     }
                                     pergunta = widget.listaPerguntas[6];
-                                  } else if (pergunta ==
-                                      widget.listaPerguntas[8]) {
+                                  } else if (numeroPergunta == 9) {
                                     if (listaAlternativas.length > 24) {
                                       for (var i = 26; i >= 24; i--) {
                                         listaAlternativas.removeAt(i);
@@ -1791,6 +1786,7 @@ class _DefinirAlternativasPageState extends State<DefinirAlternativasPage> {
                                     }
                                     pergunta = widget.listaPerguntas[7];
                                   }
+                                  numeroPergunta--;
                                 });
                               },
                               style: ElevatedButton.styleFrom(
