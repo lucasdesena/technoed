@@ -304,6 +304,7 @@ class _DesafioPageState extends State<DesafioPage> {
                                                   children: <Widget>[
                                                     Lottie.asset(
                                                         'assets/images/lottie-trophy.json',
+                                                        repeat: false,
                                                         width: 70,
                                                         height: 70),
                                                     const Text(
