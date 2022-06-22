@@ -22,6 +22,8 @@ class _AlunoPageState extends State<AlunoPage> {
   String nome = '';
   String elo = '';
   int pontos = 0;
+  List<String> conquistas = [];
+  String conquista = '';
 
   ImageProvider retornarElo(elo) {
     switch (elo) {
@@ -42,7 +44,7 @@ class _AlunoPageState extends State<AlunoPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => PerfilAlunoPage(nome, elo, pontos),
+        builder: (_) => PerfilAlunoPage(nome, elo, pontos, conquista),
       ),
     );
   }
@@ -86,6 +88,11 @@ class _AlunoPageState extends State<AlunoPage> {
                   nome = snapshot.data!.docs.map((doc) => doc['nome']).first;
                   pontos = snapshot.data!.docs.map((doc) => doc['pontos']).last;
                   elo = snapshot.data!.docs.map((doc) => doc['elo']).last;
+                  conquistas = List.from(
+                      snapshot.data!.docs.map((doc) => doc['conquistas']).last);
+                  if (conquistas.isNotEmpty) {
+                    conquista = conquistas[0];
+                  }
                   return AppBar(
                     automaticallyImplyLeading: false,
                     toolbarHeight: 100,

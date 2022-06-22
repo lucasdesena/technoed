@@ -1,6 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:lottie/lottie.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:technoed/services/auth_service.dart';
@@ -10,7 +11,9 @@ class PerfilAlunoPage extends StatefulWidget {
   final String nome;
   final String elo;
   final int pontos;
-  const PerfilAlunoPage(this.nome, this.elo, this.pontos, {Key? key})
+  final String conquista;
+  const PerfilAlunoPage(this.nome, this.elo, this.pontos, this.conquista,
+      {Key? key})
       : super(key: key);
 
   @override
@@ -188,16 +191,78 @@ class _PerfilAlunoPageState extends State<PerfilAlunoPage> {
                           )
                         ],
                       ),
-                      /*Text(
-                        widget.pontos.toString(),
-                        style: const TextStyle(fontSize: 15),
-                      ),*/
                     ],
                   ),
                 ),
               ],
             ),
           ),
+          widget.conquista == ""
+              ? const Padding(padding: EdgeInsets.all(0.0))
+              : Padding(
+                  padding: const EdgeInsets.only(top: 8, bottom: 8),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const <Widget>[
+                      Text(
+                        'Conquistas',
+                        style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                    ],
+                  ),
+                ),
+          widget.conquista == ""
+              ? const Padding(padding: EdgeInsets.all(0.0))
+              : Padding(
+                  padding: const EdgeInsets.only(left: 12, right: 12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                        child: Container(
+                          color: const Color.fromARGB(255, 202, 240, 248),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 4),
+                                child: Text(
+                                  widget.conquista,
+                                  style: const TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black),
+                                ),
+                              ),
+                              Container(
+                                color: const Color.fromARGB(255, 196, 196, 196),
+                                child: Lottie.network(
+                                    'https://assets7.lottiefiles.com/private_files/lf30_7ylqhukk.json',
+                                    width: 70,
+                                    height: 70),
+                              ),
+                              const Padding(
+                                padding: EdgeInsets.only(top: 4),
+                                child: Text(
+                                  'Acerte 3 perguntas\nseguidas.',
+                                  style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                      color:
+                                          Color.fromARGB(255, 161, 158, 158)),
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: const <Widget>[
@@ -262,13 +327,21 @@ class _PerfilAlunoPageState extends State<PerfilAlunoPage> {
                       ),
                     ),
                   ),
-                  Container(
-                    padding: const EdgeInsets.only(top: 221.0),
-                    child: SizedBox(
-                      height: 90,
-                      child: Image.asset('assets/images/logo-alt.png'),
-                    ),
-                  ),
+                  widget.conquista == ""
+                      ? Container(
+                          padding: const EdgeInsets.only(top: 221.0),
+                          child: SizedBox(
+                            height: 90,
+                            child: Image.asset('assets/images/logo-alt.png'),
+                          ),
+                        )
+                      : Container(
+                          padding: const EdgeInsets.only(top: 54.0),
+                          child: SizedBox(
+                            height: 90,
+                            child: Image.asset('assets/images/logo-alt.png'),
+                          ),
+                        ),
                 ],
               ),
             ),
