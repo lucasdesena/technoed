@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:technoed/models/dificuldade.dart';
@@ -38,6 +39,10 @@ class _DesafioPageState extends State<DesafioPage> {
   DateTime dataRealizada = DateTime.now();
 
   CadastroService cadastro = CadastroService();
+
+  int contarSequencia = 0;
+  List<String> conquistas = [];
+  List<String> conquistasDaConta = [];
 
   @override
   void initState() {
@@ -267,13 +272,81 @@ class _DesafioPageState extends State<DesafioPage> {
                                         ),
                                       ],
                                     ),
-                                  ).then((value) => Navigator.pop(context));
+                                  ).then((value) {
+                                    if (contarSequencia >= 3) {
+                                      conquistas.add("Sem pressão");
+                                    }
+                                    if (conquistas.isNotEmpty) {
+                                      bool jaTemAConquista = false;
+                                      cadastro.obterConquistas(uid).then(
+                                        (value) {
+                                          conquistasDaConta = List.from(value);
+                                          for (var conquista
+                                              in conquistasDaConta) {
+                                            if (conquista == "Sem pressão") {
+                                              conquistas.removeWhere(
+                                                  (element) =>
+                                                      element == "Sem pressão");
+                                              jaTemAConquista = true;
+                                            }
+                                          }
+                                          if (jaTemAConquista == true) {
+                                            Navigator.pop(context);
+                                          } else {
+                                            cadastro.adicionarConquista(
+                                                uid, conquistas);
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) =>
+                                                  AlertDialog(
+                                                actionsAlignment:
+                                                    MainAxisAlignment.center,
+                                                title: Column(
+                                                  children: <Widget>[
+                                                    Lottie.network(
+                                                        'https://assets1.lottiefiles.com/packages/lf20_6nnydbsa.json',
+                                                        repeat: false,
+                                                        width: 70,
+                                                        height: 70),
+                                                    const Text(
+                                                      'Parabéns!\n\nVocê desbloqueou a conquista "Sem Pressão"!',
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                      style: TextStyle(
+                                                          fontSize: 20),
+                                                    ),
+                                                  ],
+                                                ),
+                                                content: Lottie.network(
+                                                    'https://assets7.lottiefiles.com/private_files/lf30_7ylqhukk.json',
+                                                    width: 70,
+                                                    height: 70),
+                                                actions: <Widget>[
+                                                  TextButton(
+                                                    onPressed: () =>
+                                                        Navigator.pop(
+                                                            context, 'Ok'),
+                                                    child: const Text('Ok'),
+                                                  ),
+                                                ],
+                                              ),
+                                            ).then((value) =>
+                                                Navigator.pop(context));
+                                          }
+                                        },
+                                      );
+                                    } else {
+                                      Navigator.pop(context);
+                                    }
+                                  });
                                 }
                               },
                             );
                           } else {
-                            pontuacaoTotal -= 1;
-                            qtdErrosTangram += 1;
+                            if (pontuacaoTotal > 1) {
+                              pontuacaoTotal--;
+                            }
+                            qtdErrosTangram++;
                             Fluttertoast.showToast(
                               msg: 'Você errou, tente novamente!',
                               toastLength: Toast.LENGTH_SHORT,
@@ -442,6 +515,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                         perguntasErradas
                                             .add('$email -' + value[2]);
                                       }
+                                      if (value[3] == true) {
+                                        contarSequencia++;
+                                      } else if (value[3] == false &&
+                                          contarSequencia < 3) {
+                                        contarSequencia = 0;
+                                      }
                                     });
                                     shapeModel.firstInteraction = false;
                                   }
@@ -463,6 +542,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                       if (value[1] > 0) {
                                         perguntasErradas
                                             .add('$email -' + value[2]);
+                                      }
+                                      if (value[3] == true) {
+                                        contarSequencia++;
+                                      } else if (value[3] == false &&
+                                          contarSequencia < 3) {
+                                        contarSequencia = 0;
                                       }
                                     });
                                     shapeModel.firstInteraction = false;
@@ -486,6 +571,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                         perguntasErradas
                                             .add('$email -' + value[2]);
                                       }
+                                      if (value[3] == true) {
+                                        contarSequencia++;
+                                      } else if (value[3] == false &&
+                                          contarSequencia < 3) {
+                                        contarSequencia = 0;
+                                      }
                                     });
                                     shapeModel.firstInteraction = false;
                                   }
@@ -507,6 +598,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                       if (value[1] > 0) {
                                         perguntasErradas
                                             .add('$email -' + value[2]);
+                                      }
+                                      if (value[3] == true) {
+                                        contarSequencia++;
+                                      } else if (value[3] == false &&
+                                          contarSequencia < 3) {
+                                        contarSequencia = 0;
                                       }
                                     });
                                     shapeModel.firstInteraction = false;
@@ -530,6 +627,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                         perguntasErradas
                                             .add('$email -' + value[2]);
                                       }
+                                      if (value[3] == true) {
+                                        contarSequencia++;
+                                      } else if (value[3] == false &&
+                                          contarSequencia < 3) {
+                                        contarSequencia = 0;
+                                      }
                                     });
                                     shapeModel.firstInteraction = false;
                                   }
@@ -551,6 +654,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                       if (value[1] > 0) {
                                         perguntasErradas
                                             .add('$email -' + value[2]);
+                                      }
+                                      if (value[3] == true) {
+                                        contarSequencia++;
+                                      } else if (value[3] == false &&
+                                          contarSequencia < 3) {
+                                        contarSequencia = 0;
                                       }
                                     });
                                     shapeModel.firstInteraction = false;
@@ -574,6 +683,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                         perguntasErradas
                                             .add('$email -' + value[2]);
                                       }
+                                      if (value[3] == true) {
+                                        contarSequencia++;
+                                      } else if (value[3] == false &&
+                                          contarSequencia < 3) {
+                                        contarSequencia = 0;
+                                      }
                                     });
                                     shapeModel.firstInteraction = false;
                                   }
@@ -596,6 +711,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                         perguntasErradas
                                             .add('$email -' + value[2]);
                                       }
+                                      if (value[3] == true) {
+                                        contarSequencia++;
+                                      } else if (value[3] == false &&
+                                          contarSequencia < 3) {
+                                        contarSequencia = 0;
+                                      }
                                     });
                                     shapeModel.firstInteraction = false;
                                   }
@@ -617,6 +738,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                       if (value[1] > 0) {
                                         perguntasErradas
                                             .add('$email -' + value[2]);
+                                      }
+                                      if (value[3] == true) {
+                                        contarSequencia++;
+                                      } else if (value[3] == false &&
+                                          contarSequencia < 3) {
+                                        contarSequencia = 0;
                                       }
                                     });
                                     shapeModel.firstInteraction = false;

@@ -20,6 +20,7 @@ class _PerguntaPageState extends State<PerguntaPage> {
   bool cliqueAltErrada1 = false;
   bool cliqueAltErrada2 = false;
   bool cliqueAltErrada3 = false;
+  bool acertou = false;
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +57,7 @@ class _PerguntaPageState extends State<PerguntaPage> {
                             switch (tentativa) {
                               case 1:
                                 pontos += 4;
+                                acertou = true;
                                 break;
                               case 2:
                                 pontos += 2;
@@ -67,8 +69,12 @@ class _PerguntaPageState extends State<PerguntaPage> {
                                 pontos += 0;
                                 break;
                             }
-                            Navigator.pop(context,
-                                [pontos, qtdErrosPerguntas, widget.pergunta]);
+                            Navigator.pop(context, [
+                              pontos,
+                              qtdErrosPerguntas,
+                              widget.pergunta,
+                              acertou
+                            ]);
                           } else {
                             setState(() {
                               cliqueAltErrada1 = true;
@@ -141,6 +147,7 @@ class _PerguntaPageState extends State<PerguntaPage> {
                             switch (tentativa) {
                               case 1:
                                 pontos += 4;
+                                acertou = true;
                                 break;
                               case 2:
                                 pontos += 2;
@@ -152,8 +159,12 @@ class _PerguntaPageState extends State<PerguntaPage> {
                                 pontos += 0;
                                 break;
                             }
-                            Navigator.pop(context,
-                                [pontos, qtdErrosPerguntas, widget.pergunta]);
+                            Navigator.pop(context, [
+                              pontos,
+                              qtdErrosPerguntas,
+                              widget.pergunta,
+                              acertou
+                            ]);
                           } else {
                             setState(() {
                               cliqueAltErrada2 = true;
@@ -225,6 +236,7 @@ class _PerguntaPageState extends State<PerguntaPage> {
                             switch (tentativa) {
                               case 1:
                                 pontos += 4;
+                                acertou = true;
                                 break;
                               case 2:
                                 pontos += 2;
@@ -236,8 +248,12 @@ class _PerguntaPageState extends State<PerguntaPage> {
                                 pontos += 0;
                                 break;
                             }
-                            Navigator.pop(context,
-                                [pontos, qtdErrosPerguntas, widget.pergunta]);
+                            Navigator.pop(context, [
+                              pontos,
+                              qtdErrosPerguntas,
+                              widget.pergunta,
+                              acertou
+                            ]);
                           } else {
                             setState(() {
                               cliqueAltErrada3 = true;

@@ -42,8 +42,10 @@ dependencies:
   flutter_native_splash: ^1.2.0
   flutter_launcher_icons: ^0.9.1
   intl:
+  lottie:
   flutter_localizations:
    sdk: flutter
+  
 
 flutter_native_splash:
   color: "#00B4D8"

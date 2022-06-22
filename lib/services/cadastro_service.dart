@@ -21,7 +21,7 @@ class CadastroService extends ChangeNotifier {
     await db
         .collection('usuarios/$uid/dados')
         .doc('pontuação')
-        .set({'elo': 'nenhum', 'pontos': 0});
+        .set({'elo': 'nenhum', 'pontos': 0, 'conquistas': []});
   }
 
   cadastrarGrupo(String uid, String nomeGrupo, List<String> listaEmails) async {
@@ -53,24 +53,18 @@ class CadastroService extends ChangeNotifier {
   cadastrarRelatorio(String nomeGrupo, String emailProfessor,
       String tituloDesafio, String dataDesafio) async {
     String idRelatorio = '';
-    List<String> listaNome = [];
-    List<String> listaEmail = [];
-    List<int> listaErrosTangram = [];
-    List<int> listaErrosPerguntas = [];
-    List<String> perguntasErradas = [];
-    List<String> listaData = [];
 
     await db.collection('relatorios').add({
       'grupo': nomeGrupo,
       'professor': emailProfessor,
       'titulo': tituloDesafio,
-      'nomes': listaNome,
-      'emails': listaEmail,
-      'errosTangram': listaErrosTangram,
-      'errosPerguntas': listaErrosPerguntas,
-      'perguntasErradas': perguntasErradas,
+      'nomes': [],
+      'emails': [],
+      'errosTangram': [],
+      'errosPerguntas': [],
+      'perguntasErradas': [],
       'dataDesafio': dataDesafio,
-      'dataRealizada': listaData
+      'dataRealizada': []
     }).then((value) {
       idRelatorio = value.id;
     });
@@ -97,6 +91,13 @@ class CadastroService extends ChangeNotifier {
 
     return resultado.docs
         .firstWhere((documento) => documento.id == 'cadastro')['nome'];
+  }
+
+  obterConquistas(String uid) async {
+    QuerySnapshot resultado = await db.collection('usuarios/$uid/dados').get();
+
+    return resultado.docs
+        .firstWhere((documento) => documento.id == 'pontuação')['conquistas'];
   }
 
   adicionarEmail(String uid, String nomeGrupo, String email) async {
@@ -130,6 +131,13 @@ class CadastroService extends ChangeNotifier {
         .collection('usuarios/$uid/dados')
         .doc('pontuação')
         .update({'elo': elo, 'pontos': calculo});
+  }
+
+  adicionarConquista(String uid, List<String> conquistas) async {
+    await db
+        .collection('usuarios/$uid/dados')
+        .doc('pontuação')
+        .update({'conquistas': FieldValue.arrayUnion(conquistas)});
   }
 
   editarNome(String uid, String nome) async {
