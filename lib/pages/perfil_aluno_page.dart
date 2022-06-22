@@ -239,8 +239,8 @@ class _PerfilAlunoPageState extends State<PerfilAlunoPage> {
                               ),
                               Container(
                                 color: const Color.fromARGB(255, 196, 196, 196),
-                                child: Lottie.network(
-                                    'https://assets7.lottiefiles.com/private_files/lf30_7ylqhukk.json',
+                                child: Lottie.asset(
+                                    'assets/images/lottie-count.json',
                                     width: 70,
                                     height: 70),
                               ),

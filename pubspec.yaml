@@ -91,6 +91,9 @@ flutter:
     - 'assets/images/rank-prata.png'
     - 'assets/images/rank-ouro.png'
     - 'assets/images/logo-alt.png'
+    - 'assets/images/lottie-count.json'
+    - 'assets/images/lottie-star.json'
+    - 'assets/images/lottie-trophy.json'
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

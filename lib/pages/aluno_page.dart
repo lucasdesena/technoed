@@ -92,6 +92,8 @@ class _AlunoPageState extends State<AlunoPage> {
                       snapshot.data!.docs.map((doc) => doc['conquistas']).last);
                   if (conquistas.isNotEmpty) {
                     conquista = conquistas[0];
+                  } else {
+                    conquista = "";
                   }
                   return AppBar(
                     automaticallyImplyLeading: false,

@@ -233,12 +233,11 @@ class _DesafioPageState extends State<DesafioPage> {
                                       title: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
-                                        children: const <Widget>[
-                                          Icon(
-                                            MdiIcons.star,
-                                            color: Colors.amber,
-                                            size: 40,
-                                          ),
+                                        children: <Widget>[
+                                          Lottie.asset(
+                                              'assets/images/lottie-star.json',
+                                              width: 70,
+                                              height: 70),
                                         ],
                                       ),
                                       content: AnimatedTextKit(
@@ -303,13 +302,12 @@ class _DesafioPageState extends State<DesafioPage> {
                                                     MainAxisAlignment.center,
                                                 title: Column(
                                                   children: <Widget>[
-                                                    Lottie.network(
-                                                        'https://assets1.lottiefiles.com/packages/lf20_6nnydbsa.json',
-                                                        repeat: false,
+                                                    Lottie.asset(
+                                                        'assets/images/lottie-trophy.json',
                                                         width: 70,
                                                         height: 70),
                                                     const Text(
-                                                      'Parabéns!\n\nVocê desbloqueou a conquista "Sem Pressão"!',
+                                                      'Você desbloqueou a conquista "Sem Pressão"!',
                                                       textAlign:
                                                           TextAlign.center,
                                                       style: TextStyle(
@@ -317,8 +315,8 @@ class _DesafioPageState extends State<DesafioPage> {
                                                     ),
                                                   ],
                                                 ),
-                                                content: Lottie.network(
-                                                    'https://assets7.lottiefiles.com/private_files/lf30_7ylqhukk.json',
+                                                content: Lottie.asset(
+                                                    'assets/images/lottie-count.json',
                                                     width: 70,
                                                     height: 70),
                                                 actions: <Widget>[
