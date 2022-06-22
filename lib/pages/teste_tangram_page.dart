@@ -29,9 +29,9 @@ class _TesteTangramPageState extends State<TesteTangramPage> {
   ];
 
   List<String> listaAlternativas = [
+    '12',
     '13',
     '14',
-    '12',
     '6',
     '9',
     '7',
@@ -147,12 +147,12 @@ class _TesteTangramPageState extends State<TesteTangramPage> {
                                     color: Colors.amber,
                                     size: 40,
                                   ),
-                                  Text(
-                                    'Parabéns!\n\nVocê concluiu o treinamento!',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 20),
-                                  ),
                                 ],
+                              ),
+                              content: const Text(
+                                'Parabéns!\n\nVocê concluiu o treinamento!',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 20),
                               ),
                               actions: <Widget>[
                                 TextButton(
