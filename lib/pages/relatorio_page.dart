@@ -96,34 +96,22 @@ class _RelatorioPageState extends State<RelatorioPage> {
                           .single;
                       String errosTangram = pegarErrosTangram.split('-')[1];
 
-                      String pegarIndexAnterior = '';
-                      int indexAnterior = 0;
-                      int indexAtual = 0;
                       List<String> perguntasErradasAluno = [];
 
-                      if (errosPerguntas > 0) {
-                        perguntasErradas = snapshot.data!.docs
-                            .where((relatorio) =>
-                                relatorio.id == widget.idRelatorio)
-                            .map((doc) => List.from(doc['perguntasErradas']))
-                            .single;
+                      perguntasErradas = snapshot.data!.docs
+                          .where(
+                              (relatorio) => relatorio.id == widget.idRelatorio)
+                          .map((doc) => List.from(doc['perguntasErradas']))
+                          .single;
 
-                        if (index > 0) {
-                          pegarIndexAnterior = snapshot.data!.docs
-                              .where((relatorio) =>
-                                  relatorio.id == widget.idRelatorio)
-                              .map((doc) => doc['errosPerguntas'][index - 1])
-                              .single;
-                          indexAnterior =
-                              int.parse(pegarIndexAnterior.split('-')[1]);
-                        }
-
-                        indexAtual = indexAnterior + errosPerguntas;
-                        for (var i = indexAnterior; i < indexAtual; i++) {
+                      for (var i = 0; i < perguntasErradas.length; i++) {
+                        if (perguntasErradas[i].toString().split(' -')[0] ==
+                            email) {
                           perguntasErradasAluno.add(
                               perguntasErradas[i].toString().split('-')[1]);
                         }
                       }
+
                       return Padding(
                         padding: const EdgeInsets.only(bottom: 5.0),
                         child: Card(
